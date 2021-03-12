@@ -1,0 +1,38 @@
+.user {
+  display: flex;
+  margin-top: 25px;
+  padding: 30px 20px;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.15);
+}
+
+.photo {
+  width: 180px;
+  height: 180px;
+  box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+
+.info {
+  margin-left: 80px;
+}
+
+.name {
+  font-size: 34px;
+  margin-bottom: 25px;
+}
+
+.text {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.text:last-child {
+  margin: 0;
+}
+
+.text_asked {
+  display: inline-block;
+  width: 140px;
+}
