@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import s from './Navigation.module.css'
 
 const Navigation = () => {
@@ -5,19 +6,19 @@ const Navigation = () => {
         <nav className={s.navigation}>
             <ul className={s.whrapper}>
                 <li className={s.item}>
-                    <a className={s.link} activeClassName={s.active} to="/brainbook/profile">Profile</a>
+                    <NavLink className={s.link} activeClassName={s.active} to="/profile">Profile</NavLink>
                 </li>
                 <li className={s.item}>
-                    <a className={s.link} activeClassName={s.active} to="/brainbook/dialogs">Messages</a>
+                    <NavLink className={s.link} activeClassName={s.active} to="/dialogs">Messages</NavLink>
                 </li>
                 <li className={s.item}>
-                    <a className={s.link} activeClassName={s.active} to="/brainbook/news">News</a>
+                    <NavLink className={s.link} activeClassName={s.active} to="/news">News</NavLink>
                 </li>
                 <li className={s.item}>
-                    <a className={s.link} activeClassName={s.active} to="/brainbook/music">Music</a>
+                    <NavLink className={s.link} activeClassName={s.active} to="/music">Music</NavLink>
                 </li>
                 <li className={s.item}>
-                    <a className={s.link} activeClassName={s.active} to="/brainbook/settings">Settings</a>
+                    <NavLink className={s.link} activeClassName={s.active} to="/settings">Settings</NavLink>
                 </li>
             </ul>
         </nav>

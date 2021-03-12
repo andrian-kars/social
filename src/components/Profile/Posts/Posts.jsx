@@ -1,8 +1,7 @@
-import React from 'react'
 import s from './Posts.module.css'
 import Post from './Post/Post'
 
-const Posts = () => {
+const Posts = (props) => {
     // let postsElements =
     //     props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />)
 
@@ -27,7 +26,9 @@ const Posts = () => {
                 <input className={s.input} onClick={addNewPost} type="button" value="Send" /> */}
             </form>
             {/* {postsElements} */}
-            <Post />
+            <Post message="Oh, you're approuching me?" likesCount="69" />
+            <Post message="Dio, you are going down!" likesCount="340" />
+            <Post message="It was me, DIO!" likesCount="420" />
         </section>
     )
 }

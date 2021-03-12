@@ -2,20 +2,25 @@ import './App.css'
 import Header from './components/Header/Header'
 import Navigation from './components/Navigation/Navigation'
 import Profile from './components/Profile/Profile'
+import Dialogs from './components/Dialogs/Dialogs'
 import Footer from './components/Footer/Footer'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-const App = () => {
+const App = (props) => {
   return (
-    <div className="app-whrapper">
-      <div className="container">
-        <Header />
-        <Navigation />
-        <main className="main">
-          <Profile />
-        </main>
-        <Footer />
+    <BrowserRouter>
+      <div className="app-whrapper">
+        <div className="container">
+          <Header />
+          <Navigation />
+          <main className="main">
+            <Route path="/profile" component={Profile} />
+            <Route path="/dialogs" component={Dialogs} />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 
