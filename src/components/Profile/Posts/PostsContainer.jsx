@@ -13,7 +13,7 @@ const PostsContainer = (props) => {
     // }
 
     // return (<Posts updateNewPostText={onPostChange} addPost={onAddPost} posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} />)
-    return (<Posts addPost={props.addPost} newPostText={props.newPostText} updateNewPostText={props.updateNewPostText} posts={props.posts} />)
+    return (<Posts dispatch={props.dispatch} newPostText={props.newPostText} posts={props.posts} />)
 }
 
 export default PostsContainer
