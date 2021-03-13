@@ -16,6 +16,9 @@ const Posts = (props) => {
     //     props.updateNewPostText(text)
     // }
 
+    const postsElements = props.posts.map(p => <Post likesCount={p.likesCount} message={p.message} />)
+
+
     return (
         <section className={s.posts}>
             <p className={s.heading}>My posts</p>
@@ -25,10 +28,7 @@ const Posts = (props) => {
                 {/* <textarea className={s.textarea} onChange={onPostChange} ref={newPostElement} value={props.newPostText} name="text" placeholder="Your news..." />
                 <input className={s.input} onClick={addNewPost} type="button" value="Send" /> */}
             </form>
-            {/* {postsElements} */}
-            <Post message="Oh, you're approuching me?" likesCount="69" />
-            <Post message="Dio, you are going down!" likesCount="340" />
-            <Post message="It was me, DIO!" likesCount="420" />
+            {postsElements}
         </section>
     )
 }

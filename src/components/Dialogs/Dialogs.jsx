@@ -19,16 +19,18 @@ const Dialogs = (props) => {
     //     props.onMessageChange(text)
     // }
 
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} />)
+    const messagesElements = props.dialogsPage.messages.map(m => <Message id={m.id} message={m.message} />)
+
     return (
         <div className={s.whrapper}>
             <div className={s.dialogs}>
-                {/* {dialogsElements} */}
-                <DialogItem />
+                {dialogsElements}
+                
             </div>
             <div className={s.messages}>
                 <div className={s.messages_whrapper}>
-                    {/* {messagesElements} */}
-                    <Message />
+                    {messagesElements}
                 </div>
                 <form className={s.new_message}>
                     {/* <textarea className={s.textarea} onChange={onMessageChange}
