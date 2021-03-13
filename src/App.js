@@ -14,7 +14,8 @@ const App = (props) => {
           <Header />
           <Navigation />
           <main className="main">
-            <Route exact path="/profile" render={() => <Profile profilePage={props.state.profilePage} />} />
+            <Route exact path="/profile" render={() => <Profile addPost={props.addPost} 
+              profilePage={props.state.profilePage} updateNewPostText={props.updateNewPostText} />} />
             <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage} />} />
           </main>
           <Footer />
