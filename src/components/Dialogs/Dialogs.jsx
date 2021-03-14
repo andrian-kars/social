@@ -1,26 +1,24 @@
+import React from 'react'
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from './../../redux/state'
 
 const Dialogs = (props) => {
-    // let dialogsElements =
-    //     props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
-    // let messagesElements =
-    //     props.dialogsPage.messages.map(m => <Message message={m.message} id={m.id} />)
+    const state = props.store.getState()
 
-    // let newMessageElement = React.createRef()
+    const dialogsElements = state.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} />)
+    const messagesElements = state.dialogsPage.messages.map(m => <Message id={m.id} message={m.message} />)
+    const newMessageElement = React.createRef()
 
-    // let addNewMessage = () => {
-    //     props.addNewMessage()
-    // }
+    const addNewMessage = () => {
+        props.store.dispatch(addMessageActionCreator())
+    }
 
-    // let onMessageChange = () => {
-    //     let text = newMessageElement.current.value
-    //     props.onMessageChange(text)
-    // }
-
-    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} />)
-    const messagesElements = props.dialogsPage.messages.map(m => <Message id={m.id} message={m.message} />)
+    const onMessageChange = () => {
+        let text = newMessageElement.current.value
+        props.store.dispatch(updateNewMessageTextActionCreator(text))
+    }
 
     return (
         <div className={s.whrapper}>
@@ -33,13 +31,8 @@ const Dialogs = (props) => {
                     {messagesElements}
                 </div>
                 <form className={s.new_message}>
-                    {/* <textarea className={s.textarea} onChange={onMessageChange}
-                        ref={newMessageElement} value={props.dialogsPage.newMessageText}
-                        name="text" placeholder="Message..." /> */}
-                    <textarea className={s.textarea}
-
-                        name="text" placeholder="Message..." />
-                    <input className={s.input} type="button" value="Send" />
+                    <textarea className={s.textarea} onChange={onMessageChange} ref={newMessageElement} value={state.dialogsPage.newMessageText} name="text" placeholder="Message..." />
+                    <input className={s.input} onClick={addNewMessage} type="button" value="Send" />
                 </form>
             </div>
         </div>

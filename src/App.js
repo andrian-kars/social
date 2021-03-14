@@ -15,7 +15,7 @@ const App = (props) => {
           <Navigation />
           <main className="main">
             <Route exact path="/profile" render={() => <Profile dispatch={props.dispatch} profilePage={props.state.profilePage} />} />
-            <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage} />} />
+            <Route path="/dialogs" render={() => <Dialogs store={props.store} />} />
           </main>
           <Footer />
         </div>

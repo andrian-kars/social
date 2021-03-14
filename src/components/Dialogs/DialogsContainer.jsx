@@ -11,7 +11,7 @@ const DialogsContainer = (props) => {
     // }
 
     return (
-        <Dialogs />
+        <Dialogs dispatch={props.dispatch} dialogsPage={props.state.dialogsPage} />
         // <Dialogs dialogsPage={props.store.getState().dialogsPage} addNewMessage={onAddMessage} onMessageChange={onMessageChange} />
     )
 }
