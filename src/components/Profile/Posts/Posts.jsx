@@ -3,7 +3,7 @@ import s from './Posts.module.css'
 import Post from './Post/Post'
 
 const Posts = (props) => {
-    const postsElements = props.posts.map(p => <Post likesCount={p.likesCount} message={p.message} />)
+    const postsElements = props.posts.map(p => <Post key={p.id} likesCount={p.likesCount} message={p.message} />)
     const newPostElement = React.createRef()
     
     const addNewPost = () => {
