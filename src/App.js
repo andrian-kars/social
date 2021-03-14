@@ -4,7 +4,7 @@ import Navigation from './components/Navigation/Navigation'
 import Profile from './components/Profile/Profile'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import Footer from './components/Footer/Footer'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 const App = (props) => {
   return (
