@@ -13,8 +13,8 @@ const App = (props) => {
           <Header />
           <Navigation />
           <main className="main">
-            <Route exact path="/profile" render={() => <Profile store={props.store} />} />
-            <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
+            <Route exact path="/profile" render={() => <Profile />} />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
           </main>
           <Footer />
         </div>
