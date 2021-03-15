@@ -9,14 +9,17 @@ const SingleUser = (props) => {
                 <div className={s.content}>
                     <div className={s.name_section}>
                         <p className={s.name}>{props.fullName}</p>
-                        <p>{props.location.country}</p>
+                        <p className={s.location}>{props.location.country}</p>
                     </div>
                     <p className={s.status}>{props.status}</p>
                 </div>
             </div>
-            <button className={s.btn}>{props.followed ? 'Follow' : 'Unfollow'}</button>
+            {props.followed
+                ? <button onClick={() => { props.follow(props.id) }} className={s.follow}>Follow</button> 
+                : <button onClick={() => { props.unfollow(props.id) }} className={s.unfollow}>Unfollow</button>}
         </div>
     )
 }
 
 export default SingleUser
+
