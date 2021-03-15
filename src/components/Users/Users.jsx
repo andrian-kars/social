@@ -1,11 +1,13 @@
 import s from './Users.module.css'
+import SingleUser from './SingleUser/SingleUser'
 
 const Users = (props) => {
-    const users = props.users.map(u => <div className={s.user} key={u.id}>
-
-    </div>)
+    const users = props.users.map(u => <SingleUser key={u.id} id={u.id}
+        fullName={u.fullName} followed={u.followed} status={u.status} location={u.location} />)
     return (
-        <div className={s.div}>{users}</div>
+        <div className={s.whrapper}>
+            {users}
+        </div>
     )
 }
 

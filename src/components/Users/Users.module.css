@@ -1,0 +1,6 @@
+.whrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    height: 75.5vh;
+}

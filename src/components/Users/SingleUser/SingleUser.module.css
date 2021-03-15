@@ -1,0 +1,63 @@
+.whrapper {
+    margin: 30px 0 30px 10%;
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.name_section {
+    display: flex;
+}
+
+.name {
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.name_section p {
+    margin: 0;
+}
+
+.status {
+    margin: 0;
+    font-style: italic;
+}
+
+.btn {
+    width: 95px;
+    height: 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #272727;
+    color: #272727;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    color: #fff;
+    background-color: #1A1A1A;
+    transition: all .3s;
+}

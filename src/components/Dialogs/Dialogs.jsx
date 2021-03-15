@@ -21,7 +21,6 @@ const Dialogs = (props) => {
         <div className={s.whrapper}>
             <div className={s.dialogs}>
                 {dialogsElements}
-                
             </div>
             <div className={s.messages}>
                 <div className={s.messages_whrapper}>

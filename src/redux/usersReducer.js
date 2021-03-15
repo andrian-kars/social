@@ -4,10 +4,10 @@ const SET_USERS = 'SET-USERS'
 
 const initialState = {
     users: [
-        // { id: 1, followed: true, fullName: 'Ivan F.', status: 'I am a person', location: {city: 'Lviv', country: 'Ukraine'} },
-        // { id: 2, followed: true, fullName: 'Taras S.', status: 'I am another person', location: {city: 'Kiev', country: 'Ukraine'} },
-        // { id: 3, followed: false, fullName: 'Ivan M.', status: 'I am another person', location: {city: 'Kharkiv', country: 'Ukraine'} },
-        // { id: 4, followed: false, fullName: 'Ivan G.', status: 'I am another person', location: {city: 'Ternopil', country: 'Ukraine'} },
+        { id: 1, followed: true, fullName: 'Ivan F.', status: 'I am a person', location: {city: 'Lviv', country: 'Ukraine'} },
+        { id: 2, followed: true, fullName: 'Taras S.', status: 'I am another person', location: {city: 'Kiev', country: 'Ukraine'} },
+        { id: 3, followed: false, fullName: 'Ivan M.', status: 'I am another person', location: {city: 'Kharkiv', country: 'Ukraine'} },
+        { id: 4, followed: false, fullName: 'Ivan G.', status: 'I am another person', location: {city: 'Ternopil', country: 'Ukraine'} },
     ]
 }
 
