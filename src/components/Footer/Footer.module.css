@@ -1,7 +1,5 @@
 .footer {
   height: 70px;
-  grid-column: 1 / -1;
-  grid-row-start: 3;
   display: flex;
   justify-content: flex-end;
   align-items: center;

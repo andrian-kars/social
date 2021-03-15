@@ -10,16 +10,16 @@ import { Route } from 'react-router-dom'
 const App = (props) => {
   return (
       <div className="app-whrapper">
-        <div className="container">
-          <Header />
-          <Navigation />
-          <main className="main">
-            <Route exact path="/profile" render={() => <Profile />} />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route path="/users" render={() => <UsersContainer />} />
-          </main>
-          <Footer />
-        </div>
+        <Header />
+          <div className="container">
+            <Navigation />
+            <main className="main">
+              <Route exact path="/profile" render={() => <Profile />} />
+              <Route path="/dialogs" render={() => <DialogsContainer />} />
+              <Route path="/users" render={() => <UsersContainer />} />
+            </main>
+          </div>
+        <Footer />
       </div>
   )
 }

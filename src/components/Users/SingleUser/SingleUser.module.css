@@ -1,7 +1,7 @@
 .whrapper {
     margin: 30px 0 30px 10%;
     display: flex;
-    width: 400px;
+    width: 500px;
     justify-content: space-between;
     align-items: center;
 }

@@ -1,9 +1,6 @@
 .navigation {
-  grid-column-start: 1;
-  grid-row-start: 2;
   background-color: #F0F2F5;
   position: fixed;
-  top: 90px;
 }
 
 .whrapper {
