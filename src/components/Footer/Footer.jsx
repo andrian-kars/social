@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className={s.footer}>
             <p className={s.copyright}>Copyright 2021</p>
-            <a href="#"><img className={s.logo} src={logo} alt="logo" /></a>
+            <a href="../../../../../../"><img className={s.logo} src={logo} alt="logo" /></a>
         </footer>
     )
 }
