@@ -4,25 +4,14 @@
     margin-top: 5px;
     /* align-items: center; */
 }
-
-.get_users {
-    width: 95px;
-    height: 36px;
+.pages {
+    border: none;
+    background-color: transparent;
+    margin-right: 10px;
     font-size: 16px;
-    font-weight: bold;
-    border: 1px solid #0095f6;
-    color: #FFF;
-    background-color: #0095f6;
-    border-radius: 4px;
-    transition: all .3s;
     cursor: pointer;
-    margin-bottom: 20px;
-    margin-left: 10%;
 }
 
-.get_users:hover,
-.get_users:active,
-.get_users:focus {
-    color: #0095f6;
-    background-color: transparent;
+.selectedPage {
+    font-weight: 700;
 }
