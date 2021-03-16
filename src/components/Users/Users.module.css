@@ -1,9 +1,14 @@
 .whrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 5px;
-    /* align-items: center; */
 }
+
+.pagination {
+    margin: 0 auto;
+}
+
 .pages {
     border: none;
     background-color: transparent;

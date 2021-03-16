@@ -29,7 +29,7 @@ class Users extends React.Component {
 
         return (
             <div className={s.whrapper}>
-                <div>
+                <div className={s.pagination}>
                     {pages.map(p => { 
                         return <button className={`${this.props.currentPage === p && s.selectedPage} ${s.pages}`}
                             onClick={(e) => { this.onPageChange(p) }}>{p}</button>

@@ -11,7 +11,7 @@ const initialState = {
         // { id: 3, followed: false, fullName: 'Ivan M.', status: 'I am another person', location: {city: 'Kharkiv', country: 'Ukraine'} },
         // { id: 4, followed: false, fullName: 'Ivan G.', status: 'I am another person', location: {city: 'Ternopil', country: 'Ukraine'} },
     ],
-    pageSize: 20,
+    pageSize: 6,
     totalUsersCount: 0,
     currentPage: 1
 }
