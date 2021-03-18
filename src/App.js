@@ -1,5 +1,5 @@
 import './App.css'
-import Header from './components/Header/Header'
+import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
@@ -10,11 +10,11 @@ import { Route } from 'react-router-dom'
 const App = (props) => {
   return (
       <div className="app-whrapper">
-        <Header />
+        <HeaderContainer />
           <div className="container">
             <Navigation />
             <main className="main">
-              <Route path="/profile/:userId" render={() => <ProfileContainer />} />
+              <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
               <Route path="/dialogs" render={() => <DialogsContainer />} />
               <Route path="/users" render={() => <UsersContainer />} />
             </main>

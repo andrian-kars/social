@@ -1,4 +1,6 @@
 .header {
+  display: flex;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   right: 0;
@@ -16,4 +18,8 @@
   width: 55px;
   height: 55px;
   cursor: pointer;
+}
+
+.loginBlock {
+  margin-right: 5%;
 }
