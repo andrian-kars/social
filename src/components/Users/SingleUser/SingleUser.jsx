@@ -1,6 +1,8 @@
 import s from './SingleUser.module.css'
 import userPhoto from './../../../images/user-photo.png'
+import * as axios from 'axios'
 import { NavLink } from 'react-router-dom'
+import { apiKey } from '../../../apiKey'
 
 const SingleUser = (props) => {
     return (
@@ -16,8 +18,33 @@ const SingleUser = (props) => {
                 </div>
             </div>
             {props.followed
-                ? <button onClick={() => { props.unfollow(props.id) }} className={s.unfollow}>Unfollow</button>
-                : <button onClick={() => { props.follow(props.id) }} className={s.follow}>Follow</button>}
+                ? <button onClick={() => { 
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, { 
+                        withCredentials: true,
+                        headers: {
+                            'API-KEY': apiKey
+                        }
+                    })
+                        .then(response => {
+                            if (response.data.resultCode === 0) {
+                                props.unfollow(props.id)
+                            }
+                        })
+                
+                }} className={s.unfollow}>Unfollow</button>
+                : <button onClick={() => { 
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {}, { 
+                        withCredentials: true,
+                        headers: {
+                            'API-KEY': apiKey
+                        }
+                    })
+                        .then(response => {
+                            if (response.data.resultCode === 0) {
+                                props.follow(props.id)
+                            }
+                        })
+                }} className={s.follow}>Follow</button>}
         </div>
     )
 }

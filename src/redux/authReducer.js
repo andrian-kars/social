@@ -5,8 +5,7 @@ const initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false,
-    isFetching: false
+    isAuth: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -27,6 +26,5 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
-export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 
 export default authReducer
