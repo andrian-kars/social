@@ -14,7 +14,7 @@ const User = (props) => {
                     <span className={s.text_asked}>About:</span>{props.profile.aboutMe}</p>}
 
                 {props.profile.lookingForAJob === null ? '' : <p className={s.text}>
-                    <span className={s.text_asked}>Open to work:</span>{props.profile.lookingForAJob ? 'Yes' : 'False'}</p>}
+                    <span className={s.text_asked}>Open to work:</span>{props.profile.lookingForAJob ? 'Yes' : 'No'}</p>}
 
                 {props.profile.lookingForAJobDescription === null ? '' : <p className={s.text}>
                     <span className={s.text_asked}>Description:</span>{props.profile.lookingForAJobDescription}</p>}
