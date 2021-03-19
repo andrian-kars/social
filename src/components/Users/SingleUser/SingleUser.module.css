@@ -64,14 +64,3 @@
     color: #0095f6;
     background-color: transparent;
 }
-
-.follow:active {
-    color: #0095f6;
-    background-color: transparent;
-    border-color: #0095f6;
-}
-
-.unfollow:active {
-    color: #fff;
-    background-color: #0095f6;
-}
