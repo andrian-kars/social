@@ -43,7 +43,7 @@
     font-style: italic;
 }
 
-.follow, .unfollow {
+.button {
     width: 95px;
     height: 36px;
     font-size: 16px;
@@ -63,4 +63,11 @@
 .unfollow {
     color: #0095f6;
     background-color: transparent;
+}
+
+.button:disabled,
+.button[disabled]{
+  border: 1px solid #999;
+  background-color: #CCC;
+  color: #666;
 }

@@ -19,7 +19,8 @@ const Users = (props) => {
             {
                 props.users.map(u => 
                     <SingleUser photo={u.photos.small} follow={props.follow} unfollow={props.unfollow} key={u.id} id={u.id}
-                        name={u.name} followed={u.followed} status={u.status} />)
+                        name={u.name} followed={u.followed} status={u.status} toggleFollowingProgress={props.toggleFollowingProgress}
+                        followingInProgress={props.followingInProgress} />)
             }
         </div>
     )

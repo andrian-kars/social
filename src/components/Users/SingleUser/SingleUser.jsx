@@ -17,21 +17,25 @@ const SingleUser = (props) => {
                 </div>
             </div>
             {props.followed
-                ? <button onClick={() => {
-                    usersAPI.delUnfollow(props.id).then(data => {
+                ? <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={() => {
+                    props.toggleFollowingProgress(true, props.id)
+                    usersAPI.deleteFollow(props.id).then(data => {
                             if (data.resultCode === 0) {
                                 props.unfollow(props.id)
                             }
+                            props.toggleFollowingProgress(false, props.id)
                         })
                 
-                }} className={s.unfollow}>Unfollow</button>
-                : <button onClick={() => { 
+                }} className={`${s.button} ${s.unfollow}`}>Unfollow</button>
+                : <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={() => {
+                    props.toggleFollowingProgress(true, props.id)
                     usersAPI.postFollow(props.id).then(data => {
                             if (data.resultCode === 0) {
                                 props.follow(props.id)
                             }
+                            props.toggleFollowingProgress(false, props.id)
                         })
-                }} className={s.follow}>Follow</button>}
+                }} className={`${s.button} ${s.follow}`}>Follow</button>}
         </div>
     )
 }
