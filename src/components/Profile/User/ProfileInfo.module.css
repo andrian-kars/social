@@ -1,6 +1,6 @@
 .user {
   display: flex;
-  margin-top: 25px;
+  margin-top: 5px;
   padding: 30px 20px;
   background-color: #FFF;
   border-radius: 5px;
@@ -20,7 +20,7 @@
 
 .name {
   font-size: 34px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .text {
@@ -35,4 +35,28 @@
 .text_asked {
   display: inline-block;
   width: 140px;
+}
+
+.status {
+  height: 25px;
+  margin: 0 0 15px;
+  font-size: 21px;
+}
+
+.staticStatus {
+  transition: .3s;
+  padding: 2px 5px 2px 0;
+}
+
+.staticStatus:hover {
+  background-color: #ddd;
+}
+
+.changeStatus {
+  font-size: 21px;
+  font-style: italic;
+  border: none;
+  outline: none;
+  letter-spacing: 0.3px;
+  width: 100%;
 }

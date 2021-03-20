@@ -1,7 +1,6 @@
-import React from 'react'
 import s from './ProfileInfo.module.css'
 import userPhoto from './../../../images/user-photo.png'
-import ProfileStatus from './ProfileStatus/ProfileStatus'
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
     return (
