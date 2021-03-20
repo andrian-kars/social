@@ -1,7 +1,6 @@
 import s from './SingleUser.module.css'
 import userPhoto from './../../../images/user-photo.png'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../../api/api'
 
 const SingleUser = (props) => {
     return (
@@ -17,25 +16,12 @@ const SingleUser = (props) => {
                 </div>
             </div>
             {props.followed
-                ? <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={() => {
-                    props.toggleFollowingProgress(true, props.id)
-                    usersAPI.deleteFollow(props.id).then(data => {
-                            if (data.resultCode === 0) {
-                                props.unfollow(props.id)
-                            }
-                            props.toggleFollowingProgress(false, props.id)
-                        })
-                
-                }} className={`${s.button} ${s.unfollow}`}>Unfollow</button>
-                : <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={() => {
-                    props.toggleFollowingProgress(true, props.id)
-                    usersAPI.postFollow(props.id).then(data => {
-                            if (data.resultCode === 0) {
-                                props.follow(props.id)
-                            }
-                            props.toggleFollowingProgress(false, props.id)
-                        })
-                }} className={`${s.button} ${s.follow}`}>Follow</button>}
+                ? <button disabled={props.followingInProgress.some(id => id === props.id)}
+                    onClick={() => { props.unfollow(props.id) }}
+                    className={`${s.button} ${s.unfollow}`}>Unfollow</button>
+                : <button disabled={props.followingInProgress.some(id => id === props.id)}
+                    onClick={() => { props.follow(props.id) }}
+                    className={`${s.button} ${s.follow}`}>Follow</button>}
         </div>
     )
 }
