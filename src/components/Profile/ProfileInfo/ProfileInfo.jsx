@@ -10,7 +10,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.info}>
                 <h2 className={s.name}>{props.profile.fullName}</h2>
-                {props.profile.aboutMe === null ? '' : <ProfileStatus aboutMe={props.profile.aboutMe} />}
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
 
                 {props.profile.lookingForAJob === null ? '' : <p className={s.text}>
                     <span className={s.text_asked}>Open to work:</span>{props.profile.lookingForAJob ? 'Yes' : 'No'}</p>}

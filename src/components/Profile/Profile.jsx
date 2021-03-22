@@ -1,6 +1,6 @@
 import s from './Profile.module.css'
 import PostsContainer from './Posts/PostsContainer'
-import User from './User/ProfileInfo'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
 import Preloader from '../common/Preloader/Preloader'
 
 const Profile = (props) => {
@@ -9,7 +9,7 @@ const Profile = (props) => {
     } else {
         return (
             <div className={s.profile}>
-                <User profile={props.profile} />
+                <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
                 <PostsContainer />
             </div>
         )
