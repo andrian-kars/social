@@ -18,7 +18,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     WithAuthRedirect
