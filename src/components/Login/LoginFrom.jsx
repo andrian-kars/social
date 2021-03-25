@@ -13,8 +13,11 @@ const LoginForm = (props) => {
                 <Field validate={required} placeholder={'Password'} name={'password'} component={Input} type='password' />
             </div>
             <div>
-                <Field validate={required} type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
+                <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
             </div>
+            {props.error && <div className={s.summaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
