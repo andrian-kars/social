@@ -23,3 +23,13 @@
 .loginBlock {
   margin-right: 5%;
 }
+
+.whrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  margin-left: 15px;
+  cursor: pointer;
+}

@@ -8,7 +8,9 @@ const Header = (props) => {
             <a href="../../../../../../"><img className={s.logo} src={logo} alt="logo" /></a>
 
             <div className={s.loginBlock}>
-                {props.isAuth ? <p>{props.login}</p> : <NavLink to={'/login'}>Login</NavLink> }
+                {props.isAuth
+                    ? <div className={s.whrapper}><p>{props.login}</p><span className={s.logout} onClick={props.logout}>Logout</span></div>
+                    : <NavLink to={'/login'}>Login</NavLink> }
             </div>
         </header>
     )
