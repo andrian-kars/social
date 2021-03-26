@@ -68,12 +68,10 @@ export const setUsersTotalCount = (totalUsersCount) => ({ type: SET_USERS_TOTAL_
 export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
 
-export const getUsers = (currentPage, pageSize) => {
-
+export const requestUsers = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(setIsFetching(true))
         dispatch(setCurrentPage(currentPage))
-
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(setIsFetching(false))
             dispatch(setUsers(data.items))
@@ -83,7 +81,6 @@ export const getUsers = (currentPage, pageSize) => {
 }
 
 export const follow = (userID) => {
-
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userID))
         usersAPI.postFollow(userID).then(data => {
@@ -96,7 +93,6 @@ export const follow = (userID) => {
 }
 
 export const unfollow = (userID) => {
-
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userID))
         usersAPI.deleteFollow(userID).then(data => {
