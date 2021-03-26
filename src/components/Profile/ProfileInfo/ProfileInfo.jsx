@@ -1,6 +1,6 @@
 import s from './ProfileInfo.module.css'
 import userPhoto from './../../../images/user-photo.png'
-import ProfileStatus from './ProfileStatus'
+import ProfileStatusWithHooks from './ProfileStatusWithHooks'
 
 const ProfileInfo = (props) => {
     return (
@@ -10,7 +10,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.info}>
                 <h2 className={s.name}>{props.profile.fullName}</h2>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 
                 {props.profile.lookingForAJob === null ? '' : <p className={s.text}>
                     <span className={s.text_asked}>Open to work:</span>{props.profile.lookingForAJob ? 'Yes' : 'No'}</p>}
