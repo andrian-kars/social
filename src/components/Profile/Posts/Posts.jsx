@@ -4,7 +4,7 @@ import Post from './Post/Post'
 import AddPostFormRedux from './AddPostForm'
 
 const Posts = React.memo(props => {
-    const postsElements = props.posts.map(p => <Post key={p.id} likesCount={p.likesCount} message={p.message} />)
+    const postsElements = [...props.posts].reverse().map(p => <Post key={p.id} likesCount={p.likesCount} message={p.message} />)
     const addNewPost = (FormData) => props.addPost(FormData.newPostBody)
     return (
         <section className={s.posts}>
