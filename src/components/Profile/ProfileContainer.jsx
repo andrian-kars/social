@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileInfo from './Profile'
+import Profile from './Profile'
 import { connect } from 'react-redux'
 import { setUserProfile, getProfile, getStatus, updateStatus } from './../../redux/profileReducer'
 import { withRouter } from 'react-router'
@@ -18,7 +18,7 @@ class ProfileContainer extends React.Component {
 
     render () {
         return (
-            <ProfileInfo {...this.props}
+            <Profile {...this.props}
                 profile={this.props.profile}
                 status={this.props.status}
                 updateStatus={this.props.updateStatus} />
