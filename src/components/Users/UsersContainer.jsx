@@ -1,5 +1,5 @@
 import React from 'react'
-import { followSuccess, unfollowSuccess, setCurrentPage, toggleFollowingProgress, requestUsers, follow, unfollow } from './../../redux/usersReducer'
+import { setCurrentPage, requestUsers, follow, unfollow } from './../../redux/usersReducer'
 import { connect } from 'react-redux'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
@@ -24,27 +24,13 @@ class UsersContaier extends React.Component {
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage} 
                     users={this.props.users} 
-                    followSuccess={this.props.followSuccess}
                     follow={this.props.follow}
-                    unfollowSuccess={this.props.unfollowSuccess}
                     unfollow={this.props.unfollow}
-                    toggleFollowingProgress={this.props.toggleFollowingProgress}
                     followingInProgress={this.props.followingInProgress}
                 />
             </>
     }
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 
 const mapStateToProps = (state) => {
     return {
@@ -59,5 +45,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
     WithAuthRedirect,
-    connect(mapStateToProps, { followSuccess, unfollowSuccess, setCurrentPage, toggleFollowingProgress, requestUsers, follow, unfollow })
+    connect(mapStateToProps, { setCurrentPage, requestUsers, follow, unfollow })
 )(UsersContaier)

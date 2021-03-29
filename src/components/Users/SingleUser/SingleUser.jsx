@@ -2,7 +2,7 @@ import s from './SingleUser.module.css'
 import userPhoto from './../../../images/user-photo.png'
 import { NavLink } from 'react-router-dom'
 
-const SingleUser = (props) => {
+const SingleUser = props => {
     return (
         <div className={s.whrapper}>
             <div className={s.container}>
@@ -16,10 +16,12 @@ const SingleUser = (props) => {
                 </div>
             </div>
             {props.followed
-                ? <button disabled={props.followingInProgress.some(id => id === props.id)}
+                ? <button disabled={props.followingInProgress
+                    .some(id => id === props.id)}
                     onClick={() => { props.unfollow(props.id) }}
                     className={`${s.button} ${s.unfollow}`}>Unfollow</button>
-                : <button disabled={props.followingInProgress.some(id => id === props.id)}
+                : <button disabled={props.followingInProgress
+                    .some(id => id === props.id)}
                     onClick={() => { props.follow(props.id) }}
                     className={`${s.button} ${s.follow}`}>Follow</button>}
         </div>
