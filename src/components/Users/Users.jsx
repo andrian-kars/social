@@ -8,13 +8,13 @@ const Users = ({ followingInProgress, unfollow, follow, users, onPageChange,
         <div className={s.whrapper}>
             <Paginator currentPage={currentPage} totalUsersCount={totalUsersCount}
                 pageSize={pageSize} onPageChange={onPageChange} />
-            {
-                users.map(u => 
-                    <SingleUser photo={u.photos.small} follow={follow} 
-                        unfollow={unfollow} key={u.id} id={u.id}
-                        name={u.name} followed={u.followed} status={u.status}
-                        followingInProgress={followingInProgress} />)
-            }
+            {users.map(u => 
+                <SingleUser photo={u.photos.small} follow={follow} 
+                    unfollow={unfollow} key={u.id} userID={u.id}
+                    name={u.name} followed={u.followed} status={u.status}
+                    followingInProgress={followingInProgress}
+                />
+            )}
         </div>
     )
 }

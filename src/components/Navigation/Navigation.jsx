@@ -27,4 +27,5 @@ const Navigation = () => {
         </nav>
     )
 }
+
 export default Navigation
