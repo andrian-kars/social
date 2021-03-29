@@ -1,0 +1,15 @@
+.pagination {
+    margin: 0 auto;
+}
+
+.pages {
+    border: none;
+    background-color: transparent;
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.selectedPage {
+    font-weight: 700;
+}
