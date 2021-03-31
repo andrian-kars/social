@@ -33,6 +33,10 @@ a {
   color: $mainColor;
 }
 
-button:active, button:hover, button:focus {
+button, input, textarea {
   outline: none;
+  border: none;
+  background-color: transparent;
+  color: $mainColor;
+  font-size: 17px;
 }

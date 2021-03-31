@@ -1,4 +1,4 @@
-import s from './Profile.module.css'
+import s from './Profile.module.scss'
 import PostsContainer from './Posts/PostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import Preloader from '../common/Preloader/Preloader'
