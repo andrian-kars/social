@@ -1,0 +1,75 @@
+@import './../../styles/variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 0 20px;
+  background-color: $mainCompColor;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.15);
+  z-index: 69;
+}
+
+.whrapperLeftHead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.heading {
+  margin-left: 15px;
+  font-size: 30px;
+}
+
+.loginBlock {
+  margin-right: 60px;
+}
+
+.dropDown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    fill: $linkColor;
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.divToShow {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: -20px;
+  background-color: $mainCompColor;
+  padding: 10px 20px 20px;
+  border-radius: 10px;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+.clicked {
+  display: block;
+}

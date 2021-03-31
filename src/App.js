@@ -1,13 +1,12 @@
 import React from 'react'
-// import ReactDOM from 'react-dom'
 // import React, { Suspense } from 'react'
-import './App.css'
+import './App.scss'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
 import ProfileContainer from './components/Profile/ProfileContainer'
 
 import UsersContainer from './components/Users/UsersContainer'
-import Footer from './components/Footer/Footer'
+// import Footer from './components/Footer/Footer'
 import { Route, withRouter, HashRouter } from 'react-router-dom'
 import Login from './components/Login/Login'
 import { initializeApp, } from './redux/appReducer'
@@ -24,16 +23,6 @@ class App extends React.Component {
     this.props.initializeApp()
   }
 
-  // componentDidUpdate() {
-  //   let hash = this.props.location.hash.replace('#', '');
-  //   if (hash) {
-  //     let node = ReactDOM.findDOMNode(this.refs[hash]);
-  //     if (node) {
-  //       node.scrollIntoView();
-  //     }
-  //   }
-  // }
-
   render() {
     if (!this.props.initialized) {
       return <Preloader />
@@ -41,8 +30,8 @@ class App extends React.Component {
     return (
       <div className="app-whrapper">
         <HeaderContainer />
+        <Navigation />
         <div className="container">
-          <Navigation />
           <main className="main">
             <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
             <Route path="/dialogs" render={() => <DialogsContainer />} />
@@ -51,7 +40,7 @@ class App extends React.Component {
             <Route path="/login" render={() => <Login />} />
           </main>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
