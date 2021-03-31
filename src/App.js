@@ -1,4 +1,6 @@
-import React, { Suspense } from 'react'
+import React from 'react'
+// import ReactDOM from 'react-dom'
+// import React, { Suspense } from 'react'
 import './App.css'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
@@ -6,7 +8,7 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 
 import UsersContainer from './components/Users/UsersContainer'
 import Footer from './components/Footer/Footer'
-import { Route, withRouter, BrowserRouter } from 'react-router-dom'
+import { Route, withRouter, HashRouter, Switch } from 'react-router-dom'
 import Login from './components/Login/Login'
 import { initializeApp, } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
@@ -22,6 +24,16 @@ class App extends React.Component {
     this.props.initializeApp()
   }
 
+  // componentDidUpdate() {
+  //   let hash = this.props.location.hash.replace('#', '');
+  //   if (hash) {
+  //     let node = ReactDOM.findDOMNode(this.refs[hash]);
+  //     if (node) {
+  //       node.scrollIntoView();
+  //     }
+  //   }
+  // }
+
   render() {
     if (!this.props.initialized) {
       return <Preloader />
@@ -32,11 +44,13 @@ class App extends React.Component {
         <div className="container">
           <Navigation />
           <main className="main">
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
-            {/* <Route path="/dialogs" render={() => <Suspense fallback={<Preloader />}><DialogsContainer /></Suspense>} /> */}
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/login" render={() => <Login />} />
+            <Switch>
+              <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+              <Route path="/dialogs" render={() => <DialogsContainer />} />
+              {/* <Route path="/dialogs" render={() => <Suspense fallback={<Preloader />}><DialogsContainer /></Suspense>} /> */}
+              <Route path="/users" render={() => <UsersContainer />} />
+              <Route path="/login" render={() => <Login />} />
+            </Switch>
           </main>
         </div>
         <Footer />
@@ -54,11 +68,11 @@ const AppContainer = compose(
   connect(mapStateToProps, { initializeApp }))(App)
 
 const MainApp = props => {
-  return <BrowserRouter>
+  return <HashRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}>
       <AppContainer />
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default MainApp
