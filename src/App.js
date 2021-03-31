@@ -8,7 +8,7 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 
 import UsersContainer from './components/Users/UsersContainer'
 import Footer from './components/Footer/Footer'
-import { Route, withRouter, HashRouter, Switch } from 'react-router-dom'
+import { Route, withRouter, HashRouter } from 'react-router-dom'
 import Login from './components/Login/Login'
 import { initializeApp, } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
@@ -44,13 +44,11 @@ class App extends React.Component {
         <div className="container">
           <Navigation />
           <main className="main">
-            <Switch>
-              <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-              <Route path="/dialogs" render={() => <DialogsContainer />} />
-              {/* <Route path="/dialogs" render={() => <Suspense fallback={<Preloader />}><DialogsContainer /></Suspense>} /> */}
-              <Route path="/users" render={() => <UsersContainer />} />
-              <Route path="/login" render={() => <Login />} />
-            </Switch>
+            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            {/* <Route path="/dialogs" render={() => <Suspense fallback={<Preloader />}><DialogsContainer /></Suspense>} /> */}
+            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/login" render={() => <Login />} />
           </main>
         </div>
         <Footer />
@@ -68,7 +66,7 @@ const AppContainer = compose(
   connect(mapStateToProps, { initializeApp }))(App)
 
 const MainApp = props => {
-  return <HashRouter basename={process.env.PUBLIC_URL}>
+  return <HashRouter>
     <Provider store={store}>
       <AppContainer />
     </Provider>
