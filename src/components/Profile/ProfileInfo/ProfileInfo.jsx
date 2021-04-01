@@ -10,7 +10,29 @@ import youtube from './../../../images/socials/youtube.png'
 import github from './../../../images/socials/github.png'
 import main from './../../../images/socials/main.png'
 
+// const objCont = {
+//     "facebook": "facebook.com",
+//     "website": null,
+//     "vk": "vk.com/dimych",
+//     "twitter": "https://twitter.com/@sdf",
+//     "instagram": "instagra.com/sds",
+//     "youtube": null,
+//     "github": "github.com",
+//     "mainLink": null
+// }
+
 const ProfileInfo = (props) => {
+    // const socials = []
+    // for(let el in objCont) {
+    //     const e = [el, objCont[el]]
+    //     objCont[el] && socials.push(e)
+        
+    // }
+    // const res = socials.map(el => {
+    //     console.log(`./../../../images/socials/${el[0]}.png`);
+    //     return <a className={s.social} href={`${el[1]}`} target={'_blank'} rel={'noreferrer'}><img src={`./../../../images/socials/facebook.png`} alt={el[0]} /></a>
+    // })
+
     return (
         <section className={s.user}>
             <div className={s.banner} style={{ backgroundImage: `url('${banner}'` }}></div>

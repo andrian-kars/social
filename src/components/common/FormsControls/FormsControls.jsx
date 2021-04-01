@@ -1,7 +1,8 @@
-import s from './FormsControls.module.css'
+import s from './FormsControls.module.scss'
 
-export const FormControl = ({ input, meta: { touched, error }, children }) => {
-    const hasError = touched && error
+export const FormControl = ({ input, meta: { touched, error, active }, children }) => {
+    // const hasError = touched && error
+    const hasError = active && error
     return (
         <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
             {children}

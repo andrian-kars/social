@@ -1,0 +1,35 @@
+@import './../../../styles/variables';
+
+.formControl {
+  position: relative;
+  line-height: 0;
+  height: 100%;
+}
+
+.formControl:hover,
+.formControl:active,
+.formControl:focus {
+  transition: all .3s;
+}
+
+.formControl.error {
+  border-color: red;
+}
+
+.formControl.error span {
+  position: absolute;
+  top: -25px;
+  right: 20px;
+  color: red;
+}
+
+.formControl textarea {
+  padding: 15px;
+  resize: none;
+  height: 100%;
+  width: 100%;
+}
+
+.formControl input {
+  padding: 7px;
+}
