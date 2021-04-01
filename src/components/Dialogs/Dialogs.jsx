@@ -1,4 +1,4 @@
-import s from './Dialogs.module.css'
+import s from './Dialogs.module.scss'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import AddMessageFormRedux from './AddMessageForm'
@@ -13,10 +13,12 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-                <div className={s.messages_whrapper}>
+                <div className={s.messagesWhrapper}>
                     {messagesElements}
                 </div>
-                <AddMessageFormRedux onSubmit={addNewMessage} />
+                <div className={s.newMessageWhrapper}>
+                    <AddMessageFormRedux onSubmit={addNewMessage} />
+                </div>
             </div>
         </div>
     )
