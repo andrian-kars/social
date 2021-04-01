@@ -40,3 +40,24 @@ button, input, textarea {
   color: $mainColor;
   font-size: 17px;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+  transition: .3s;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $mainCompColor;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scroll;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $mainColor;
+}

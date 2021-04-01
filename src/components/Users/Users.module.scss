@@ -1,0 +1,20 @@
+.whrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.users {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 15px;
+
+    div {
+        margin-right: 15px;
+    }
+
+    div:nth-child(even) {
+        margin-right: 0;
+    }
+}
