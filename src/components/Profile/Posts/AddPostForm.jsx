@@ -4,7 +4,7 @@ import { Textarea } from '../../common/FormsControls/FormsControls'
 import s from './Posts.module.scss'
 import userPhoto from './../../../images/user-photo.png'
 
-const maxLength = maxLengthCreator(250)
+const maxLength = maxLengthCreator(230)
 
 const AddPostForm = (props) => {
     return (
