@@ -12,19 +12,30 @@
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   margin-bottom: 25px;
   border-radius: 50%;
-  margin-right: 20px;
+  margin-right: 16px;
+
+  @media (min-width: 992px) {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
 }
 
 .text {
   resize: none;
   width: 100%;
-  height: 67px;
+  height: 57px;
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
+
+  @media (min-width: 992px) {
+    font-size: 18px;
+    height: 67px;
+  }
 }
 
 .likeCount {
@@ -35,11 +46,21 @@
   left: 15px;
   bottom: 10px;
   height: 20px;
+  font-size: 15px;
 
   svg {
     margin-right: 2px;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     fill: red;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 16px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 }

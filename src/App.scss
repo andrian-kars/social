@@ -12,8 +12,16 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 90px 20px 15px;
-  margin-left: 284px;
+  padding: 75px 20px 15px;
+  margin-left: 76px;
+
+  @media (min-width: 992px) {
+    padding-top: 90px;
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 284px;
+  }
 }
 
 .main {

@@ -4,6 +4,16 @@
   position: relative;
   line-height: 0;
   height: 100%;
+
+  & textarea, input {
+    font-size: 15px;
+  }
+
+  @media (min-width: 992px) {
+    & textarea, input {
+      font-size: 17px;
+    }
+  }
 }
 
 .formControl:hover,

@@ -6,15 +6,20 @@
 
 .users {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 15px;
 
-    div {
-        margin-right: 15px;
-    }
+    @media (min-width: 768px) {
+        flex-flow: row wrap;
+        justify-content: center;
+        
+        div {
+            margin-right: 15px;
+        }
 
-    div:nth-child(even) {
-        margin-right: 0;
+        div:nth-child(even) {
+            margin-right: 0;
+        }
     }
 }

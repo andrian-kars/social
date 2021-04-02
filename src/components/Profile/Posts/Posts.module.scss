@@ -12,8 +12,12 @@
 
 .heading {
   font-weight: 500;
-  font-size: 26px;
+  font-size: 22px;
   padding: 15px 20px;
+
+  @media (min-width: 992px) {
+    font-size: 26px;
+  }
 }
 
 .form {
@@ -24,10 +28,15 @@
 
 .formWhrapper {
   position: relative;
-  height: 100px;
-  padding-left: 100px;
+  height: 85px;
+  padding-left: 85px;
   border-top: 2px solid $activeAndInputBgColor;
   border-bottom: 2px solid $activeAndInputBgColor;
+
+  @media (min-width: 992px) {
+    height: 100px;
+    padding-left: 100px;
+  }
 }
 
 .avatar {
@@ -35,17 +44,26 @@
   left: 20px;
   top: 50%;
   transform: translate(0, -50%);
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+
+  @media (min-width: 992px) {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .field {
-  height: 100px;
+  height: 85px;
+
+  @media (min-width: 992px) {
+    height: 100px;
+  }
 }
 
 .btn {
-  width: 195px;
+  width: 135px;
   color: $whiteColor;
   background-color: $btnBgColor;
   margin: 15px auto;
@@ -53,6 +71,10 @@
   border-radius: 5px;
   transition: all .3s;
   cursor: pointer;
+
+  @media (min-width: 992px) {
+    width: 195px;
+  }
 }
 
 .btn:hover,

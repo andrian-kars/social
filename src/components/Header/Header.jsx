@@ -6,7 +6,15 @@ import Burger from './../common/Burger/Burger'
 const Header = ({ isAuth, login, logout, menu, showMenu }) => {
     const toggleShow = e => {
         const targetEl = e.currentTarget.children[1].style
-        targetEl.display === 'block' ? targetEl.display = 'none' : targetEl.display = 'block'
+        if (targetEl.visibility === 'visible') {
+            targetEl.visibility = 'hidden'
+            targetEl.opacity = '0'
+            targetEl.transition = 'visibility 0s linear 350ms, opacity 350ms'
+        } else {
+            targetEl.visibility = 'visible'
+            targetEl.opacity = '1'
+            targetEl.transition = 'visibility 0s linear 0s, opacity 350ms'
+        }
     }
 
     const toggleMenu = () => showMenu(!menu)
