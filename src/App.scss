@@ -4,21 +4,19 @@
   position: relative;
   background-color: $mainBgColor;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 .container {
   display: flex;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  max-width: 1270px;
-  padding: 90px 0 15px;
+  padding: 90px 20px 15px;
+  margin-left: 284px;
 }
 
 .main {
   display: flex;
-  width: 100%;
-  margin-left: 230px;
+  width: 1100px;
 }

@@ -1,20 +1,27 @@
 import s from './Header.module.scss'
 import logo from './../../images/logo.png'
 import { NavLink } from 'react-router-dom'
+import Burger from './../common/Burger/Burger'
 
-const Header = ({ isAuth, login, logout }) => {
-    const toggleShow = (e) => {
+const Header = ({ isAuth, login, logout, menu, showMenu }) => {
+    const toggleShow = e => {
         const targetEl = e.currentTarget.children[1].style
         targetEl.display === 'block' ? targetEl.display = 'none' : targetEl.display = 'block'
     }
 
+    const toggleMenu = () => showMenu(!menu)
+
     return (
         <header id="top" className={s.header}>
-            <NavLink to={'/'} className={s.whrapperLeftHead}>
-                <img className={s.logo} src={logo} alt="logo" />
-                <h1 className={s.heading}>Social</h1>
-            </NavLink>
-
+            <div className={s.whrapperLeftHead}>
+                <NavLink to={'/'} className={s.whrapperSocial}>
+                    <img className={s.logo} src={logo} alt="logo" />
+                    <h1 className={s.heading}>Social</h1>
+                </NavLink>
+                <div onClick={toggleMenu} className={s.burgerWhrapper}>
+                    <Burger show={menu} />
+                </div>
+            </div>
             <div className={s.loginBlock}>
                 {isAuth
                     ? <div onClick={toggleShow} className={s.dropDown}>

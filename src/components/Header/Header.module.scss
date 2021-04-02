@@ -17,8 +17,14 @@
 
 .whrapperLeftHead {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+}
+
+.whrapperSocial {
+  display: flex;
+  min-width: 160px;
+  margin-right: 20px;
 }
 
 .logo {
@@ -72,4 +78,8 @@
 
 .clicked {
   display: block;
+}
+
+.burgerWhrapper {
+  margin-bottom: 2px;
 }

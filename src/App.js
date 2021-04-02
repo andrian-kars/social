@@ -30,11 +30,11 @@ class App extends React.Component {
     return (
       <div className="app-whrapper">
         <HeaderContainer />
-        <Navigation />
+        <Navigation show={this.props.menu} />
         <div className="container">
           <main className="main">
             <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
             {/* <Route path="/dialogs" render={() => <Suspense fallback={<Preloader />}><DialogsContainer /></Suspense>} /> */}
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/login" render={() => <Login />} />
@@ -47,7 +47,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
+  initialized: state.app.initialized,
+  menu: state.app.menu,
 })
 
 const AppContainer = compose(
