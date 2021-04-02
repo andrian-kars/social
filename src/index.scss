@@ -42,7 +42,7 @@ button, input, textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 3px;
   transition: .3s;
 }
 
@@ -60,4 +60,10 @@ button, input, textarea {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $mainColor;
+}
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
 }

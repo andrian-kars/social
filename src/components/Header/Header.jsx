@@ -27,7 +27,7 @@ const Header = ({ isAuth, login, logout, menu, showMenu }) => {
                     <h1 className={s.heading}>Social</h1>
                 </NavLink>
                 <div onClick={toggleMenu} className={s.burgerWhrapper}>
-                    <Burger show={menu} />
+                    <Burger show={!menu} />
                 </div>
             </div>
             <div className={s.loginBlock}>

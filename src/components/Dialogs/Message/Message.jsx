@@ -2,8 +2,8 @@ import s from './Message.module.scss'
 
 const Message = (props) => {
     return (
-        <div className={s.message}>
-            {props.message}
+        <div>
+            <textarea disabled className={s.message} value={props.message} />
         </div>
     )
 }

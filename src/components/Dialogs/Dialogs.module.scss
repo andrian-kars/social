@@ -13,8 +13,13 @@
     border-top: 15px solid $mainCompColor;
     border-bottom: 15px solid $mainCompColor;
     margin-right: 15px;
-    padding: 0 15px;
+    padding: 0 5px;
+    padding-right: 15px;
     border-radius: 5px;
+
+    @media (min-width: 512px) {
+        padding: 0 15px;
+    }
 }
 
 .messages {
@@ -53,7 +58,7 @@
 }
 
 .btn {
-  width: 195px;
+  width: 155px;
   color: $whiteColor;
   background-color: $btnBgColor;
   margin: 15px auto 0;
@@ -62,6 +67,10 @@
   transition: all .3s;
   cursor: pointer;
   margin-bottom: 15px;
+
+@media (min-width: 768px) {
+    width: 195px;
+  }
 }
 
 .btn:hover,

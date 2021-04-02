@@ -38,6 +38,10 @@ const ProfileInfo = (props) => {
             <div className={s.banner} style={{ backgroundImage: `url('${banner}'` }}></div>
             <div className={s.info}>
                 <img className={s.photo} src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} alt={'User photo: ' + props.id} />
+                <div className={`${s.mainStatus} ${s.mainMobile}`}>
+                    <h2 className={s.name}>{props.profile.fullName}</h2>
+                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+                </div>
                 <div className={s.socials}>
                     {props.profile.contacts.facebook === null ? ''
                         : <a className={s.social} href={`${props.profile.contacts.facebook}`} target={'_blank'} rel={'noreferrer'}><img src={facebook} alt={'facebook'} /></a>}
@@ -60,7 +64,7 @@ const ProfileInfo = (props) => {
                     {props.profile.contacts.mainLink === null ? ''
                         : <a className={s.social} href={`${props.profile.contacts.mainLink}`} target={'_blank'} rel={'noreferrer'}><img src={main} alt={'main'} /></a>}
                 </div>
-                <div className={s.mainStatus}>
+                <div className={`${s.mainStatus} ${s.mainDesktop}`}>
                     <h2 className={s.name}>{props.profile.fullName}</h2>
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
                 </div>
