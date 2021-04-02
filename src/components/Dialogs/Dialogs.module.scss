@@ -18,7 +18,7 @@
 }
 
 .messages {
-    flex: 1;
+    flex: 4;
     position: relative;
     background-color: $mainCompColor;
     width: 100%;
@@ -39,7 +39,6 @@
 
 .newMessageForm {
     display: flex;
-    width: 50rem;
     flex-direction: column;
 }
 
