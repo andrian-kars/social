@@ -41,7 +41,8 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
     }
 
     const onSubmit = (FormData) => {
-        console.log(FormData);
+        FormData.AboutMe = '---'
+        saveProfile(FormData)
     }
 
     return (

@@ -3,13 +3,18 @@ import PostsContainer from './Posts/PostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import Preloader from '../common/Preloader/Preloader'
 
-const Profile = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
-    if (!profile) {
+const Profile = (props) => {
+    if (!props.profile) {
         return <Preloader />
     } else {
         return (
             <div className={s.profile}>
-                <ProfileInfo savePhoto={savePhoto} isOwner={isOwner} profile={profile} status={status} updateStatus={updateStatus} />
+                <ProfileInfo saveProfile={props.saveProfile}
+                    savePhoto={props.savePhoto}
+                    isOwner={props.isOwner}
+                    profile={props.profile}
+                    status={props.status}
+                    updateStatus={props.updateStatus} />
                 <PostsContainer />
             </div>
         )
