@@ -1,3 +1,4 @@
+import React from 'react'
 import { addPostActionCreator } from './../../../redux/profileReducer'
 import Posts from './Posts'
 import { connect } from 'react-redux'
@@ -5,7 +6,9 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state) => {
     return {
         posts: state.profilePage.posts,
-        avatar: state.profilePage.profile.photos.small
+        avatar: state.profilePage.profile.photos.small,
+        userId: state.profilePage.profile.userId,
+        authorazedUserId: state.auth.userId
     }
 }
 
@@ -16,7 +19,14 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
+class PostsContainer extends React.Component {
+    render() {
+        return (
+            <Posts {...this.props}
+                isOwner={this.props.userId === this.props.authorazedUserId}
+            />
+        )
+    }
+}
 
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
-
-export default PostsContainer
+export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer)
