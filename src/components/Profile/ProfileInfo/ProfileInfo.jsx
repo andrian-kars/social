@@ -67,7 +67,8 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
                 </svg>}
                 {editMode
                     ? <ProfileDataReduxForm initialValues={profile}
-                        onSubmit={onSubmit} />
+                        onSubmit={onSubmit}
+                        profile={profile} />
                     : <ProfileData
                         profile={profile}
                         isOwner={isOwner}
