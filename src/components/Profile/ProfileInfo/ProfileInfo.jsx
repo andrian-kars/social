@@ -40,10 +40,12 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
         }
     }
 
-    const onSubmit = (FormData) => {
+    const onSubmit = FormData => {
         FormData.AboutMe = '---'
-        saveProfile(FormData)
-        setEditMode(false)
+        saveProfile(FormData).then(() => {
+            setEditMode(false)
+        })
+        
     }
 
     return (
@@ -85,25 +87,25 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
 const ProfileData = ({ profile, status, updateStatus }) => {
     return <div className={s.profileData}>
         <div className={s.socials}>
-            {profile.contacts.facebook === null ? ''
+            {!profile.contacts.facebook ? ''
                 : <a className={s.social} href={`${profile.contacts.facebook}`} target={'_blank'} rel={'noreferrer'}><img src={facebook} alt={'facebook'} /></a>}
 
-            {profile.contacts.website === null ? ''
+            {!profile.contacts.website ? ''
                 : <a className={s.social} href={`${profile.contacts.website}`} target={'_blank'} rel={'noreferrer'}><img src={website} alt={'website'} /></a>}
 
-            {profile.contacts.vk === null ? ''
+            {!profile.contacts.vk ? ''
                 : <a className={s.social} href={`${profile.contacts.vk}`} target={'_blank'} rel={'noreferrer'}><img src={vk} alt={'vk'} /></a>}
 
-            {profile.contacts.twitter === null ? ''
+            {!profile.contacts.twitter ? ''
                 : <a className={s.social} href={`${profile.contacts.twitter}`} target={'_blank'} rel={'noreferrer'}><img src={twitter} alt={'twitter'} /></a>}
 
-            {profile.contacts.instagram === null ? ''
+            {!profile.contacts.instagram ? ''
                 : <a className={s.social} href={`${profile.contacts.instagram}`} target={'_blank'} rel={'noreferrer'}><img src={instagram} alt={'instagram'} /></a>}
 
-            {profile.contacts.youtube === null ? ''
+            {!profile.contacts.youtube ? ''
                 : <a className={s.social} href={`${profile.contacts.youtube}`} target={'_blank'} rel={'noreferrer'}><img src={youtube} alt={'youtube'} /></a>}
 
-            {profile.contacts.github === null ? ''
+            {!profile.contacts.github ? ''
                 : <a className={s.social} href={`${profile.contacts.github}`} target={'_blank'} rel={'noreferrer'}><img src={github} alt={'github'} /></a>}
         </div>
         <div className={`${s.mainStatus}`}>
