@@ -16,8 +16,8 @@
   &:active,
   &:focus {
     transition: all .3s;
-    color: $linkColor;
-    fill: $linkColor;
+    color: $btnBgColor;
+    fill: $btnBgColor;
   }
 
   @media (min-width: 512px) {
@@ -31,5 +31,5 @@
 
 .active {
   background-color: $activeAndInputBgColor;
-  color: $linkColor;
+  color: $btnBgColor;
 }

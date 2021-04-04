@@ -74,11 +74,11 @@
   &:active,
   &:focus {
     transition: all .3s;
-    color: $linkColor;
-    fill: $linkColor;
+    color: $btnBgColor;
+    fill: $btnBgColor;
     
     svg {
-      fill: $linkColor !important;
+      fill: $btnBgColor !important;
     }
   }
 
@@ -95,9 +95,9 @@
 
 .active {
   background-color: $activeAndInputBgColor;
-  color: $linkColor;
+  color: $btnBgColor;
 
   svg {
-    fill: $linkColor !important;
+    fill: $btnBgColor !important;
   }
 }
