@@ -33,11 +33,20 @@ const ProfileInfo = (props) => {
     //     return <a className={s.social} href={`${el[1]}`} target={'_blank'} rel={'noreferrer'}><img src={`./../../../images/socials/facebook.png`} alt={el[0]} /></a>
     // })
 
+    const onMainPhotoSelect =  e => {
+        if (e.currentTarget.files.length) {
+            props.savePhoto(e.currentTarget.files[0])
+        }
+    }
+
     return (
         <section className={s.user}>
             <div className={s.banner} style={{ backgroundImage: `url('${banner}'` }}></div>
             <div className={s.info}>
-                <img className={s.photo} src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} alt={'User photo: ' + props.id} />
+                <div className={s.photoWhrapper}>
+                    <img className={s.photo} src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} alt={'User photo: ' + props.id} />
+                    {props.isOwner && <input type={'file'} onChange={onMainPhotoSelect} />}
+                </div>
                 <div className={`${s.mainStatus} ${s.mainMobile}`}>
                     <h2 className={s.name}>{props.profile.fullName}</h2>
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
