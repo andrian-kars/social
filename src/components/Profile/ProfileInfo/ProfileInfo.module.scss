@@ -118,6 +118,16 @@
   }
 }
 
+.editDischarge {
+  left: 35px !important;
+
+  @media (min-width: 992px) {
+    & {
+      left: 50px !important;
+    }
+  }
+}
+
 .name, .name input {
   font-size: 22px;
 

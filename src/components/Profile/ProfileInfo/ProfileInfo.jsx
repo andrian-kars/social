@@ -43,6 +43,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
     const onSubmit = (FormData) => {
         FormData.AboutMe = '---'
         saveProfile(FormData)
+        setEditMode(false)
     }
 
     return (
@@ -61,14 +62,12 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
                 {!editMode && isOwner && <svg className={s.editMode} onClick={() => { setEditMode(true) }} viewBox="0 0 20 20">
                     <path d="M3.936,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021S5.957,11.116,5.957,10S5.052,7.979,3.936,7.979z M3.936,11.011c-0.558,0-1.011-0.452-1.011-1.011s0.453-1.011,1.011-1.011S4.946,9.441,4.946,10S4.494,11.011,3.936,11.011z M16.064,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021s2.021-0.905,2.021-2.021S17.181,7.979,16.064,7.979z M16.064,11.011c-0.559,0-1.011-0.452-1.011-1.011s0.452-1.011,1.011-1.011S17.075,9.441,17.075,10S16.623,11.011,16.064,11.011z M10,7.979c-1.116,0-2.021,0.905-2.021,2.021S8.884,12.021,10,12.021s2.021-0.905,2.021-2.021S11.116,7.979,10,7.979z M10,11.011c-0.558,0-1.011-0.452-1.011-1.011S9.442,8.989,10,8.989S11.011,9.441,11.011,10S10.558,11.011,10,11.011z"></path>
                 </svg>}
+                {editMode && isOwner && <svg className={`${s.editMode} ${s.editDischarge}`} onClick={() => { setEditMode(false) }} viewBox="0 0 20 20">
+                    <path d="M13.864,6.136c-0.22-0.219-0.576-0.219-0.795,0L10,9.206l-3.07-3.07c-0.219-0.219-0.575-0.219-0.795,0c-0.219,0.22-0.219,0.576,0,0.795L9.205,10l-3.07,3.07c-0.219,0.219-0.219,0.574,0,0.794c0.22,0.22,0.576,0.22,0.795,0L10,10.795l3.069,3.069c0.219,0.22,0.575,0.22,0.795,0c0.219-0.22,0.219-0.575,0-0.794L10.794,10l3.07-3.07C14.083,6.711,14.083,6.355,13.864,6.136z M10,0.792c-5.086,0-9.208,4.123-9.208,9.208c0,5.085,4.123,9.208,9.208,9.208s9.208-4.122,9.208-9.208C19.208,4.915,15.086,0.792,10,0.792z M10,18.058c-4.451,0-8.057-3.607-8.057-8.057c0-4.451,3.606-8.057,8.057-8.057c4.449,0,8.058,3.606,8.058,8.057C18.058,14.45,14.449,18.058,10,18.058z"></path>
+                </svg>}
                 {editMode
-                    ? <ProfileDataReduxForm onSubmit={onSubmit}
-                        profile={profile} 
-                        isOwner={isOwner}
-                        id={id}
-                        onMainPhotoSelect={onMainPhotoSelect}
-                        status={status}
-                        updateStatus={updateStatus} />
+                    ? <ProfileDataReduxForm initialValues={profile}
+                        onSubmit={onSubmit} />
                     : <ProfileData
                         profile={profile}
                         isOwner={isOwner}
