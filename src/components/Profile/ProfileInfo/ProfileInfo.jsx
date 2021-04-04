@@ -10,7 +10,7 @@ import twitter from './../../../images/socials/twitter.png'
 import instagram from './../../../images/socials/instagram.png'
 import youtube from './../../../images/socials/youtube.png'
 import github from './../../../images/socials/github.png'
-import ProfileDataForm from './ProfileDataForm'
+import ProfileDataReduxForm from './ProfileDataForm'
 
 // const objCont = {
 //     "facebook": facebook,
@@ -31,22 +31,25 @@ import ProfileDataForm from './ProfileDataForm'
                         return Contact(key, objCont[key])
                     })} */
 
-const ProfileInfo = (props) => {
-    
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, saveProfile, }) => {
     const [editMode, setEditMode] = useState(false)
 
     const onMainPhotoSelect =  e => {
         if (e.currentTarget.files.length) {
-            props.savePhoto(e.currentTarget.files[0])
+            savePhoto(e.currentTarget.files[0])
         }
+    }
+
+    const onSubmit = (FormData) => {
+        console.log(FormData);
     }
 
     return (
         <section className={s.user}>
             <div className={s.banner} style={{ backgroundImage: `url('${banner}'` }}>
                 <div className={s.photoWhrapper}>
-                    <img className={s.photo} src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} alt={'User photo: ' + props.id} />
-                    {props.isOwner && <label className={s.uploadPhoto}>
+                    <img className={s.photo} src={profile.photos.large === null ? userPhoto : profile.photos.large} alt={'User photo: ' + id} />
+                    {isOwner && <label className={s.uploadPhoto}>
                         <svg viewBox="0 0 20 20">
                             <path d="M6.523,7.683c0.96,0,1.738-0.778,1.738-1.738c0-0.96-0.778-1.738-1.738-1.738c-0.96,0-1.738,0.778-1.738,1.738C4.785,6.904,5.563,7.683,6.523,7.683z M5.944,5.365h1.159v1.159H5.944V5.365z M18.113,0.729H1.888c-0.64,0-1.159,0.519-1.159,1.159v16.224c0,0.64,0.519,1.159,1.159,1.159h16.225c0.639,0,1.158-0.52,1.158-1.159V1.889C19.271,1.249,18.752,0.729,18.113,0.729z M18.113,17.532c0,0.321-0.262,0.58-0.58,0.58H2.467c-0.32,0-0.579-0.259-0.579-0.58V2.468c0-0.32,0.259-0.579,0.579-0.579h15.066c0.318,0,0.58,0.259,0.58,0.579V17.532z M15.91,7.85l-4.842,5.385l-3.502-2.488c-0.127-0.127-0.296-0.18-0.463-0.17c-0.167-0.009-0.336,0.043-0.463,0.17l-3.425,4.584c-0.237,0.236-0.237,0.619,0,0.856c0.236,0.236,0.62,0.236,0.856,0l3.152-4.22l3.491,2.481c0.123,0.123,0.284,0.179,0.446,0.174c0.16,0.005,0.32-0.051,0.443-0.174l5.162-5.743c0.238-0.236,0.238-0.619,0-0.856C16.529,7.614,16.146,7.614,15.91,7.85z"></path>
                         </svg>
@@ -54,19 +57,24 @@ const ProfileInfo = (props) => {
                 </div>
             </div>
             <div className={s.info}>
-                {props.isOwner && <button className={s.editMode} onClick={() => {setEditMode(true)}}>
-                    <svg viewBox="0 0 20 20">
-                        <path d="M10,2.172c-4.324,0-7.828,3.504-7.828,7.828S5.676,17.828,10,17.828c4.324,0,7.828-3.504,7.828-7.828S14.324,2.172,10,2.172M10,17.004c-3.863,0-7.004-3.141-7.004-7.003S6.137,2.997,10,2.997c3.862,0,7.004,3.141,7.004,7.004S13.862,17.004,10,17.004M10,8.559c-0.795,0-1.442,0.646-1.442,1.442S9.205,11.443,10,11.443s1.441-0.647,1.441-1.443S10.795,8.559,10,8.559 M10,10.619c-0.34,0-0.618-0.278-0.618-0.618S9.66,9.382,10,9.382S10.618,9.661,10.618,10S10.34,10.619,10,10.619 M14.12,8.559c-0.795,0-1.442,0.646-1.442,1.442s0.647,1.443,1.442,1.443s1.442-0.647,1.442-1.443S14.915,8.559,14.12,8.559 M14.12,10.619c-0.34,0-0.618-0.278-0.618-0.618s0.278-0.618,0.618-0.618S14.738,9.661,14.738,10S14.46,10.619,14.12,10.619 M5.88,8.559c-0.795,0-1.442,0.646-1.442,1.442s0.646,1.443,1.442,1.443S7.322,10.796,7.322,10S6.675,8.559,5.88,8.559 M5.88,10.619c-0.34,0-0.618-0.278-0.618-0.618S5.54,9.382,5.88,9.382S6.498,9.661,6.498,10S6.22,10.619,5.88,10.619"></path>
-                    </svg>
-                </button>}
+                {!editMode && isOwner && <svg className={s.editMode} onClick={() => { setEditMode(true) }} viewBox="0 0 20 20">
+                    <path d="M3.936,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021S5.957,11.116,5.957,10S5.052,7.979,3.936,7.979z M3.936,11.011c-0.558,0-1.011-0.452-1.011-1.011s0.453-1.011,1.011-1.011S4.946,9.441,4.946,10S4.494,11.011,3.936,11.011z M16.064,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021s2.021-0.905,2.021-2.021S17.181,7.979,16.064,7.979z M16.064,11.011c-0.559,0-1.011-0.452-1.011-1.011s0.452-1.011,1.011-1.011S17.075,9.441,17.075,10S16.623,11.011,16.064,11.011z M10,7.979c-1.116,0-2.021,0.905-2.021,2.021S8.884,12.021,10,12.021s2.021-0.905,2.021-2.021S11.116,7.979,10,7.979z M10,11.011c-0.558,0-1.011-0.452-1.011-1.011S9.442,8.989,10,8.989S11.011,9.441,11.011,10S10.558,11.011,10,11.011z"></path>
+                </svg>}
                 {editMode
-                    ? <ProfileDataForm profile={props.profile} />
-                    : <ProfileData profile={props.profile}
-                        isOwner={props.isOwner}
-                        id={props.id}
+                    ? <ProfileDataReduxForm onSubmit={onSubmit}
+                        profile={profile} 
+                        isOwner={isOwner}
+                        id={id}
                         onMainPhotoSelect={onMainPhotoSelect}
-                        status={props.status}
-                        updateStatus={props.updateStatus} />
+                        status={status}
+                        updateStatus={updateStatus} />
+                    : <ProfileData
+                        profile={profile}
+                        isOwner={isOwner}
+                        id={id}
+                        onMainPhotoSelect={onMainPhotoSelect}
+                        status={status}
+                        updateStatus={updateStatus} />
                 }
             </div>
         </section>

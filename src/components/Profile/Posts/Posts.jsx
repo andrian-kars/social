@@ -4,7 +4,6 @@ import Post from './Post/Post'
 import AddPostFormRedux from './AddPostForm'
 
 const Posts = React.memo(props => {
-    console.log(props.isOwner);
     const postsElements = [...props.posts].reverse().map(p => <Post avatar={props.avatar} key={p.id} likesCount={p.likesCount} message={p.message} />)
     const addNewPost = (FormData) => props.addPost(FormData.newPostBody)
     return (

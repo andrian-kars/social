@@ -10,7 +10,7 @@ const Paginator = ({ totalUsersCount, pageSize, currentPage, onPageChange }) => 
     return (
         <div className={s.pagination}>
             {pages.map(p => {
-                return <button className={`${currentPage === p && s.selectedPage} ${s.pages}`}
+                return <button key={p} className={`${currentPage === p && s.selectedPage} ${s.pages}`}
                     onClick={(e) => { onPageChange(p) }}>{p}</button>
             })}
         </div>

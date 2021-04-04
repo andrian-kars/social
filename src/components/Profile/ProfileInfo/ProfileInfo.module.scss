@@ -94,11 +94,13 @@
     }
   }
 
-  .editMode svg {
+  .editMode {
     position: absolute;
     top: 10px;
     left: 10px;
     width: 20px;
+    height: 20px;
+    padding: 0;
     fill: $btnBgColor;
     cursor: pointer;
     z-index: 7;
@@ -110,12 +112,13 @@
     @media (min-width: 992px) {
       & {
         width: 30px;
+        height: 30px;
       }
     }
   }
 }
 
-.name {
+.name, .name input {
   font-size: 22px;
 
   @media (min-width: 992px) {
