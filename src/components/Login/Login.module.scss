@@ -1,0 +1,86 @@
+@import './../../styles/variables';
+
+.login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 10vh;
+}
+.loginWhrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $mainCompColor;
+  padding: 20px;
+
+  @media (min-width: 560px) {
+    padding: 50px;
+  }
+}
+
+.heading {
+  margin-bottom: 20px;
+
+  @media (min-width: 560px) {
+    margin-bottom: 50px;
+  }
+}
+
+.summaryError {
+  border: 1px solid red;
+  padding: 10px;
+  color: orange;
+}
+
+.form {
+  width: 260px;
+
+  @media (min-width: 560px) {
+    width: 400px;
+  }
+}
+
+.textInputWhrapper {
+  margin-bottom: 20px;
+
+  & input {
+    width: 100%;
+
+  }
+}
+
+.checkInputWhrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  & input {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  & span {
+    font-size: 17px;
+    line-height: 0;
+  }
+}
+
+.btnWhrapper {
+  & button {
+    width: 100%;
+    height: 40px;
+    line-height: 0;
+    background-color: $btnBgColor;
+    color: $whiteColor;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+      background-color: $btnBgHoverColor;
+    }
+  }
+}

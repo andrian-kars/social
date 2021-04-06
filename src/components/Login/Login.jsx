@@ -1,4 +1,4 @@
-import s from './Login.module.css'
+import s from './Login.module.scss'
 import LoginReduxForm from './LoginFrom'
 import { connect } from 'react-redux'
 import { login } from './../../redux/authReducer'
@@ -12,9 +12,11 @@ const Login = (props) => {
         return <Redirect to={'/profile'} />
     }
     return (
-        <div>
-            <h1 className={s.heading}>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+        <div className={s.login}>
+            <div className={s.loginWhrapper}>
+                <h1 className={s.heading}>Login</h1>
+                <LoginReduxForm onSubmit={onSubmit} />
+            </div>
         </div>
     )
 }
