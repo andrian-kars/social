@@ -21,17 +21,11 @@
 }
 
 .heading {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 
-  @media (min-width: 560px) {
-    margin-bottom: 50px;
-  }
-}
-
-.summaryError {
-  border: 1px solid red;
-  padding: 10px;
-  color: orange;
+  // @media (min-width: 560px) {
+  //   margin-bottom: 50px;
+  // }
 }
 
 .form {
@@ -47,7 +41,8 @@
 
   & input {
     width: 100%;
-
+    // padding: 15px 10px;
+    border-bottom: 2px solid #29324f;
   }
 }
 
