@@ -1,24 +1,24 @@
-import { Field, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import s from './Login.module.scss'
-import { Input } from '../common/FormsControls/FormsControls'
+import { createField, Input } from '../common/FormsControls/FormsControls'
 import { required } from '../../utils/validators'
  
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit} className={s.form}>
+            {error && <div className={s.summaryError}>{error}</div>}
             <div className={s.textInputWhrapper}>
-                <Field validate={required} placeholder={'Email'} name={'email'} component={Input} />
+                {createField('Email', 'email', [required], Input)}
             </div>
             <div className={s.textInputWhrapper}>
-                <Field validate={required} placeholder={'Password'} name={'password'} component={Input} type={'password'} />
+                {createField('Password', 'password', [required], Input, { type: 'password'})}
             </div>
             <div className={s.checkInputWhrapper}>
-                <Field type={'checkbox'} name={'rememberMe'} component={Input} />
+                {createField(null, 'rememberMe', [], Input, { type: 'checkbox' })}
                 <span>Remember me</span>
             </div>
-            {error && <div className={s.summaryError}>
-                {error}
-            </div>}
+            {captchaUrl && <img src={captchaUrl} alt='captcha' />}
+            {captchaUrl && <div className={s.textInputWhrapper}>{createField('Symbols from image', 'captcha', [required], Input)}</div>}
             <div className={s.btnWhrapper}>
                 <button>Login</button>
             </div>
