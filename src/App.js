@@ -37,7 +37,6 @@ class App extends React.Component {
         <div className="container">
           <main className="main">
             <Switch>
-              {/* <Redirect from="/" to="/profile" /> */}
               <Route path="/" exact render={() => <News />} />
               <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
               <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />

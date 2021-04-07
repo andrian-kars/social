@@ -5,7 +5,7 @@ import Preloader from '../common/Preloader/Preloader'
 
 const Profile = (props) => {
     if (!props.profile) {
-        return <Preloader />
+        return <div className={s.load}><Preloader /></div>
     } else {
         return (
             <div className={s.profile}>
