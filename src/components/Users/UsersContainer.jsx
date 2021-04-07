@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
 import { compose } from 'redux'
-import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/usersSelectors'
 
 class UsersContaier extends React.Component {
@@ -44,6 +43,5 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    WithAuthRedirect,
     connect(mapStateToProps, { setCurrentPage, requestUsers, follow, unfollow })
 )(UsersContaier)

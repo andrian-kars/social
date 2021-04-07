@@ -1,5 +1,4 @@
 import React from 'react'
-// import React, { Suspense } from 'react'
 import './App.scss'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
@@ -7,8 +6,7 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 
 import UsersContainer from './components/Users/UsersContainer'
 // import Footer from './components/Footer/Footer'
-import { Route, withRouter, HashRouter } from 'react-router-dom'
-import Login from './components/Login/Login'
+import { Route, withRouter, HashRouter, Switch } from 'react-router-dom'
 import { initializeApp, } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
@@ -16,7 +14,8 @@ import Preloader from './components/common/Preloader/Preloader'
 import store from './redux/redux-store'
 
 import DialogsContainer from './components/Dialogs/DialogsContainer'
-// const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+import Login from './components/Login/Login'
+// const Login = React.lazy(() => import('./components/Login/Login'))
 
 class App extends React.Component {
   componentDidMount() {
@@ -27,17 +26,22 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Preloader />
     }
+    if (!this.props.isAuth) {
+      return <Login />
+    }
     return (
       <div className="app-whrapper">
         <HeaderContainer />
         <Navigation show={this.props.menu} />
         <div className="container">
           <main className="main">
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
-            {/* <Route path="/dialogs" render={() => <Suspense fallback={<Preloader />}><DialogsContainer /></Suspense>} /> */}
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/login" render={() => <Login />} />
+            <Switch>
+              {/* <Redirect from="/" to="/profile" /> */}
+              <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+              <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
+              <Route path="/users" render={() => <UsersContainer />} />
+              {/* <Route exact path="/login" render={() => <Suspense fallback={<Preloader />}><Login /></Suspense>} /> */}
+            </Switch>
           </main>
         </div>
         {/* <Footer /> */}
@@ -49,6 +53,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
   menu: state.app.menu,
+  isAuth: state.auth.isAuth
 })
 
 const AppContainer = compose(

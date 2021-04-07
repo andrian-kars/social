@@ -2,10 +2,12 @@
 
 .login {
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 10vh;
+  padding-top: 10vh;
+  background-color: $mainBgColor;
 }
 .loginWhrapper {
   display: flex;
@@ -14,6 +16,7 @@
   align-items: center;
   background-color: $mainCompColor;
   padding: 20px;
+  border-radius: 5px;
 
   @media (min-width: 560px) {
     padding: 50px;
