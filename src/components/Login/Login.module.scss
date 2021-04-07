@@ -1,58 +1,193 @@
 @import './../../styles/variables';
 
 .login {
-  width: 100%;
+  position: relative;
+  overflow: hidden;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 10vh;
+  width: 100%;
+  margin: 0px auto;
   background-color: $mainBgColor;
 }
-.loginWhrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: $mainCompColor;
-  padding: 20px;
-  border-radius: 5px;
+
+.circlesContainer {
+  display: none;
+  position: relative;
+  min-width: 960px;
+  max-width: 1280px;
+  height: auto;
+  min-height: 100%;
+  margin: 0px auto;
+  padding: 0px auto;
+  overflow: visible;
 
   @media (min-width: 560px) {
-    padding: 50px;
+    display: block;
+  }
+
+  .circleSmall {
+    animation: circle-small-scale 3s ease-in-out infinite alternate;
+    animation-timing-function: cubic-bezier(.6, 0, .4, 1);
+    animation-delay: 0s;
+    position: absolute;
+    top: 200px;
+    left: -150px;
+    background: #34416d;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+
+  .circleMedium {
+    animation: circle-small-scale 3s ease-in-out infinite alternate;
+    animation-timing-function: cubic-bezier(.6, 0, .4, 1);
+    animation-delay: 0.3s;
+    position: absolute;
+    top: 50px;
+    left: -300px;
+    background: #303f6b;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .circleLarge {
+    animation: circle-small-scale 3s ease-in-out infinite alternate;
+    animation-timing-function: cubic-bezier(.6, 0, .4, 1);
+    animation-delay: 0.6s;
+    position: absolute;
+    top: -100px;
+    left: -450px;
+    background: #3d4d82;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+
+  .circleXLarge {
+    animation: circle-small-scale 3s ease-in-out infinite alternate;
+    animation-timing-function: cubic-bezier(.6, 0, .4, 1);
+    animation-delay: 0.9s;
+    position: absolute;
+    top: -250px;
+    left: -600px;
+    background: #6482e2;
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    opacity: 0.1;
+  }
+
+  .circleXXLarge {
+    animation: circle-small-scale 3s ease-in-out infinite alternate;
+    animation-timing-function: cubic-bezier(.6, 0, .4, 1);
+    animation-delay: 1.2s;
+    position: absolute;
+    top: -400px;
+    left: -750px;
+    background: #18203a;
+    width: 1500px;
+    height: 1500px;
+    border-radius: 50%;
+    opacity: 0.05;
+  }
+
+  @keyframes circle-small-scale {
+    from {
+      transform: scale(1.0)
+    }
+
+    to {
+      transform: scale(1.1)
+    }
+  }
+}
+
+.loginWhrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loginForm {
+  height: 100%;
+  background-color: $mainCompColor;
+  width: 100%;
+  padding: 60px 10px 10px;
+  margin: 0 auto;
+
+  @media (min-width: 560px) {
+    width: 400px;
+    padding: 60px 20px 20px;
+  }
+
+  @media (min-width: 768px) {
+    margin-left: 50%
+  }
+
+  @media (min-width: 992px) {
+    width: 520px;
+    padding: 60px;
   }
 }
 
 .heading {
-  margin-bottom: 50px;
-
+  font-size: 43px;
   // @media (min-width: 560px) {
   //   margin-bottom: 50px;
   // }
 }
 
 .form {
-  width: 260px;
+  padding-top: 70px;
+  position: relative;
+  width: 100%;
+}
 
-  @media (min-width: 560px) {
-    width: 400px;
-  }
+.summaryError, .summary {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+}
+
+.summaryError {
+  color: red;
 }
 
 .textInputWhrapper {
   margin-bottom: 20px;
 
+  & span {
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+
   & input {
     width: 100%;
-    // padding: 15px 10px;
-    border-bottom: 2px solid #29324f;
+    padding: 10px 10px;
+    border: 1px solid #29324f;
+    border-radius: 10px;
   }
 }
 
 .checkInputWhrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #29324f;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
 
   & input {
     width: 15px;
@@ -62,23 +197,38 @@
   }
 
   & span {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 0;
   }
 }
 
-.btnWhrapper {
-  & button {
-    width: 100%;
-    height: 40px;
-    line-height: 0;
-    background-color: $btnBgColor;
-    color: $whiteColor;
-    cursor: pointer;
-    transition: .3s;
+.btn, .btnFree {
+  width: 80px;
+  height: 40px;
+  line-height: 0;
+  background-color: $btnBgColor;
+  color: $whiteColor;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .3s;
 
-    &:hover {
-      background-color: $btnBgHoverColor;
-    }
+  &:hover {
+    background-color: $btnBgHoverColor;
+  }
+}
+
+.btnFree {
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.test {
+  color: $btnBgColor;
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    color: $btnBgHoverColor;
   }
 }

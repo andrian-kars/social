@@ -6,21 +6,24 @@ import { required } from '../../utils/validators'
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit} className={s.form}>
-            {error && <div className={s.summaryError}>{error}</div>}
+            {error ? <div className={s.summaryError}>{error}</div> 
+                : <div className={s.summary}>Enter your email address and password or use free account for test</div>}
             <div className={s.textInputWhrapper}>
+                <span>Email address</span>
                 {createField('Email', 'email', [required], Input)}
             </div>
             <div className={s.textInputWhrapper}>
+                <span>Password</span>
                 {createField('Password', 'password', [required], Input, { type: 'password'})}
-            </div>
-            <div className={s.checkInputWhrapper}>
-                {createField(null, 'rememberMe', [], Input, { type: 'checkbox' })}
-                <span>Remember me</span>
             </div>
             {captchaUrl && <img src={captchaUrl} alt='captcha' />}
             {captchaUrl && <div className={s.textInputWhrapper}>{createField('Symbols from image', 'captcha', [required], Input)}</div>}
-            <div className={s.btnWhrapper}>
-                <button>Login</button>
+            <div className={s.checkInputWhrapper}>
+                <div>
+                    {createField(null, 'rememberMe', [], Input, { type: 'checkbox' })}
+                    <span>Remember me</span>
+                </div>
+                <button className={s.btn}>Sign in</button>
             </div>
         </form>
     )
