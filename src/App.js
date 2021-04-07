@@ -3,6 +3,7 @@ import './App.scss'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
 import ProfileContainer from './components/Profile/ProfileContainer'
+import News from './components/News/News'
 
 import UsersContainer from './components/Users/UsersContainer'
 // import Footer from './components/Footer/Footer'
@@ -37,6 +38,7 @@ class App extends React.Component {
           <main className="main">
             <Switch>
               {/* <Redirect from="/" to="/profile" /> */}
+              <Route path="/" exact render={() => <News />} />
               <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
               <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
               <Route path="/users" render={() => <UsersContainer />} />
