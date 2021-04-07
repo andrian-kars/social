@@ -7,11 +7,12 @@ import News from './components/News/News'
 
 import UsersContainer from './components/Users/UsersContainer'
 // import Footer from './components/Footer/Footer'
-import { Route, withRouter, HashRouter, Switch } from 'react-router-dom'
+import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-dom'
 import { initializeApp, } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
 import Preloader from './components/common/Preloader/Preloader'
+import Page404 from './components/common/Page404/Page404'
 import store from './redux/redux-store'
 
 import DialogsContainer from './components/Dialogs/DialogsContainer'
@@ -37,11 +38,13 @@ class App extends React.Component {
         <div className="container">
           <main className="main">
             <Switch>
-              <Route path="/" exact render={() => <News />} />
+              <Route exact path="/" render={() => <Redirect to={'/news'} />} />
+              <Route path="/news" render={() => <News />} />
               <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
               <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
-              <Route path="/users" render={() => <UsersContainer />} />
+              <Route exact path="/users" render={() => <UsersContainer />} />
               {/* <Route exact path="/login" render={() => <Suspense fallback={<Preloader />}><Login /></Suspense>} /> */}
+              <Route path="*" render={() => <Page404 />} />
             </Switch>
           </main>
         </div>
