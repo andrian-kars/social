@@ -1,6 +1,6 @@
 // import { createSelector } from "reselect" 83
 
-export const getUsers = (state) => {
+export const getUsers = (state: any) => {
     return state.usersPage.users
 }
 
@@ -8,22 +8,22 @@ export const getUsers = (state) => {
 //     state.usersPage.users.filter(u => true)
 // })
 
-export const getPageSize = (state) => {
+export const getPageSize = (state: any) => {
     return state.usersPage.pageSize
 }
 
-export const getTotalUsersCount = (state) => {
+export const getTotalUsersCount = (state: any) => {
     return state.usersPage.totalUsersCount
 }
 
-export const getCurrentPage = (state) => {
+export const getCurrentPage = (state: any) => {
     return state.usersPage.currentPage
 }
 
-export const getIsFetching = (state) => {
+export const getIsFetching = (state: any) => {
     return state.usersPage.isFetching
 }
 
-export const getFollowingInProgress = (state) => {
+export const getFollowingInProgress = (state: any) => {
     return state.usersPage.followingInProgress
 }

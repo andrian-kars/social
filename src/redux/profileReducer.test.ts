@@ -1,12 +1,17 @@
 import profileReducer, { addPostActionCreator, deletePost } from "./profileReducer"
 
 const state = {
-    profile: null,
+    profile: null as {} | null,
     posts: [
         { id: 1, likesCount: 69, message: 'Oh, you\'re approuching me?' },
         { id: 2, likesCount: 340, message: 'Dio, you are going down!' },
         { id: 3, likesCount: 420, message: 'It was me, DIO!' }
-    ]
+    ] as Array<{
+        id: number
+        likesCount: number
+        message: string
+    }>,
+    status: 'fff' as string
 }
 
 test('length of post should be increamented', () => {
