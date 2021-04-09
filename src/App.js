@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './App.scss'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
@@ -12,12 +12,11 @@ import { initializeApp, } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
 import Preloader from './components/common/Preloader/Preloader'
-import Page404 from './components/common/Page404/Page404'
 import store from './redux/redux-store'
-
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import Login from './components/Login/Login'
-// const Login = React.lazy(() => import('./components/Login/Login'))
+
+const Page404 = React.lazy(() => import('./components/common/Page404/Page404'))
 
 class App extends React.Component {
   componentDidMount() {
@@ -43,8 +42,7 @@ class App extends React.Component {
               <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
               <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
               <Route exact path="/users" render={() => <UsersContainer />} />
-              {/* <Route exact path="/login" render={() => <Suspense fallback={<Preloader />}><Login /></Suspense>} /> */}
-              <Route path="*" render={() => <Page404 />} />
+              <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
             </Switch>
           </main>
         </div>

@@ -23,7 +23,10 @@ const initialState = {
         { id: 19, name: 'Jotaro' },
         { id: 20, name: 'Jostar' },
         { id: 21, name: 'JoJo' },
-    ],
+    ] as Array<{
+        id: number
+        name: string
+    }>,
     messages: [
         { id: 1, message: 'Hello, world!' },
         { id: 2, message: 'Welcome to matrix' },
@@ -38,10 +41,15 @@ const initialState = {
         { id: 11, message: 'Neo' },
         { id: 12, message: 'Neo' },
         { id: 13, message: 'Welcome to matrix' },
-    ]
+    ] as Array<{
+        id: number
+        message: string
+    }>
 }
 
-const dialogsReducer = (state = initialState, action) => {
+export type initialStateType = typeof initialState
+
+const dialogsReducer = (state = initialState, action: any): initialStateType => {
     switch (action.type) {
         case ADD_MESSAGE: {
             return {
@@ -53,6 +61,11 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = (newMessageBody) => ({ type: ADD_MESSAGE, newMessageBody })
+type addMessageActionType = {
+    type: typeof ADD_MESSAGE
+    newMessageBody: string
+}
+
+export const addMessageActionCreator = (newMessageBody: string): addMessageActionType => ({ type: ADD_MESSAGE, newMessageBody })
 
 export default dialogsReducer
