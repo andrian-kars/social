@@ -1,12 +1,24 @@
 import s from './SingleUser.module.scss'
 import userPhoto from './../../../images/user-photo.png'
 import { NavLink } from 'react-router-dom'
+import { photosType } from '../../../types/types'
 
-const SingleUser = ({userID, photo, name, status, followed, followingInProgress, unfollow, follow}) => {
+type propsType = {
+    userID: number
+    photo: photosType
+    name: string
+    status: string
+    followed: boolean
+    followingInProgress: Array<number>
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
+}
+
+const SingleUser: React.FC<propsType> = ({userID, photo, name, status, followed, followingInProgress, unfollow, follow}) => {
     return (
         <div className={s.whrapper}>
             <div className={s.photoWhrapper}>
-                <NavLink to={'/profile/' + userID}><img className={s.avatar} src={photo === null ? userPhoto : photo} alt={'User photo: ' + userID} /></NavLink>
+                <NavLink to={'/profile/' + userID}><img className={s.avatar} src={photo.small === null ? userPhoto : photo.small} alt={'User photo: ' + userID} /></NavLink>
             </div>
             <div className={s.nameStatusWhrapper}>
                 <NavLink to={'/profile/' + userID}><p className={s.name}>{name}</p></NavLink>

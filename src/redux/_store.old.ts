@@ -32,13 +32,17 @@ const store = {
     getState(){
         return this._state
     },
+    // @ts-ignore
     subscribe(observer) {
         this._callSubscriber = observer
     },
+    // @ts-ignore
     dispatch(action) {
+        // @ts-ignore
         this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // @ts-ignore
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        
+        // @ts-ignore
         this._callSubscriber(this._state)
     }
 }

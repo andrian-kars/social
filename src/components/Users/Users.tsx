@@ -5,13 +5,13 @@ import { userType } from '../../types/types'
 
 type propsType = {
     followingInProgress: Array<number>
-    unfollow: () => void
-    follow: () => void
     users: Array<userType>
-    onPageChange: () => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    onPageChange: (pageNumber: number) => void
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
 }
 
 const Users: React.FC<propsType> = ({ followingInProgress, unfollow, follow, users, onPageChange,
@@ -22,7 +22,7 @@ const Users: React.FC<propsType> = ({ followingInProgress, unfollow, follow, use
                 pageSize={pageSize} onPageChange={onPageChange} />
             <div className={s.users}>
                 {users.map(u =>
-                    <SingleUser photo={u.photos.small} follow={follow}
+                    <SingleUser photo={u.photos} follow={follow}
                         unfollow={unfollow} key={u.id} userID={u.id}
                         name={u.name} followed={u.followed} status={u.status}
                         followingInProgress={followingInProgress}
