@@ -4,9 +4,9 @@ import Paginator from '../common/Paginator/Paginator'
 import { userType } from '../../types/types'
 
 type propsType = {
-    followingInProgress: boolean
-    unfollow: boolean
-    follow: boolean
+    followingInProgress: Array<number>
+    unfollow: () => void
+    follow: () => void
     users: Array<userType>
     onPageChange: () => void
     pageSize: number
