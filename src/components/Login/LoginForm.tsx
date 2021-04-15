@@ -10,28 +10,30 @@ type LoginFormValuesType = {
     captcha: string | null
 }
 
-type LoginFormOwnProps = {
-    captchaUrl: string | null
-}
+type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>
+
+type LoginFormOwnProps = { captchaUrl: string | null }
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit} className={s.form}>
-            {error ? <div className={s.summaryError}>{error}</div> 
-                : <div className={s.summary}>Enter your email address and password or use free account for test</div>}
+            {error
+                ? <div className={s.summaryError}>{error}</div> 
+                : <div className={s.summary}>Enter your email address and password or use free account for test</div>
+            }
             <div className={s.textInputWhrapper}>
                 <span>Email address</span>
-                {createField('Email', 'email', [required], Input)}
+                {createField<LoginFormValuesTypeKeys>('Email', 'email', [required], Input)}
             </div>
             <div className={s.textInputWhrapper}>
                 <span>Password</span>
-                {createField('Password', 'password', [required], Input, { type: 'password'})}
+                {createField<LoginFormValuesTypeKeys>('Password', 'password', [required], Input, { type: 'password'})}
             </div>
             {captchaUrl && <img src={captchaUrl} alt='captcha' />}
-            {captchaUrl && <div className={s.textInputWhrapper}>{createField('Symbols from image', 'captcha', [required], Input)}</div>}
+            {captchaUrl && <div className={s.textInputWhrapper}>{createField<LoginFormValuesTypeKeys>('Symbols from image', 'captcha', [required], Input)}</div>}
             <div className={s.checkInputWhrapper}>
                 <div>
-                    {createField(undefined, 'rememberMe', [], Input, { type: 'checkbox' })}
+                    {createField<LoginFormValuesTypeKeys>(undefined, 'rememberMe', [], Input, { type: 'checkbox' })}
                     <span>Remember me</span>
                 </div>
                 <button className={s.btn}>Sign in</button>

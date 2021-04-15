@@ -1,5 +1,5 @@
 import s from './Login.module.scss'
-import LoginReduxForm from './LoginFrom'
+import LoginReduxForm from './LoginForm'
 import { connect } from 'react-redux'
 import { login } from './../../redux/authReducer'
 import { Redirect } from 'react-router'
