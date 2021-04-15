@@ -1,20 +1,24 @@
-import { ProfileType } from "../types/types"
-import { instance } from "./api"
+import { PhotosType, ProfileType } from "../types/types"
+import { instance, APIResponseType } from "./api"
+
+type savePhotoResponseDataType = {
+    photos: PhotosType
+}
 
 export const profileAPI = {
-    getProfile(userID: number) { return instance.get(`profile/${userID}/`) },
-    getStatus(userID: number) { return instance.get(`profile/status/${userID}/`) },
-    updateStatus(status: string) { return instance.put(`profile/status/`, { status: status }) },
+    getProfile(userID: number) { return instance.get<ProfileType>(`profile/${userID}/`).then(res => res.data) },
+    getStatus(userID: number) { return instance.get<string>(`profile/status/${userID}/`).then(res => res.data) },
+    updateStatus(status: string) { return instance.put<APIResponseType>(`profile/status/`, { status: status }).then(res => res.data) },
     savePhoto(photoFile: any) {
         const formData = new FormData()
         formData.append('image', photoFile)
-        return instance.put(`profile/photo/`, formData, {
+        return instance.put<APIResponseType<savePhotoResponseDataType>>(`profile/photo/`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        })
+        }).then(res => res.data)
     },
     saveProfile(profile: ProfileType) {
-        return instance.put(`profile/`, profile)
+        return instance.put<APIResponseType>(`profile/`, profile).then(res => res.data)
     },
 }

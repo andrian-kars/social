@@ -2,8 +2,9 @@ import { ResultCodesEnum, ResultCodeForCaptchaEnum } from './../api/api';
 import { Dispatch } from "react"
 import { stopSubmit } from "redux-form"
 import { ThunkAction } from "redux-thunk"
-import { authAPI, securityAPI } from "../api/api"
 import { AppStateType } from "./redux-store"
+import { authAPI } from '../api/authAPI';
+import { securityAPI } from '../api/securityAPI';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS'
@@ -78,16 +79,15 @@ export const login = (email: string, password: string, rememberMe?: boolean, cap
 }
 
 export const logout = (): ThunkType => async (dispatch: any) => {
-    const response = await authAPI.logout()
-    if (response.data.resultCode === 0) {
+    const logoutData = await authAPI.logout()
+    if (logoutData.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
     }
 }
 
 export const getCaptchaUrl = (): ThunkType => async (dispatch: any) => {
-    const response = await securityAPI.getCaptchaUrl()
-    const captchaUrl = response.data.url
-    dispatch(getCaptchaUrlSuccess(captchaUrl))
+    const captchaData = await securityAPI.getCaptchaUrl()
+    dispatch(getCaptchaUrlSuccess(captchaData.url))
 }
 
 export default authReducer

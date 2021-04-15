@@ -1,6 +1,6 @@
 import { Dispatch } from "react"
 import { ThunkAction } from "redux-thunk"
-import { usersAPI } from "../api/api"
+import { usersAPI } from "../api/usersAPI"
 import { UserType } from "../types/types"
 import { updateObjectInArray } from "../utils/objectHelpers"
 import { AppStateType, InferActionsTypes } from "./redux-store"
@@ -77,10 +77,10 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkType =
     return async (dispatch: DispatchType) => {
         dispatch(actions.setIsFetching(true))
         dispatch(actions.setCurrentPage(currentPage))
-        const response = await usersAPI.getUsers(currentPage, pageSize)
+        const usersData = await usersAPI.getUsers(currentPage, pageSize)
         dispatch(actions.setIsFetching(false))
-        dispatch(actions.setUsers(response.data.items))
-        dispatch(actions.setUsersTotalCount(response.data.totalCount))
+        dispatch(actions.setUsers(usersData.items))
+        dispatch(actions.setUsersTotalCount(usersData.totalCount))
     }
 }
 
@@ -88,8 +88,8 @@ const _followUnfollowFlow = async (dispatch: DispatchType, userID: number, apiMe
     actionCreator: (userID: number) => ActionsType) => {
 
     dispatch(actions.toggleFollowingProgress(true, userID))
-    const response = await apiMethod(userID)
-    if (response.data.resultCode === 0) {
+    const flowData = await apiMethod(userID)
+    if (flowData.resultCode === 0) {
         dispatch(actionCreator(userID))
     }
     dispatch(actions.toggleFollowingProgress(false, userID))
