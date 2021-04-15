@@ -1,9 +1,9 @@
 import s from './Burger.module.scss'
 
-type propsType = {
+type PropsType = {
     show: boolean
 }
-const Burger: React.FC<propsType> = ({show}) => {
+const Burger: React.FC<PropsType> = ({show}) => {
     return (
         <button className={!show ? s.hamburgerIcon : `${s.hamburgerIcon} ${s.active}`}>
             <span className={`${s.line} ${s.lineOne}`}></span>

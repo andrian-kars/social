@@ -1,18 +1,18 @@
+import { PostType, ProfileType } from "../types/types"
 import profileReducer, { addPostActionCreator, deletePost } from "./profileReducer"
 
 const state = {
-    profile: null as {} | null,
+    profile: null as null | ProfileType,
     posts: [
         { id: 1, likesCount: 69, message: 'Oh, you\'re approuching me?' },
         { id: 2, likesCount: 340, message: 'Dio, you are going down!' },
         { id: 3, likesCount: 420, message: 'It was me, DIO!' }
-    ] as Array<{
-        id: number
-        likesCount: number
-        message: string
-    }>,
-    status: 'fff' as string
+    ] as Array<PostType>,
+    status: '' as string,
+    newPostBody: '' as string
 }
+
+export type StateType = typeof state
 
 test('length of post should be increamented', () => {
     const action = addPostActionCreator('GG!')

@@ -1,13 +1,13 @@
 import s from './Paginator.module.scss'
 
-type propsType = {
+type PropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
     onPageChange: (pageNumber: number) => void
 }
 
-const Paginator: React.FC<propsType> = ({ totalUsersCount, pageSize, currentPage, onPageChange }) => {
+const Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, onPageChange }) => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const pages: Array<number> = []
     for (let i = currentPage; i <= pagesCount && i < currentPage + 5; i++) {

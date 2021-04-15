@@ -5,31 +5,31 @@ import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
 import { compose } from 'redux'
 import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/usersSelectors'
-import { userType } from '../../types/types'
-import { appStateType } from '../../redux/redux-store'
+import { UserType } from '../../types/types'
+import { AppStateType } from '../../redux/redux-store'
 
-type mapStatePropsType = {
+type MapStatePropsType = {
     currentPage: number
     pageSize: number
     totalUsersCount: number
     isFetching: boolean
-    users: Array<userType>
+    users: Array<UserType>
     followingInProgress: Array<number>
 }
 
-type mapDispatchPropsType = {
+type MapDispatchPropsType = {
     requestUsers: (currentPage: number, pageSize: number) => void
     unfollow: (userId: number) => void
     follow: (userId: number) => void
 }
 
-type ownPropsType = {
+type OwnPropsType = {
 
 }
 
-type propsType = mapStatePropsType & mapDispatchPropsType & ownPropsType
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
-class UsersContaier extends React.Component<propsType> {
+class UsersContaier extends React.Component<PropsType> {
     componentDidMount() {
         this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
@@ -81,7 +81,7 @@ class UsersContaier extends React.Component<propsType> {
 //     )
 // }
 
-const mapStateToProps = (state: appStateType): mapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -93,5 +93,5 @@ const mapStateToProps = (state: appStateType): mapStatePropsType => {
 }
 
 export default compose(
-    connect<mapStatePropsType, mapDispatchPropsType, ownPropsType, appStateType>(mapStateToProps, { requestUsers, unfollow, follow })
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, { requestUsers, unfollow, follow })
 )(UsersContaier)

@@ -1,11 +1,11 @@
 import s from './Users.module.scss'
 import SingleUser from './SingleUser/SingleUser'
 import Paginator from '../common/Paginator/Paginator'
-import { userType } from '../../types/types'
+import { UserType } from '../../types/types'
 
-type propsType = {
+type PropsType = {
     followingInProgress: Array<number>
-    users: Array<userType>
+    users: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -14,7 +14,7 @@ type propsType = {
     follow: (userId: number) => void
 }
 
-const Users: React.FC<propsType> = ({ followingInProgress, unfollow, follow, users, onPageChange,
+const Users: React.FC<PropsType> = ({ followingInProgress, unfollow, follow, users, onPageChange,
         pageSize, totalUsersCount, currentPage }) => {
     return (
         <div className={s.whrapper}>
