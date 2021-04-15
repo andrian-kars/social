@@ -31,7 +31,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPro
             {captchaUrl && <div className={s.textInputWhrapper}>{createField('Symbols from image', 'captcha', [required], Input)}</div>}
             <div className={s.checkInputWhrapper}>
                 <div>
-                    {createField(null, 'rememberMe', [], Input, { type: 'checkbox' })}
+                    {createField(undefined, 'rememberMe', [], Input, { type: 'checkbox' })}
                     <span>Remember me</span>
                 </div>
                 <button className={s.btn}>Sign in</button>
