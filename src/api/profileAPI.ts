@@ -9,7 +9,7 @@ export const profileAPI = {
     getProfile(userID: number) { return instance.get<ProfileType>(`profile/${userID}/`).then(res => res.data) },
     getStatus(userID: number) { return instance.get<string>(`profile/status/${userID}/`).then(res => res.data) },
     updateStatus(status: string) { return instance.put<APIResponseType>(`profile/status/`, { status: status }).then(res => res.data) },
-    savePhoto(photoFile: any) {
+    savePhoto(photoFile: File) {
         const formData = new FormData()
         formData.append('image', photoFile)
         return instance.put<APIResponseType<savePhotoResponseDataType>>(`profile/photo/`, formData, {

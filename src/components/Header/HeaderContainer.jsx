@@ -3,7 +3,7 @@ import Header from './Header'
 import { connect } from 'react-redux'
 import { logout, } from './../../redux/authReducer'
 import { getProfile, } from './../../redux/profileReducer'
-import { showMenu, } from './../../redux/appReducer'
+import { actions } from './../../redux/appReducer'
 import { compose } from 'redux'
 
 class HeaderContainer extends React.Component {
@@ -17,4 +17,4 @@ const mapStateToProps = (state) => ({
     menu: state.app.menu,
 })
 
-export default compose(connect(mapStateToProps, { logout, getProfile, showMenu }))(HeaderContainer)
+export default compose(connect(mapStateToProps, { logout, getProfile, showMenu: actions.showMenu }))(HeaderContainer)

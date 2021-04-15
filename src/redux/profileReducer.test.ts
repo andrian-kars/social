@@ -1,5 +1,5 @@
 import { PostType, ProfileType } from "../types/types"
-import profileReducer, { addPostActionCreator, deletePost } from "./profileReducer"
+import profileReducer, { actions } from "./profileReducer"
 
 const state = {
     profile: null as null | ProfileType,
@@ -15,7 +15,7 @@ const state = {
 export type StateType = typeof state
 
 test('length of post should be increamented', () => {
-    const action = addPostActionCreator('GG!')
+    const action = actions.addPostActionCreator('GG!')
 
     const newState = profileReducer(state, action)
 
@@ -23,7 +23,7 @@ test('length of post should be increamented', () => {
 })
 
 test('checking for correct message', () => {
-    const action = addPostActionCreator('GG!')
+    const action = actions.addPostActionCreator('GG!')
 
     const newState = profileReducer(state, action)
 
@@ -31,7 +31,7 @@ test('checking for correct message', () => {
 })
 
 test('after deleting length of messages should be decreased', () => {
-    const action = deletePost(1)
+    const action = actions.deletePost(1)
 
     const newState = profileReducer(state, action)
 
