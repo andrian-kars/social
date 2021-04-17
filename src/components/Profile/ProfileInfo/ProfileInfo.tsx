@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import s from './ProfileInfo.module.scss'
 import userPhoto from './../../../images/user-photo.png'
-import ProfileStatusWithHooks from './ProfileStatusWithHooks'
+import ProfileStatus from './ProfileStatus.jsx'
 import banner from './../../../images/background/banner.jpg'
 import facebook from './../../../images/socials/facebook.png'
 import website from './../../../images/socials/website.png'
@@ -103,7 +103,7 @@ const ProfileData = ({ profile, status, updateStatus }) => {
         </div>
         <div className={`${s.mainStatus}`}>
             <h2 className={s.name}>{profile.fullName}</h2>
-            <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+            <ProfileStatus status={status} updateStatus={updateStatus} />
         </div>
         <div className={s.job}>
             {profile.lookingForAJob === null ? '' : <p className={s.text}>

@@ -1,6 +1,6 @@
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import s from './Login.module.scss'
-import { createField, Input } from '../common/FormsControls/FormsControls'
+import { createField, GetStringKeys, Input } from '../common/FormsControls/FormsControls'
 import { required } from '../../utils/validators'
 
 type LoginFormValuesType = {
@@ -10,7 +10,7 @@ type LoginFormValuesType = {
     captcha: string | null
 }
 
-type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>
+type LoginFormValuesTypeKeys = GetStringKeys<LoginFormValuesType>
 
 type LoginFormOwnProps = { captchaUrl: string | null }
 

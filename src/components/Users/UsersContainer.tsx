@@ -55,32 +55,6 @@ class UsersContaier extends React.Component<PropsType> {
     }
 }
 
-// const UsersContaier1 = ({ requestUsers, currentPage, pageSize, ...props }) => {
-//     useEffect(() => {
-//     console.log('DidMount'); // to update
-//         requestUsers(currentPage, pageSize)
-//     }, [requestUsers, currentPage, pageSize])
-
-//     const onPageChange = pageNumber => {
-//         requestUsers(pageNumber, pageSize)
-//     }
-
-//     return (
-//         <>
-//             {props.isFetching ? <Preloader /> : null}
-//             <Users onPageChange={onPageChange}
-//                 totalUsersCount={props.totalUsersCount}
-//                 pageSize={pageSize}
-//                 currentPage={currentPage}
-//                 users={props.users}
-//                 follow={props.follow}
-//                 unfollow={props.unfollow}
-//                 followingInProgress={props.followingInProgress}
-//             />
-//         </>
-//     )
-// }
-
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
