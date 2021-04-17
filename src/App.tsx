@@ -4,21 +4,25 @@ import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import News from './components/News/News'
-
 import UsersContainer from './components/Users/UsersContainer'
 // import Footer from './components/Footer/Footer'
 import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-dom'
-import { initializeApp, } from './redux/appReducer'
+import { initializeApp } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
 import Preloader from './components/common/Preloader/Preloader'
-import store from './redux/redux-store'
+import store, { AppStateType } from './redux/redux-store'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
-import Login from './components/Login/Login'
 
 const Page404 = React.lazy(() => import('./components/common/Page404/Page404'))
+const Login = React.lazy(() => import('./components/Login/Login'))
 
-class App extends React.Component {
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+  initializeApp: () => void
+}
+
+class App extends React.Component<MapPropsType & DispatchPropsType> {
   componentDidMount() {
     this.props.initializeApp()
   }
@@ -28,7 +32,7 @@ class App extends React.Component {
       return <Preloader />
     }
     if (!this.props.isAuth) {
-      return <Login />
+      return <Suspense fallback={<Preloader />}><Login /></Suspense>
     }
     return (
       <div className="app-whrapper">
@@ -52,17 +56,17 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized,
   menu: state.app.menu,
   isAuth: state.auth.isAuth
 })
 
-const AppContainer = compose(
+const AppContainer = compose<React.ComponentType>(
   withRouter, 
   connect(mapStateToProps, { initializeApp }))(App)
 
-const MainApp = props => {
+const MainApp: React.FC = () => {
   return <HashRouter>
     <Provider store={store}>
       <AppContainer />

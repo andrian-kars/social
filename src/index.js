@@ -1,4 +1,3 @@
-import React from 'react'
 import reportWebVitals from './reportWebVitals'
 import ReactDOM from 'react-dom'
 import './index.scss'
