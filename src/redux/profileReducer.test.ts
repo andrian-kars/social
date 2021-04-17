@@ -15,7 +15,7 @@ const state = {
 export type StateType = typeof state
 
 test('length of post should be increamented', () => {
-    const action = actions.addPostActionCreator('GG!')
+    const action = actions.addPost('GG!')
 
     const newState = profileReducer(state, action)
 
@@ -23,7 +23,7 @@ test('length of post should be increamented', () => {
 })
 
 test('checking for correct message', () => {
-    const action = actions.addPostActionCreator('GG!')
+    const action = actions.addPost('GG!')
 
     const newState = profileReducer(state, action)
 

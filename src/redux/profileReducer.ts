@@ -52,7 +52,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
-    addPostActionCreator: (newPostBody: string) => ({ type: 'S/PROFILE/ADD_POST', newPostBody } as const),
+    addPost: (newPostBody: string) => ({ type: 'S/PROFILE/ADD_POST', newPostBody } as const),
     setUserProfile: (profile: ProfileType) => ({ type: 'S/PROFILE/SET_USER_PROFILE', profile } as const),
     setStatus: (status: string) => ({ type: 'S/PROFILE/SET_STATUS', status } as const),
     deletePost: (postId: number) => ({ type: 'S/PROFILE/DELETE_POST', postId } as const),
