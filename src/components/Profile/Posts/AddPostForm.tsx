@@ -6,15 +6,14 @@ import userPhoto from './../../../images/user-photo.png'
 
 const maxLength = maxLengthCreator(230)
 
-type AddPostFormValuesType = {
+export type AddPostFormValuesType = {
     newPostBody: string
 }
 
 type AddPostFormValuesTypeKeys = GetStringKeys<AddPostFormValuesType>
 
 type PropsType = {
-    handleSubmit: any
-    avatar: any
+    avatar: string | null
 }
 
 const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> & PropsType> = (props) => {
