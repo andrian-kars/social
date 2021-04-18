@@ -1,7 +1,12 @@
 import s from './News.module.scss'
 import { connect } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
 
-const Home = (props) => {
+type PropsType = {
+
+}
+
+const Home: React.FC<PropsType> = (props) => {
     return (
         <div className={s.news}>
             <div className={s.item}>
@@ -17,9 +22,9 @@ const Home = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     // isAuth: state.auth.isAuth,
     // captchaUrl: state.auth.captchaUrl
 })
 
-export default connect(mapStateToProps, { })(Home)
+export default connect(mapStateToProps, {})(Home)
