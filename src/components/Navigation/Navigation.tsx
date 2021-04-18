@@ -1,9 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import s from './Navigation.module.scss'
 
-const Navigation = show => {
+type PropsType = {
+    show: boolean
+}
+
+const Navigation: React.FC<PropsType> = ({ show }) => {
     return (
-        <nav className={show.show ? s.navigation : `${s.navigation} ${s.hide}`}>
+        <nav className={show ? s.navigation : `${s.navigation} ${s.hide}`}>
             <ul className={s.whrapper}>
                 <li className={s.item}>
                     <NavLink className={s.link} activeClassName={s.active} exact to="/">
