@@ -2,7 +2,7 @@ import s from './Page404.module.scss'
 import image404 from './../../../images/background/404.png'
 import { NavLink } from 'react-router-dom'
 
-const Preloader = () => {
+const Preloader: React.FC = () => {
     return (
         <div className={s.page404}>
             <div style={{ backgroundImage: `url('${image404}'` }} className={s.mainImage}><p>404</p></div>

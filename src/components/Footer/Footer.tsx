@@ -1,7 +1,7 @@
 import s from './Footer.module.scss'
 import logo from './../../images/logo.png'
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <footer className={s.footer}>
             <p className={s.copyright}>Copyright 2021</p>

@@ -1,10 +1,21 @@
 import s from './Header.module.scss'
 import logo from './../../images/logo.png'
 import { NavLink } from 'react-router-dom'
-import Burger from './../common/Burger/Burger'
+import Burger from '../common/Burger/Burger'
+import { MouseEvent } from 'react'
 
-const Header = ({ login, logout, menu, showMenu }) => {
-    const toggleShow = e => {
+export type MapPropsType = {
+    menu: boolean
+    login: string | null
+}
+
+export type DispatchPropsType = {
+    logout: () => void
+    showMenu: (menu: boolean) => void
+}
+
+const Header: React.FC<MapPropsType & DispatchPropsType> = ({ login, logout, menu, showMenu }) => {
+    const toggleShow = (e: MouseEvent<any>) => {
         const targetEl = e.currentTarget.children[1].style
         if (targetEl.visibility === 'visible') {
             targetEl.visibility = 'hidden'
