@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import s from './ProfileInfo.module.scss'
 
-const ProfileStatusWithHooks = props => {
+const ProfileStatusWithHooks = (props: any) => {
     const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
 
@@ -18,7 +18,7 @@ const ProfileStatusWithHooks = props => {
         props.updateStatus(status)
     }
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: any) => {
         setStatus(e.currentTarget.value)
     }
 

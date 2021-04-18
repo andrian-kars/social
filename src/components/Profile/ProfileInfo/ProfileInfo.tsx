@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import s from './ProfileInfo.module.scss'
 import userPhoto from './../../../images/user-photo.png'
-import ProfileStatus from './ProfileStatus.jsx'
+import ProfileStatus from './ProfileStatus'
 import banner from './../../../images/background/banner.jpg'
 import facebook from './../../../images/socials/facebook.png'
 import website from './../../../images/socials/website.png'
@@ -11,37 +11,31 @@ import instagram from './../../../images/socials/instagram.png'
 import youtube from './../../../images/socials/youtube.png'
 import github from './../../../images/socials/github.png'
 import ProfileDataReduxForm from './ProfileDataForm'
+import { ProfileType } from '../../../types/types'
 
-// const objCont = {
-//     "facebook": facebook,
-//     "website": website,
-//     "vk": vk,
-//     "twitter": twitter,
-//     "instagram": instagram,
-//     "youtube": youtube,
-//     "github": github,
-// }
-/* {Object.keys(props.profile.contacts).map(key => {
-                        console.log(key);
-                        console.log(objCont[key]);
-                        if (key.value) {
-                            console.log('');
-                        }
-                        debugger
-                        return Contact(key, objCont[key])
-                    })} */
+type InfoPropsType = {
+    profile: ProfileType
+    status: string
+    isOwner: boolean
+    id: number
+    updateStatus: (status: string) => void
+    savePhoto: (file: File) => void
+    saveProfile: (prodile: ProfileType) => Promise<any>
 
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, saveProfile, }) => {
+}
+
+const ProfileInfo: React.FC<InfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto, id, saveProfile, }) => {
     const [editMode, setEditMode] = useState(false)
 
-    const onMainPhotoSelect =  e => {
-        if (e.currentTarget.files.length) {
+    const onMainPhotoSelect = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.currentTarget.files?.length) {
             savePhoto(e.currentTarget.files[0])
         }
     }
 
-    const onSubmit = FormData => {
+    const onSubmit = (FormData: ProfileType) => {
         FormData.AboutMe = '---'
+        // todo: remove then
         saveProfile(FormData).then(() => {
             setEditMode(false)
         })
@@ -75,7 +69,6 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
                         profile={profile}
                         isOwner={isOwner}
                         id={id}
-                        onMainPhotoSelect={onMainPhotoSelect}
                         status={status}
                         updateStatus={updateStatus} />
                 }
@@ -84,7 +77,15 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, id, sav
     )
 }
 
-const ProfileData = ({ profile, status, updateStatus }) => {
+type DataPropsType = {
+    profile: ProfileType
+    status: string
+    isOwner: boolean
+    id: number
+    updateStatus: (status: string) => void
+}
+
+const ProfileData: React.FC<DataPropsType> = ({ profile, status, updateStatus }) => {
     return <div className={s.profileData}>
         <div className={s.socials}>
             {!!profile.contacts.facebook && <a className={s.social} href={`${profile.contacts.facebook}`} target={'_blank'} rel={'noreferrer'}><img src={facebook} alt={'facebook'} /></a>}
@@ -119,10 +120,5 @@ const ProfileData = ({ profile, status, updateStatus }) => {
         </div>
     </div>
 }
-
-// const Contact = ({ contactValue, contactImg }) => {
-//     return contactValue === null ? ''
-//         : <a className={s.social} href={`${contactValue}`} target={'_blank'} rel={'noreferrer'}><img src={contactImg} alt={'contact'} /></a>
-// }
 
 export default ProfileInfo
