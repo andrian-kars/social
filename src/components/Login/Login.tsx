@@ -11,16 +11,22 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    login: (email: string, password: string, rememberMe?: boolean, captcha?: string) => void
+    login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
+}
+
+type LoginFormValuesType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string | null
 }
 
 const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
-    const onSubmit = (FormData: any) => {
-        debugger;
+    const onSubmit = (FormData: LoginFormValuesType) => {
         props.login(FormData.email, FormData.password, FormData.rememberMe, FormData.captcha)
     }
-    const freeAccount = (FormData: any) => {
-        props.login('andrian.karsanashvili@gmail.com', 'q12345678')
+    const freeAccount = () => {
+        props.login('andrian.karsanashvili@gmail.com', 'q12345678', false, null)
     }
     if (props.isAuth) {
         return <Redirect to={'/profile'} />

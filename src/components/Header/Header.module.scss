@@ -30,6 +30,10 @@
 }
 
 .burgerWhrapper {
+  cursor: pointer;
+  margin-top: 3px;
+  padding: 3px 3px 6px;
+
   @media (min-width: 768px) {
     display: none;
   }
