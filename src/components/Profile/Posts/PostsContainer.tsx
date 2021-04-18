@@ -33,10 +33,12 @@ class PostsContainer extends React.Component<PropsType> {
     }
 }
 
-const mapStateToProps = (state: any): MapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
+        // @ts-ignore
         userId: state.profilePage.profile.userId,
+        // @ts-ignore
         photos: state.profilePage.profile.photos,
         authorazedUserId: state.auth.userId
     }

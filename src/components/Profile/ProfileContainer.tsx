@@ -64,7 +64,7 @@ const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 })
 
-export default compose(
+export default compose<React.ComponentType>(
     connect(mapStateToProps, { setUserProfile: actions.setUserProfile, getProfile, getStatus, updateStatus, savePhoto, saveProfile }),
     withRouter,
 )(ProfileContainer)

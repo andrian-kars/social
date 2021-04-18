@@ -23,9 +23,7 @@ type MapDispatchPropsType = {
     follow: (userId: number) => void
 }
 
-type OwnPropsType = {
-
-}
+type OwnPropsType = {}
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
