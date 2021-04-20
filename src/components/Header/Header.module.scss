@@ -149,6 +149,12 @@
   }
 }
 
+.divShow {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 350ms;
+}
+
 .logout {
   cursor: pointer;
 }

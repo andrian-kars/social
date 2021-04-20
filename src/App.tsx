@@ -1,6 +1,6 @@
 import { Component, lazy, Suspense } from 'react'
 import './App.scss'
-import HeaderContainer from './components/Header/HeaderContainer'
+import { Header } from './components/Header/Header'
 import Navigation from './components/Navigation/Navigation'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import { News } from './components/News/News'
@@ -36,7 +36,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
     }
     return (
       <div className="app-whrapper">
-        <HeaderContainer />
+        <Header />
         <Navigation show={this.props.menu} />
         <div className="container">
           <main className="main">

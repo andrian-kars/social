@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Navigation.module.scss'
 
@@ -5,7 +6,7 @@ type PropsType = {
     show: boolean
 }
 
-const Navigation: React.FC<PropsType> = ({ show }) => {
+const Navigation: React.FC<PropsType> = memo(({ show }) => {
     return (
         <nav className={show ? s.navigation : `${s.navigation} ${s.hide}`}>
             <ul className={s.whrapper}>
@@ -44,6 +45,6 @@ const Navigation: React.FC<PropsType> = ({ show }) => {
             </ul>
         </nav>
     )
-}
+})
 
 export default Navigation
