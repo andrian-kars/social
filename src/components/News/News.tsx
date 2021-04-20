@@ -1,12 +1,7 @@
 import s from './News.module.scss'
-import { connect } from 'react-redux'
-import { AppStateType } from '../../redux/redux-store'
+import { memo } from 'react'
 
-type PropsType = {
-
-}
-
-const Home: React.FC<PropsType> = (props) => {
+export const News: React.FC = memo(() => {
     return (
         <div className={s.news}>
             <div className={s.item}>
@@ -20,11 +15,4 @@ const Home: React.FC<PropsType> = (props) => {
             </div>
         </div>
     )
-}
-
-const mapStateToProps = (state: AppStateType) => ({
-    // isAuth: state.auth.isAuth,
-    // captchaUrl: state.auth.captchaUrl
 })
-
-export default connect(mapStateToProps, {})(Home)
