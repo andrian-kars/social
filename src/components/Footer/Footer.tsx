@@ -1,7 +1,7 @@
 import s from './Footer.module.scss'
 import logo from './../../images/logo.png'
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
     return (
         <footer className={s.footer}>
             <p className={s.copyright}>Copyright 2021</p>
@@ -9,5 +9,3 @@ const Footer: React.FC = () => {
         </footer>
     )
 }
-
-export default Footer

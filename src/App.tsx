@@ -12,7 +12,7 @@ import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
 import Preloader from './components/common/Preloader/Preloader'
 import store, { AppStateType } from './redux/redux-store'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
+import { DialogsPage } from './components/Dialogs/DialogsPage'
 
 const Page404 = lazy(() => import('./components/common/Page404/Page404'))
 const LoginPage = lazy(() => import('./components/Login/LoginPage').then(module => ({ default: module.LoginPage })))
@@ -44,7 +44,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
               <Route exact path="/" render={() => <Redirect to={'/news'} />} />
               <Route path="/news" render={() => <News />} />
               <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-              <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
+              <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
               <Route exact path="/users" render={() => <UsersPage />} />
               <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
             </Switch>
