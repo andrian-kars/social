@@ -1,5 +1,6 @@
 import s from './Post.module.scss'
 import userPhoto from './../../../../images/user-photo.png'
+import { memo } from 'react'
 
 type PropsType = {
     avatar: string | null
@@ -7,7 +8,7 @@ type PropsType = {
     likesCount: number
 }
 
-const Post: React.FC<PropsType> = ({ avatar, message, likesCount }) => {
+export const Post: React.FC<PropsType> = memo(({ avatar, message, likesCount }) => {
     return (
         <div className={s.item}>
             <img className={s.avatar} src={avatar === null ? userPhoto : avatar} alt="user" />
@@ -20,6 +21,4 @@ const Post: React.FC<PropsType> = ({ avatar, message, likesCount }) => {
             </span>
         </div>
     )
-}
-
-export default Post
+})

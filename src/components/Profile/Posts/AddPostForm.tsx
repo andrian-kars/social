@@ -3,6 +3,7 @@ import { required, maxLengthCreator } from '../../../utils/validators'
 import { createField, GetStringKeys, Textarea } from '../../common/FormsControls/FormsControls'
 import s from './Posts.module.scss'
 import userPhoto from './../../../images/user-photo.png'
+import { memo } from 'react'
 
 const maxLength = maxLengthCreator(230)
 
@@ -16,7 +17,7 @@ type PropsType = {
     avatar: string | null
 }
 
-const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> & PropsType> = (props) => {
+const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> & PropsType> = memo((props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.form}>
             <div className={s.formWhrapper}>
@@ -26,8 +27,6 @@ const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> 
             <button className={s.btn}>Post</button>
         </form>
     )
-}
+})
 
-const AddPostFormRedux = reduxForm<AddPostFormValuesType, PropsType>({ form: 'profileAddPostForm' })(AddPostForm)
-
-export default AddPostFormRedux
+export const AddPostFormRedux = reduxForm<AddPostFormValuesType, PropsType>({ form: 'profileAddPostForm' })(AddPostForm)

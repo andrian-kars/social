@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, memo, useEffect, useState } from 'react'
 import s from './ProfileInfo.module.scss'
 
 type PropsType = {
@@ -6,7 +6,7 @@ type PropsType = {
     updateStatus: (statusHook: string) => void
 }
 
-const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus }) => {
+export const ProfileStatus: React.FC<PropsType> = memo(({ status, updateStatus }) => {
     const [editMode, setEditMode] = useState(false)
     const [statusHook, setStatus] = useState(status)
 
@@ -35,6 +35,4 @@ const ProfileStatus: React.FC<PropsType> = ({ status, updateStatus }) => {
             </p>
         </>
     )
-}
-
-export default ProfileStatus
+})

@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, memo, useState } from 'react'
 import s from './ProfileInfo.module.scss'
 import userPhoto from './../../../images/user-photo.png'
-import ProfileStatus from './ProfileStatus'
+import { ProfileStatus } from './ProfileStatus'
 import banner from './../../../images/background/banner.jpg'
 import facebook from './../../../images/socials/facebook.png'
 import website from './../../../images/socials/website.png'
@@ -10,7 +10,7 @@ import twitter from './../../../images/socials/twitter.png'
 import instagram from './../../../images/socials/instagram.png'
 import youtube from './../../../images/socials/youtube.png'
 import github from './../../../images/socials/github.png'
-import ProfileDataReduxForm from './ProfileDataForm'
+import { ProfileDataReduxForm } from './ProfileDataForm'
 import { ProfileType } from '../../../types/types'
 
 type InfoPropsType = {
@@ -23,7 +23,7 @@ type InfoPropsType = {
 
 }
 
-const ProfileInfo: React.FC<InfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile, }) => {
+export const ProfileInfo: React.FC<InfoPropsType> = memo(({ profile, status, updateStatus, isOwner, savePhoto, saveProfile, }) => {
     const [editMode, setEditMode] = useState(false)
 
     const onMainPhotoSelect = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ const ProfileInfo: React.FC<InfoPropsType> = ({profile, status, updateStatus, is
         saveProfile(FormData).then(() => {
             setEditMode(false)
         })
-        
+
     }
 
     return (
@@ -73,7 +73,7 @@ const ProfileInfo: React.FC<InfoPropsType> = ({profile, status, updateStatus, is
             </div>
         </section>
     )
-}
+})
 
 type DataPropsType = {
     profile: ProfileType
@@ -82,7 +82,7 @@ type DataPropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileData: React.FC<DataPropsType> = ({ profile, status, updateStatus }) => {
+const ProfileData: React.FC<DataPropsType> = memo(({ profile, status, updateStatus }) => {
     return <div className={s.profileData}>
         <div className={s.socials}>
             {!!profile.contacts.facebook && <a className={s.social} href={`${profile.contacts.facebook}`} target={'_blank'} rel={'noreferrer'}><img src={facebook} alt={'facebook'} /></a>}
@@ -116,6 +116,4 @@ const ProfileData: React.FC<DataPropsType> = ({ profile, status, updateStatus })
             {profile.lookingForAJobDescription === null ? '' : <p className={s.text}> {profile.lookingForAJobDescription}</p>}
         </div>
     </div>
-}
-
-export default ProfileInfo
+})

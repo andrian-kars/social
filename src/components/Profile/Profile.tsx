@@ -1,6 +1,6 @@
 import s from './Profile.module.scss'
-import PostsContainer from './Posts/PostsContainer'
-import ProfileInfo from './ProfileInfo/ProfileInfo'
+import { Posts } from './Posts/Posts'
+import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 import { Preloader } from '../common/Preloader/Preloader'
 import { ProfileType } from '../../types/types'
 
@@ -26,7 +26,7 @@ const Profile: React.FC<PropsType> = (props) => {
                     profile={props.profile}
                     status={props.status}
                     updateStatus={props.updateStatus} />
-                <PostsContainer />
+                <Posts />
             </div>
         )
     }
