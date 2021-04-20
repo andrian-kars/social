@@ -12,10 +12,11 @@ const usersSearchFormValidate = (values: any) => {
     return errors
 }
 
-const UsersSearchForm: React.FC<PropsType> = ({ onFilterChange }) => {
+const UsersSearchForm: React.FC<PropsType> = React.memo(({ onFilterChange }) => {
 
     const submit = (values: FilterType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        onFilterChange(values)
+        onFilterChange(values) 
+        setSubmitting(false)
     }
 
     return <div className={s.form}>
@@ -27,13 +28,11 @@ const UsersSearchForm: React.FC<PropsType> = ({ onFilterChange }) => {
             {({ isSubmitting }) => (
                 <Form>
                     <Field type="text" name="term" />
-                    <button type="submit" disabled={isSubmitting}>
-                        Submit
-                    </button>
+                    <button type="submit" disabled={isSubmitting}>Find</button>
                 </Form>
             )}
         </Formik>
     </div>
-}
+})
 
 export default UsersSearchForm
