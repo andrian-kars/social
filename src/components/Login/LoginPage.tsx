@@ -1,7 +1,7 @@
 import s from './Login.module.scss'
 import LoginReduxForm from './LoginForm'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from './../../redux/authReducer'
+import { login } from '../../redux/authReducer'
 import { Redirect } from 'react-router'
 import { AppStateType } from '../../redux/redux-store'
 import { memo } from 'react'
@@ -13,7 +13,7 @@ type LoginFormValuesType = {
     captcha: string | null
 }
 
-const Login: React.FC = memo(() => {
+export const LoginPage: React.FC = memo(() => {
     const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl)
     const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
 
@@ -43,5 +43,3 @@ const Login: React.FC = memo(() => {
         </div>
     )
 })
-
-export default Login

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { memo, useEffect } from 'react'
 
 export const Users: React.FC = memo(() => {
+    
     const totalUsersCount = useSelector(getTotalUsersCount)
     const currentPage = useSelector(getCurrentPage)
     const pageSize = useSelector(getPageSize)
@@ -18,8 +19,8 @@ export const Users: React.FC = memo(() => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        requestUsers(currentPage, pageSize, filter)
-    }, [currentPage, pageSize, filter])
+        dispatch(requestUsers(currentPage, pageSize, filter))
+    }, [dispatch, currentPage, pageSize, filter])
 
     const onPageChange = (pageNumber: number) => { dispatch(requestUsers(pageNumber, pageSize, filter)) }
     const onFilterChange = (filter: FilterType) => { dispatch(requestUsers(1, pageSize, filter)) }

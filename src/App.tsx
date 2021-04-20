@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Component, lazy, Suspense } from 'react'
 import './App.scss'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
@@ -14,15 +14,15 @@ import Preloader from './components/common/Preloader/Preloader'
 import store, { AppStateType } from './redux/redux-store'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 
-const Page404 = React.lazy(() => import('./components/common/Page404/Page404'))
-const Login = React.lazy(() => import('./components/Login/Login'))
+const Page404 = lazy(() => import('./components/common/Page404/Page404'))
+const LoginPage = lazy(() => import('./components/Login/LoginPage').then(module => ({ default: module.LoginPage })))
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
   initializeApp: () => void
 }
 
-class App extends React.Component<MapPropsType & DispatchPropsType> {
+class App extends Component<MapPropsType & DispatchPropsType> {
   componentDidMount() {
     this.props.initializeApp()
   }
@@ -32,7 +32,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
       return <Preloader />
     }
     if (!this.props.isAuth) {
-      return <Suspense fallback={<Preloader />}><Login /></Suspense>
+      return <Suspense fallback={<Preloader />}><LoginPage /></Suspense>
     }
     return (
       <div className="app-whrapper">
