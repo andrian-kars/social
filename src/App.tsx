@@ -4,7 +4,7 @@ import HeaderContainer from './components/Header/HeaderContainer'
 import Navigation from './components/Navigation/Navigation'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import News from './components/News/News'
-import UsersContainer from './components/Users/UsersContainer'
+import { UsersPage } from './components/Users/UsersPage'
 // import Footer from './components/Footer/Footer'
 import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-dom'
 import { initializeApp } from './redux/appReducer'
@@ -45,7 +45,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Route path="/news" render={() => <News />} />
               <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
               <Route path="/dialogs/:userId?" render={() => <DialogsContainer />} />
-              <Route exact path="/users" render={() => <UsersContainer />} />
+              <Route exact path="/users" render={() => <UsersPage />} />
               <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
             </Switch>
           </main>
