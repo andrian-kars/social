@@ -52,7 +52,7 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
         case 'S/DIALOGS/ADD-MESSAGE': {
             return {
                 ...state,
-                messages: [...state.messages, { id: 5, message: action.newMessageBody }],
+                messages: [...state.messages, { id: Math.random(), message: action.newMessageBody }],
             }
         }
         default: return state

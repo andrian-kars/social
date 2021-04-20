@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import s from './Paginator.module.scss'
 
 type PropsType = {
@@ -7,21 +8,18 @@ type PropsType = {
     onPageChange: (pageNumber: number) => void
 }
 
-const Paginator: React.FC<PropsType> = ({ totalUsersCount, pageSize, currentPage, onPageChange }) => {
+export const Paginator: React.FC<PropsType> = memo(({ totalUsersCount, pageSize, currentPage, onPageChange }) => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const pages: Array<number> = []
+
     for (let i = currentPage; i <= pagesCount && i < currentPage + 5; i++) {
         pages.push(i)
     }
 
-    return (
-        <div className={s.pagination}>
-            {pages.map(p => {
-                return <button key={p} className={`${currentPage === p && s.selectedPage} ${s.pages}`}
-                    onClick={(e) => { onPageChange(p) }}>{p}</button>
-            })}
-        </div>
-    )
-}
-
-export default Paginator
+    return <div className={s.pagination}>
+        {pages.map(p => {
+            return <button key={p} className={`${currentPage === p && s.selectedPage} ${s.pages}`}
+                onClick={(e) => { onPageChange(p) }}>{p}</button>
+        })}
+    </div>
+})

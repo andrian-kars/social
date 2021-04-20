@@ -1,9 +1,11 @@
+import { memo } from 'react'
 import s from './Burger.module.scss'
 
 type PropsType = {
     show: boolean
 }
-const Burger: React.FC<PropsType> = ({show}) => {
+
+export const Burger: React.FC<PropsType> = memo(({ show }) => {
     return (
         <button className={!show ? s.hamburgerIcon : `${s.hamburgerIcon} ${s.active}`}>
             <span className={`${s.line} ${s.lineOne}`}></span>
@@ -11,6 +13,4 @@ const Burger: React.FC<PropsType> = ({show}) => {
             <span className={`${s.line} ${s.lineThree}`}></span>
         </button>
     )
-}
-
-export default Burger
+})

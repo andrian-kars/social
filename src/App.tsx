@@ -10,11 +10,11 @@ import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-do
 import { initializeApp } from './redux/appReducer'
 import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
-import Preloader from './components/common/Preloader/Preloader'
+import { Preloader } from './components/common/Preloader/Preloader'
 import store, { AppStateType } from './redux/redux-store'
 import { DialogsPage } from './components/Dialogs/DialogsPage'
 
-const Page404 = lazy(() => import('./components/common/Page404/Page404'))
+const Page404 = lazy(() => import('./components/common/Page404/Page404').then(module => ({ default: module.Page404 })))
 const LoginPage = lazy(() => import('./components/Login/LoginPage').then(module => ({ default: module.LoginPage })))
 
 type MapPropsType = ReturnType<typeof mapStateToProps>

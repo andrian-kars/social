@@ -1,29 +1,30 @@
+import { memo } from 'react'
 import { Field, WrappedFieldMetaProps, WrappedFieldProps } from 'redux-form'
 import { FieldValidatorType } from '../../../utils/validators'
 import s from './FormsControls.module.scss'
 
 type FormControlPropsType = { meta: WrappedFieldMetaProps }
 
-export const FormControl: React.FC<FormControlPropsType> = ({ meta: { touched, error, active }, children }) => {
+export const FormControl: React.FC<FormControlPropsType> = memo(({ meta: { touched, error, active }, children }) => {
     // const hasError = touched && error
     const hasError = active && error
     return (
         <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
             {children}
             {hasError && <span>{error}</span>}
-        </div> 
+        </div>
     )
-}
+})
 
-export const Textarea: React.FC<WrappedFieldProps> = (props) => {
+export const Textarea: React.FC<WrappedFieldProps> = memo((props) => {
     const { input, meta, ...restProps } = props;
     return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
-}
+})
 
-export const Input: React.FC<WrappedFieldProps> = (props) => {
+export const Input: React.FC<WrappedFieldProps> = memo((props) => {
     const { input, meta, ...restProps } = props;
     return <FormControl {...props}><input {...input} {...restProps} /></FormControl>
-}
+})
 
 export function createField<FormKeysType extends string>(placeholder: string | undefined,
     name: FormKeysType,

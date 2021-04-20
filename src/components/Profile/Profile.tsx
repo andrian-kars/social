@@ -1,7 +1,7 @@
 import s from './Profile.module.scss'
 import PostsContainer from './Posts/PostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import Preloader from '../common/Preloader/Preloader'
+import { Preloader } from '../common/Preloader/Preloader'
 import { ProfileType } from '../../types/types'
 
 type PropsType = {

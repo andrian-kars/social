@@ -1,7 +1,7 @@
 import s from './Header.module.scss'
 import logo from './../../images/logo.png'
 import { NavLink } from 'react-router-dom'
-import Burger from '../common/Burger/Burger'
+import { Burger } from '../common/Burger/Burger'
 import { memo, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'

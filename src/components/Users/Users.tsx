@@ -1,6 +1,6 @@
 import s from './Users.module.scss'
 import SingleUser from './SingleUser/SingleUser'
-import Paginator from '../common/Paginator/Paginator'
+import { Paginator } from '../common/Paginator/Paginator'
 import UsersSearchForm from './UsersSearchForm'
 import { FilterType, requestUsers, follow, unfollow } from '../../redux/usersReducer'
 import { getCurrentPage, getFollowingInProgress, getPageSize, getTotalUsersCount, getUsers, getUsersFilter } from '../../redux/usersSelectors'
