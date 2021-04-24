@@ -3,7 +3,6 @@
     <img src="https://github.com/andrian-kars/social/blob/main/public/images/logo.png?raw=true" alt="Social logo" width="200" height="165">
   </a>
 </p>
-
 <h2 align="center">Social</h2>
 
 <p align="center">
@@ -13,7 +12,7 @@
 </p>
 
 ## Creating a Social-Network using React
-
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 This project is a part of a course by [IT-KAMASUTRA](https://it-kamasutra.com/).
 
 And also my second attempt to create a fully functional Social-Network
