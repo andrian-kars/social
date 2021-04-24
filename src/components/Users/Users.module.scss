@@ -1,3 +1,5 @@
+@import './../../styles/_variables.scss';
+
 .whrapper {
     width: 100%;
     display: flex;
@@ -20,6 +22,69 @@
 
         div:nth-child(even) {
             margin-right: 0;
+        }
+    }
+}
+
+.form {
+    position: relative;
+    margin: 0 auto 15px;
+}
+
+.textarea {
+    width: 500px;
+    padding: 10px 160px 10px 15px;
+    background-color: $activeAndInputBgColor;
+    border-radius: 10px;
+}
+
+.select {
+    display: flex;
+    align-items: center;
+    top: 20px;
+    transform: translateY(-50%);
+    right: 10px;
+    position: absolute;
+
+    select {
+        color: $btnBgHoverColor;
+        background-color: $activeAndInputBgColor !important;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: .3s;
+        padding-bottom: 2px;
+        
+        option {
+            background: transparent;
+        }
+
+        &:hover {
+            background: transparent;
+            opacity: 0.8;
+        }
+
+        &:focus {
+            background: transparent;
+        }
+
+        &:active {
+            background: transparent;
+        }
+    }
+}
+
+.button {
+    svg {
+        padding-top: 2px;
+        width: 18px;
+        fill: $btnBgHoverColor;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.6;
         }
     }
 }
