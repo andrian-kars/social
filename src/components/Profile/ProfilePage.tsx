@@ -19,22 +19,21 @@ export const ProfilePage = memo(() => {
     // TODO Promise fix
     const onSaveProfile = (profile: ProfileType):any => { dispatch(saveProfile(profile)) }
 
-    const requestedUserId: number = params.userId === undefined ? 0 : +params.userId
+    const requestedUserId: number = params.userId === undefined ? authorazedUserId : +params.userId
     
 
     useEffect(() => {
         const onGetProfile = (userId: number) => { dispatch(getProfile(userId)) }
         const onGetStatus = (userId: number) => { dispatch(getStatus(userId)) }
+    
+        onGetProfile(requestedUserId)
+        onGetStatus(requestedUserId)
         
-        const userId: number = requestedUserId ? requestedUserId : authorazedUserId
-        onGetProfile(userId)
-        onGetStatus(userId)
-        
-    }, [dispatch, authorazedUserId, requestedUserId])
+    }, [dispatch, requestedUserId])
 
     return (
         <Profile
-            isOwner={+requestedUserId === authorazedUserId || requestedUserId === undefined}
+            isOwner={requestedUserId === authorazedUserId}
             profile={profile}
             status={status}
             updateStatus={onUpdateStatus}

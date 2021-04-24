@@ -34,10 +34,8 @@ export const ProfileInfo: React.FC<InfoPropsType> = memo(({ profile, status, upd
 
     const onSubmit = (FormData: ProfileType) => {
         FormData.AboutMe = '---'
-        // todo: remove then
-        onSaveProfile(FormData).then(() => {
-            setEditMode(false)
-        })
+        onSaveProfile(FormData)
+        setEditMode(false)
 
     }
 
