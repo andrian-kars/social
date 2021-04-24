@@ -1,7 +1,5 @@
-![alt text](https://github.com/andrian-kars/social/blob/main/public/images/logo.png?raw=true)
-
 <p align="center">
-  <img src="https://github.com/andrian-kars/social/blob/main/logo.png?raw=true" alt="Social's custom image"/>
+  <img src="https://github.com/andrian-kars/social/blob/main/public/images/logo.png?raw=true" alt="Social's custom image"/>
 </p>
 <h2 align="center">Social</h2>
 
