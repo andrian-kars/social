@@ -6,7 +6,7 @@
 <p align="center">
   Social Network (React-Way-Of-Samurai course 1.0 - 2.0) + lots other improvements.
   <br>
-  <a href="https://andrian-kars.github.io/social/"><strong>Explore Social</strong></a>
+  <a href="https://andrian-kars.github.io/social/"><strong>« Explore Social  »</strong></a>
 </p>
 
 ## Creating a Social-Network using React
