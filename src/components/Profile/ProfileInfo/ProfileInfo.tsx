@@ -19,11 +19,11 @@ type InfoPropsType = {
     isOwner: boolean
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
-    saveProfile: (prodile: ProfileType) => Promise<any>
+    onSaveProfile: (profile: ProfileType) => Promise<any>
 
 }
 
-export const ProfileInfo: React.FC<InfoPropsType> = memo(({ profile, status, updateStatus, isOwner, savePhoto, saveProfile, }) => {
+export const ProfileInfo: React.FC<InfoPropsType> = memo(({ profile, status, updateStatus, isOwner, savePhoto, onSaveProfile, }) => {
     const [editMode, setEditMode] = useState(false)
 
     const onMainPhotoSelect = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ export const ProfileInfo: React.FC<InfoPropsType> = memo(({ profile, status, upd
     const onSubmit = (FormData: ProfileType) => {
         FormData.AboutMe = '---'
         // todo: remove then
-        saveProfile(FormData).then(() => {
+        onSaveProfile(FormData).then(() => {
             setEditMode(false)
         })
 

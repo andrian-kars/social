@@ -8,9 +8,9 @@ type PropsType = {
     profile: ProfileType | null
     status: string
     isOwner: boolean
+    onSaveProfile: (profile: ProfileType) => Promise<any>
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
-    saveProfile: (prodile: ProfileType) => Promise<any>
 }
 
 
@@ -20,7 +20,7 @@ const Profile: React.FC<PropsType> = (props) => {
     } else {
         return (
             <div className={s.profile}>
-                <ProfileInfo saveProfile={props.saveProfile}
+                <ProfileInfo onSaveProfile={props.onSaveProfile}
                     savePhoto={props.savePhoto}
                     isOwner={props.isOwner}
                     profile={props.profile}

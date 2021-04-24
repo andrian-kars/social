@@ -5,7 +5,7 @@ import { authAPI } from '../api/authAPI';
 import { securityAPI } from '../api/securityAPI';
 
 const initialState = {
-    userId: null as number | null,
+    userId: 0,
     email: null as string | null,
     login: null as string | null,
     isAuth: false,
@@ -26,7 +26,7 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
 }
 
 export const actions = {
-    setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
+    setAuthUserData: (userId: number, email: string | null, login: string | null, isAuth: boolean) => ({
         type: 'S/AUTH/SET_USER_DATA', payload: { userId, email, login, isAuth }
     } as const),
     getCaptchaUrlSuccess: (captchaUrl: string) => ({
@@ -59,7 +59,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 export const logout = (): ThunkType => async (dispatch) => {
     const logoutData = await authAPI.logout()
     if (logoutData.resultCode === ResultCodesEnum.Success) {
-        dispatch(actions.setAuthUserData(null, null, null, false))
+        dispatch(actions.setAuthUserData(0, null, null, false))
     }
 }
 

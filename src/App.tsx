@@ -1,15 +1,14 @@
-import { Component, lazy, Suspense } from 'react'
+import { lazy, memo, Suspense, useEffect } from 'react'
 import './App.scss'
 import { Header } from './components/Header/Header'
 import Navigation from './components/Navigation/Navigation'
-import ProfileContainer from './components/Profile/ProfileContainer'
+import { ProfilePage } from './components/Profile/ProfilePage'
 import { News } from './components/News/News'
 import { UsersPage } from './components/Users/UsersPage'
 // import Footer from './components/Footer/Footer'
-import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-dom'
+import { Route, HashRouter, Switch, Redirect } from 'react-router-dom'
 import { initializeApp } from './redux/appReducer'
-import { connect, Provider } from 'react-redux'
-import { compose } from 'redux'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 import { Preloader } from './components/common/Preloader/Preloader'
 import store, { AppStateType } from './redux/redux-store'
 import { DialogsPage } from './components/Dialogs/DialogsPage'
@@ -17,59 +16,51 @@ import { DialogsPage } from './components/Dialogs/DialogsPage'
 const Page404 = lazy(() => import('./components/common/Page404/Page404').then(module => ({ default: module.Page404 })))
 const LoginPage = lazy(() => import('./components/Login/LoginPage').then(module => ({ default: module.LoginPage })))
 
-type MapPropsType = ReturnType<typeof mapStateToProps>
-type DispatchPropsType = {
-  initializeApp: () => void
-}
+const App: React.FC = memo(() => {
+  const initialized = useSelector((state: AppStateType) => state.app.initialized)
+  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
+  const menu = useSelector((state: AppStateType) => state.app.menu)
 
-class App extends Component<MapPropsType & DispatchPropsType> {
-  componentDidMount() {
-    this.props.initializeApp()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const onInitializeApp = () => { dispatch(initializeApp()) }
+    onInitializeApp()
+  }, [dispatch])
+
+  if (!initialized) {
+    return <Preloader />
   }
 
-  render() {
-    if (!this.props.initialized) {
-      return <Preloader />
-    }
-    if (!this.props.isAuth) {
-      return <Suspense fallback={<Preloader />}><LoginPage /></Suspense>
-    }
-    return (
-      <div className="app-whrapper">
-        <Header />
-        <Navigation show={this.props.menu} />
-        <div className="container">
-          <main className="main">
-            <Switch>
-              <Route exact path="/" render={() => <Redirect to={'/news'} />} />
-              <Route path="/news" render={() => <News />} />
-              <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-              <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
-              <Route exact path="/users" render={() => <UsersPage />} />
-              <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
-            </Switch>
-          </main>
-        </div>
-        {/* <Footer /> */}
+  if (!isAuth) {
+    return <Suspense fallback={<Preloader />}><LoginPage /></Suspense>
+  }
+
+  return (
+    <div className="app-whrapper">
+      <Header />
+      <Navigation show={menu} />
+      <div className="container">
+        <main className="main">
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to={'/news'} />} />
+            <Route path="/news" render={() => <News />} />
+            <Route path="/profile/:userId?" render={() => <ProfilePage />} />
+            <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
+            <Route exact path="/users" render={() => <UsersPage />} />
+            <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
+          </Switch>
+        </main>
       </div>
-    )
-  }
-}
-
-const mapStateToProps = (state: AppStateType) => ({
-  initialized: state.app.initialized,
-  menu: state.app.menu,
-  isAuth: state.auth.isAuth
+      {/* <Footer /> */}
+    </div>
+  )
 })
-
-const AppContainer = compose<React.ComponentType>(
-  withRouter, 
-  connect(mapStateToProps, { initializeApp }))(App)
 
 const MainApp: React.FC = () => {
   return <HashRouter>
     <Provider store={store}>
-      <AppContainer />
+      <App />
     </Provider>
   </HashRouter>
 }
