@@ -80,7 +80,7 @@ type DataPropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileData: React.FC<DataPropsType> = memo(({ profile, status, updateStatus }) => {
+const ProfileData: React.FC<DataPropsType> = memo(({ profile, isOwner, status, updateStatus }) => {
     return <div className={s.profileData}>
         <div className={s.socials}>
             {!!profile.contacts.facebook && <a className={s.social} href={`${profile.contacts.facebook}`} target={'_blank'} rel={'noreferrer'}><img src={facebook} alt={'facebook'} /></a>}
@@ -99,7 +99,7 @@ const ProfileData: React.FC<DataPropsType> = memo(({ profile, status, updateStat
         </div>
         <div className={`${s.mainStatus}`}>
             <h2 className={s.name}>{profile.fullName}</h2>
-            <ProfileStatus status={status} updateStatus={updateStatus} />
+            <ProfileStatus isOwner={isOwner} status={status} updateStatus={updateStatus} />
         </div>
         <div className={s.job}>
             {profile.lookingForAJob === null ? '' : <p className={s.text}>

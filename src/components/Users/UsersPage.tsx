@@ -6,7 +6,7 @@ import { memo } from 'react'
 
 export const UsersPage: React.FC = memo(() => {
     const isFetching = useSelector(getIsFetching)
-
+    
     return <>
         {isFetching ? <Preloader /> : null}
 
