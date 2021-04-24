@@ -61,6 +61,8 @@
         width: 140px;
         font-size: 16px;
         margin-bottom: 5px;
+        height: 25px;
+        overflow: hidden;
 
         @media (min-width: 768px) {
             width: 160px;
@@ -69,14 +71,17 @@
         @media (min-width: 992px) {
             width: 222px;
             font-size: 18px;
+            height: 40px;
         }
     }
 
     .status {
         width: 140px;
+        height: 22px;
+        overflow: hidden;
         font-size: 15px;
         font-style: italic;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
 
         @media (min-width: 768px) {
             width: 160px;
@@ -85,6 +90,8 @@
         @media (min-width: 992px) {
             width: 222px;
             font-size: 18px;
+            height: 28px;
+            margin-bottom: 20px;
         }
     }
 
