@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://andrian-kars.github.io/social/>
-    <img src="https://github.com/andrian-kars/social/blob/main/public/images/logo.png?raw=true" alt="Social logo" width="200" height="165">
+    <img src="https://github.com/andrian-kars/social/blob/main/public/images/logo.png" alt="Social logo" width="200" height="165">
   </a>
 </p>
 <h2 align="center">Social</h2>
