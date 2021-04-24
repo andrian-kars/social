@@ -12,7 +12,7 @@
 </p>
 
 ## Creating a Social-Network using React
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/andrian-kars/social/blob/main/public/images/logo.png?raw=true)
 This project is a part of a course by [IT-KAMASUTRA](https://it-kamasutra.com/).
 
 And also my second attempt to create a fully functional Social-Network
