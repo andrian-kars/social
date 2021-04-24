@@ -32,10 +32,21 @@
 }
 
 .textarea {
-    width: 500px;
-    padding: 10px 160px 10px 15px;
+    width: 300px;
+    padding: 10px 125px 10px 10px;
     background-color: $activeAndInputBgColor;
     border-radius: 10px;
+    font-size: 15px;
+
+    @media (min-width: 469px) {
+        font-size: 17px;
+        width: 400px;
+        padding: 10px 160px 10px 15px;
+    }
+
+    @media (min-width: 768px) {
+        width: 500px;
+    }
 }
 
 .select {
@@ -43,8 +54,12 @@
     align-items: center;
     top: 20px;
     transform: translateY(-50%);
-    right: 10px;
+    right: 5px;
     position: absolute;
+
+    @media (min-width: 469px) {
+        right: 10px;
+    }
 
     select {
         color: $btnBgHoverColor;
@@ -52,25 +67,16 @@
         border: none;
         outline: none;
         cursor: pointer;
-        margin-right: 10px;
+        margin-right: 2px;
         transition: .3s;
         padding-bottom: 2px;
-        
-        option {
-            background: transparent;
+
+        @media (min-width: 469px) {
+            margin-right: 10px;
         }
 
         &:hover {
-            background: transparent;
             opacity: 0.8;
-        }
-
-        &:focus {
-            background: transparent;
-        }
-
-        &:active {
-            background: transparent;
         }
     }
 }
@@ -78,10 +84,14 @@
 .button {
     svg {
         padding-top: 2px;
-        width: 18px;
+        width: 14px;
         fill: $btnBgHoverColor;
         transition: .3s;
         cursor: pointer;
+
+        @media (min-width: 469px) {
+            width: 18px;
+        }
 
         &:hover {
             opacity: 0.6;
