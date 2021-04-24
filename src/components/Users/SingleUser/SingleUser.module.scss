@@ -3,7 +3,7 @@
 .whrapper {
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 10px;
     background-color: $mainCompColor;
     border-radius: 5px;
     width: 290px;
@@ -11,12 +11,13 @@
     margin-bottom: 15px;
 
     @media (min-width: 512px) {
+        padding: 0 20px;
         width: 310px;
         height: 160px;
     }
 
     @media (min-width: 992px) {
-        width: 430px;
+        width: 427px;
         height: 210px;
     }
 }
@@ -30,14 +31,14 @@
     flex-direction: column;
     margin-right: 20px;
 
-    @media (min-width: 512px) {
+    @media (min-width: 768px) {
         margin-right: 40px;
     }
 }
 
 .avatar {
-    width: 85px;
-    height: 85px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 1px solid $mainBgColor;
 
@@ -57,14 +58,34 @@
     flex-direction: column;
 
     .name {
-        font-size: 18px;
+        width: 140px;
+        font-size: 16px;
         margin-bottom: 5px;
+
+        @media (min-width: 768px) {
+            width: 160px;
+        }
+
+        @media (min-width: 992px) {
+            width: 222px;
+            font-size: 18px;
+        }
     }
 
     .status {
+        width: 140px;
         font-size: 15px;
         font-style: italic;
         margin-bottom: 5px;
+
+        @media (min-width: 768px) {
+            width: 160px;
+        }
+
+        @media (min-width: 992px) {
+            width: 222px;
+            font-size: 18px;
+        }
     }
 
     @media (min-width: 992px) {
