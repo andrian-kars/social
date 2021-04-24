@@ -48,6 +48,7 @@ export const Users: React.FC = memo(() => {
         if (!!filter.term) query.term = filter.term
         if (filter.friend !== null) query.friend = '' + filter.friend
         if (currentPage !== 1) query.page = '' + currentPage
+
         
         if (history.location.search.substr(1) !== queryString.stringify(query)) {
             history.push({

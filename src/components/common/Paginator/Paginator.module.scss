@@ -1,15 +1,51 @@
+@import './../../../styles/variables';
+
 .pagination {
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pages {
     border: none;
     background-color: transparent;
-    margin-right: 10px;
-    font-size: 16px;
+    margin: 0 4px;
+    font-size: 15px;
+    transition: .3s;
     cursor: pointer;
+
+    @media (min-width: 512px) {
+        font-size: 16px;
+        margin: 0 5px;
+    }
+
+    &:hover {
+        font-weight: 700;
+    }
 }
 
 .selectedPage {
     font-weight: 700;
+}
+
+.indexes {
+    display: flex;
+    justify-content: center;
+    transition: .3s;
+    cursor: pointer;
+
+    svg {
+        fill: $btnBgHoverColor;
+        width: 18px;
+        height: 18px;
+
+        @media (min-width: 512px) {
+            width: 20px;
+            height: 20px;
+        }
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
 }
