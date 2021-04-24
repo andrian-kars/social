@@ -1,3 +1,5 @@
+// It is not being used yet because when you are not logged in you are redirected to a loggin page
+// In order to show some pages without loggin use this
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
