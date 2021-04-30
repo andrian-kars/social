@@ -28,31 +28,25 @@ const App: React.FC = memo(() => {
     onInitializeApp()
   }, [dispatch])
 
-  if (!initialized) {
-    return <Preloader />
-  }
-
-  if (!isAuth) {
-    return <Suspense fallback={<Preloader />}><LoginPage /></Suspense>
-  }
-
   return (
     <div className="app-whrapper">
-      <Header />
-      <Navigation show={menu} />
-      <div className="container">
-        <main className="main">
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to={'/news'} />} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/profile/:userId?" render={() => <ProfilePage />} />
-            <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
-            <Route exact path="/users" render={() => <UsersPage />} />
-            <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
-          </Switch>
-        </main>
-      </div>
-      {/* <Footer /> */}
+      {!initialized ? <Preloader /> : <>
+        {!isAuth ? <Suspense fallback={<Preloader />}><LoginPage /></Suspense> : <>
+          <Header />
+          <Navigation show={menu} />
+          <div className="container">
+            <main className="main">
+              <Switch>
+                <Route exact path="/" render={() => <Redirect to={'/news'} />} />
+                <Route path="/news" render={() => <News />} />
+                <Route path="/profile/:userId?" render={() => <ProfilePage />} />
+                <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
+                <Route exact path="/users" render={() => <UsersPage />} />
+                <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
+              </Switch>
+            </main>
+          </div>
+          {/* <Footer /> */}</>}</>}
     </div>
   )
 })

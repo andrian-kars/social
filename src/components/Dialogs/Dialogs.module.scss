@@ -23,6 +23,7 @@
 }
 
 .messages {
+    max-height: calc(100vh - 75px - 30px);
     flex: 4;
     position: relative;
     background-color: $mainCompColor;
@@ -35,7 +36,6 @@
 
 .messagesWhrapper {
     border-radius: 5px;
-    max-height: calc(100vh - 75px - 30px - 118px);
     border-top: 15px solid $mainCompColor;
     border-bottom: 15px solid $mainCompColor;
     overflow: auto;
