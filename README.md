@@ -1,7 +1,16 @@
-# Creating a Social-Network using React
+<p align="center">
+  <img src="https://github.com/andrian-kars/social/blob/main/public/images/logo.png?raw=true" width="250" height="235" alt="Social's custom image"/>
+</p>
+<h2 align="center">Social</h2>
 
-## This project is a part of a course by IT-KAMASUTRA
+<p align="center">
+  Social Network (React-Way-Of-Samurai course 1.0 - 2.0) + lots other improvements.
+  <br>
+  <a href="https://andrian-kars.github.io/social/"><strong>« Explore Social  »</strong></a>
+</p>
 
-## And also my second attempt to create a fully functional Social-Network
+## Creating a Social-Network using React
 
-http://it-kamasutra.com/
+This project is a part of a course by [IT-KAMASUTRA](https://it-kamasutra.com/).
+
+And also my second attempt to create a fully functional Social-Network
