@@ -17,7 +17,7 @@ type PropsType = {
     onStartDialog: (userId: number, name: string) => void
 }
 
-const SingleUser: React.FC<PropsType> = ({ userID, photo, name, status, followed, followingInProgress, unfollow, follow, onStartDialog}) => {
+const SingleUser: React.FC<PropsType> = ({ dialogs, userID, photo, name, status, followed, followingInProgress, unfollow, follow, onStartDialog}) => {
     return (
         <div className={s.whrapper}>
             <div className={s.photoWhrapper}>
@@ -36,7 +36,9 @@ const SingleUser: React.FC<PropsType> = ({ userID, photo, name, status, followed
                             .some(id => id === userID)}
                             onClick={() => { follow(userID) }}
                             className={`${s.button} ${s.follow}`}>Follow</button>}
-                    <button onClick={() => { onStartDialog(userID, name) }} className={`${s.button} ${s.follow}`}>Message</button>
+                    <button disabled={dialogs.some(d => d.id === userID)}
+                        onClick={() => { onStartDialog(userID, name) }}
+                        className={`${s.button} ${s.follow}`}>Message</button>
                 </div>
             </div>
         </div>
