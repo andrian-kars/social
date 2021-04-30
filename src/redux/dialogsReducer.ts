@@ -1,46 +1,20 @@
-import { InferActionsTypes } from "./redux-store"
+import { BaseThunkType, InferActionsTypes } from "./redux-store"
+import { dialogsAPI } from './../api/dialogsAPI'
+import { DialogType } from "../types/types"
+import { ResultCodesEnum } from "../api/api"
 
 const initialState = {
     dialogs: [
-        { id: 1, name: 'Ivan' },
-        { id: 2, name: 'Taras' },
-        { id: 3, name: 'Dio' },
-        { id: 4, name: 'Jotaro' },
-        { id: 5, name: 'Jostar' },
-        { id: 6, name: 'JoJo' },
-        { id: 7, name: 'Dio' },
-        { id: 8, name: 'Jotaro' },
-        { id: 9, name: 'Jostar' },
-        { id: 10, name: 'JoJo' },
-        { id: 11, name: 'Dio' },
-        { id: 12, name: 'Jotaro' },
-        { id: 13, name: 'Jostar' },
-        { id: 14, name: 'JoJo' },
-        { id: 15, name: 'Dio' },
-        { id: 16, name: 'Jotaro' },
-        { id: 17, name: 'Jostar' },
-        { id: 18, name: 'JoJo' },
-        { id: 19, name: 'Jotaro' },
-        { id: 20, name: 'Jostar' },
-        { id: 21, name: 'JoJo' },
-    ] as Array<{
-        id: number
-        name: string
-    }>,
+        { id: 1, userName: 'Ivan' },
+        { id: 2, userName: 'Taras' },
+        { id: 3, userName: 'Dio' },
+        { id: 4, userName: 'Jotaro' },
+    ] as Array<DialogType>,
     messages: [
         { id: 1, message: 'Hello, world!' },
         { id: 2, message: 'Welcome to matrix' },
         { id: 3, message: 'Neo' },
         { id: 4, message: 'Neo' },
-        { id: 5, message: 'Hello, world!' },
-        { id: 6, message: 'Welcome to matrix' },
-        { id: 7, message: 'Neo' },
-        { id: 8, message: 'Neo' },
-        { id: 9, message: 'Hello, world!' },
-        { id: 10, message: 'Welcome to matrix' },
-        { id: 11, message: 'Neo' },
-        { id: 12, message: 'Neo' },
-        { id: 13, message: 'Welcome to matrix' },
     ] as Array<{
         id: number
         message: string
@@ -49,10 +23,22 @@ const initialState = {
 
 const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'S/DIALOGS/ADD-MESSAGE': {
+        case 'S/DIALOGS/SAVE_DIALOGS': {
             return {
                 ...state,
-                messages: [...state.messages, { id: Math.random(), message: action.newMessageBody }],
+                dialogs: action.dialogs,
+            }
+        }
+        case 'S/DIALOGS/START_DIALOG': {
+            return {
+                ...state,
+                dialogs: [...state.dialogs, action.payload],
+            }
+        }
+        case 'S/DIALOGS/ADD_MESSAGE': {
+            return {
+                ...state,
+                messages: [...state.messages, { id: state.messages.length + 1, message: action.newMessageBody }],
             }
         }
         default: return state
@@ -60,10 +46,25 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
-    addMessage: (newMessageBody: string) => ({ type: 'S/DIALOGS/ADD-MESSAGE', newMessageBody } as const)
+    addMessage: (newMessageBody: string) => ({ type: 'S/DIALOGS/ADD_MESSAGE', newMessageBody } as const),
+    setDialog: (useId: number, userName: string) => ({ type: 'S/DIALOGS/START_DIALOG', payload: { id: useId, userName: userName} } as const),
+    saveDialogs: (dialogs: Array<DialogType>) => ({ type: 'S/DIALOGS/SAVE_DIALOGS', dialogs } as const),
+}
+
+export const saveDialogs = (): ThunkType => async (dispatch) => {
+    const dialogs: any = await dialogsAPI.getDialogs()
+    dispatch(actions.saveDialogs(dialogs))
+}
+
+export const startDialog = (useId: number, userName: string): ThunkType => async (dispatch) => {
+    const dialogData: any = await dialogsAPI.startDialog(useId)
+    if (dialogData.resultCode === ResultCodesEnum.Success) {
+        dispatch(actions.setDialog(useId, userName))
+    }
 }
 
 export default dialogsReducer
 
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsType>

@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore, compose, Action } from 'redux'
+import { applyMiddleware, combineReducers, createStore, Action } from 'redux'
 import profileReducer from './profileReducer'
 import dialogsReducer from './dialogsReducer'
 import usersReducer from './usersReducer'
@@ -24,9 +24,11 @@ export type InferActionsTypes<T> = T extends { [key: string]: (...args: any[]) =
 export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 // @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
-// const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
+// @ts-ignore
+window.__store__ = store
 export default store

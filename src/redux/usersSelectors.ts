@@ -33,3 +33,7 @@ export const getFollowingInProgress = (state: AppStateType) => {
 export const getUsersFilter = (state: AppStateType) => {
     return state.usersPage.filter
 }
+
+export const getDialogs = (state: AppStateType) => {
+    return state.dialogsPage.dialogs
+}

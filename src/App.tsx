@@ -12,6 +12,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux'
 import { Preloader } from './components/common/Preloader/Preloader'
 import store, { AppStateType } from './redux/redux-store'
 import { DialogsPage } from './components/Dialogs/DialogsPage'
+import { saveDialogs } from './redux/dialogsReducer'
 
 const Page404 = lazy(() => import('./components/common/Page404/Page404').then(module => ({ default: module.Page404 })))
 const LoginPage = lazy(() => import('./components/Login/LoginPage').then(module => ({ default: module.LoginPage })))
@@ -25,7 +26,9 @@ const App: React.FC = memo(() => {
 
   useEffect(() => {
     const onInitializeApp = () => { dispatch(initializeApp()) }
+    const onSaveDialogs = () => { dispatch(saveDialogs()) }
     onInitializeApp()
+    onSaveDialogs()
   }, [dispatch])
 
   return (

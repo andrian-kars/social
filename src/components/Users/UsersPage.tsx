@@ -3,12 +3,13 @@ import SingleUser from './SingleUser/SingleUser'
 import { Paginator } from '../common/Paginator/Paginator'
 import UsersSearchForm from './UsersSearchForm'
 import { FilterType, requestUsers, follow, unfollow } from '../../redux/usersReducer'
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers, getUsersFilter } from '../../redux/usersSelectors'
+import { getCurrentPage, getDialogs, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers, getUsersFilter } from '../../redux/usersSelectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { memo, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as queryString from 'querystring'
 import { Preloader } from '../common/Preloader/Preloader'
+import { startDialog } from '../../redux/dialogsReducer'
 
 export const UsersPage: React.FC = memo(() => {
     const totalUsersCount = useSelector(getTotalUsersCount)
@@ -18,6 +19,8 @@ export const UsersPage: React.FC = memo(() => {
     const followingInProgress = useSelector(getFollowingInProgress)
     const filter = useSelector(getUsersFilter)
     const isFetching = useSelector(getIsFetching)
+    // to check and change message button
+    const dialogs = useSelector(getDialogs)
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -64,6 +67,7 @@ export const UsersPage: React.FC = memo(() => {
     const onFilterChange = (filter: FilterType) => { dispatch(requestUsers(1, pageSize, filter)) }
     const onFollow = (userId: number) => { dispatch(follow(userId)) }
     const onUnfollow = (userId: number) => { dispatch(unfollow(userId)) }
+    const onStartDialog = (userId: number, name: string) => { dispatch(startDialog(userId, name)) }
 
     return (
         <div className={s.whrapper}>
@@ -73,10 +77,10 @@ export const UsersPage: React.FC = memo(() => {
             {isFetching ? <Preloader />
                 : <div className={s.users}>
                     {users.map(u =>
-                        <SingleUser photo={u.photos} follow={onFollow}
+                        <SingleUser onStartDialog={onStartDialog} photo={u.photos} follow={onFollow}
                             unfollow={onUnfollow} key={u.id} userID={u.id}
                             name={u.name} followed={u.followed} status={u.status}
-                            followingInProgress={followingInProgress}
+                            followingInProgress={followingInProgress} dialogs={dialogs}
                         />
                     )}
                 </div>}

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { memo } from 'react'
 
 type PropsType = {
-    name: string
+    userName: string
     id: number
 }
 
@@ -12,7 +12,7 @@ export const DialogItem: React.FC<PropsType> = memo((props) => {
 
     return (
         <div className={s.dialog} id={'' + props.id}>
-            <NavLink to={path} className={s.link} activeClassName={s.active}>{props.name}</NavLink>
+            <NavLink to={path} className={s.link} activeClassName={s.active}>{props.userName}</NavLink>
         </div>
     )
 })

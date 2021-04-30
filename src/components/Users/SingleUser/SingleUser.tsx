@@ -1,10 +1,11 @@
 import s from './SingleUser.module.scss'
 import userPhoto from './../../../images/user-photo.png'
 import { NavLink } from 'react-router-dom'
-import { PhotosType } from '../../../types/types'
+import { DialogType, PhotosType } from '../../../types/types'
 import { truncateString } from '../../../utils/truncateString'
 
 type PropsType = {
+    dialogs: Array<DialogType>
     userID: number
     photo: PhotosType
     name: string
@@ -13,9 +14,10 @@ type PropsType = {
     followingInProgress: Array<number>
     unfollow: (userId: number) => void
     follow: (userId: number) => void
+    onStartDialog: (userId: number, name: string) => void
 }
 
-const SingleUser: React.FC<PropsType> = ({userID, photo, name, status, followed, followingInProgress, unfollow, follow}) => {
+const SingleUser: React.FC<PropsType> = ({ userID, photo, name, status, followed, followingInProgress, unfollow, follow, onStartDialog}) => {
     return (
         <div className={s.whrapper}>
             <div className={s.photoWhrapper}>
@@ -24,15 +26,18 @@ const SingleUser: React.FC<PropsType> = ({userID, photo, name, status, followed,
             <div className={s.nameStatusWhrapper}>
                 <NavLink to={'/profile/' + userID}><p className={s.name} title={name}>{truncateString(name, 19)}</p></NavLink>
                 <p className={s.status} title={status}>{truncateString(status, 19)}</p>
-                {followed
-                    ? <button disabled={followingInProgress
-                        .some(id => id === userID)}
-                        onClick={() => { unfollow(userID) }}
-                        className={`${s.button} ${s.unfollow}`}>Unfollow</button>
-                    : <button disabled={followingInProgress
-                        .some(id => id === userID)}
-                        onClick={() => { follow(userID) }}
-                        className={`${s.button} ${s.follow}`}>Follow</button>}
+                <div>
+                    {followed
+                        ? <button disabled={followingInProgress
+                            .some(id => id === userID)}
+                            onClick={() => { unfollow(userID) }}
+                            className={`${s.button} ${s.unfollow}`}>Unfollow</button>
+                        : <button disabled={followingInProgress
+                            .some(id => id === userID)}
+                            onClick={() => { follow(userID) }}
+                            className={`${s.button} ${s.follow}`}>Follow</button>}
+                    <button onClick={() => { onStartDialog(userID, name) }} className={`${s.button} ${s.follow}`}>Message</button>
+                </div>
             </div>
         </div>
     )
