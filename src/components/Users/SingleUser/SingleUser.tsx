@@ -2,6 +2,7 @@ import s from './SingleUser.module.scss'
 import userPhoto from './../../../images/user-photo.png'
 import { NavLink } from 'react-router-dom'
 import { PhotosType } from '../../../types/types'
+import { truncateString } from '../../../utils/truncateString'
 
 type PropsType = {
     userID: number
@@ -21,8 +22,8 @@ const SingleUser: React.FC<PropsType> = ({userID, photo, name, status, followed,
                 <NavLink to={'/profile/' + userID}><img className={s.avatar} src={photo.small === null ? userPhoto : photo.small} alt={'User photo: ' + userID} /></NavLink>
             </div>
             <div className={s.nameStatusWhrapper}>
-                <NavLink to={'/profile/' + userID}><p className={s.name}>{name}</p></NavLink>
-                <p className={s.status}>{status}</p>
+                <NavLink to={'/profile/' + userID}><p className={s.name} title={name}>{truncateString(name, 19)}</p></NavLink>
+                <p className={s.status} title={status}>{truncateString(status, 19)}</p>
                 {followed
                     ? <button disabled={followingInProgress
                         .some(id => id === userID)}
