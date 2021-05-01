@@ -20,7 +20,7 @@ export const DialogsPage: React.FC = memo(() => {
     const userId: number = params.userId === undefined ? 0 : +params.userId
     
     const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users' : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={d.userName} />)
-    const messagesElements = !userId ? <div className={s.noUser}>No user selected</div>
+    const messagesElements = dialogsPage.messages.length === 0 ? <div className={s.noUser}>No messages</div>
         : dialogsPage.messages.map(m => <Message myId={authorazedUserId} senderId={m.senderId} id={m.id} key={m.id} message={m.body} senderName={m.senderName} />)
 
     const dispatch = useDispatch()
@@ -28,7 +28,10 @@ export const DialogsPage: React.FC = memo(() => {
     
     const onSendMessage = (userId: number, newMessageBody: string) => { dispatch(sendMessage(userId, newMessageBody)) }
 
-    const addNewMessage = (FormData: DialogsFormValuesType) => onSendMessage(userId, FormData.newMessageBody)
+    const addNewMessage = (FormData: DialogsFormValuesType) => {
+        onSendMessage(userId, FormData.newMessageBody)
+        FormData.newMessageBody = ''
+    }
 
     useEffect(() => {
         const onSaveDialogs = () => { dispatch(saveDialogs()) }
@@ -49,13 +52,17 @@ export const DialogsPage: React.FC = memo(() => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-                <div className={s.messagesWhrapper}>
-                    {messagesElements}
-                </div>
-                <div className={s.newMessageWhrapper}>
-                    <AddMessageFormRedux onSubmit={addNewMessage} />
-                </div>
+                {!userId ? <div className={s.noUser}>No user selected</div>
+                    : <>
+                        <div className={s.messagesWhrapper}>
+                            {messagesElements}
+                        </div>
+                        <div className={s.newMessageWhrapper}>
+                            <AddMessageFormRedux onSubmit={addNewMessage} />
+                        </div>
+                    </>}
             </div>
+
         </div>
     )
 })
