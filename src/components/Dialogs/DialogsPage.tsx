@@ -29,7 +29,7 @@ export const DialogsPage: React.FC = memo(() => {
     const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users'
         : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={truncateString(d.userName, 12)} />)
     const messagesElements = dialogsPage.messages.length === 0 ? <div className={s.noUser}>No messages</div>
-        : dialogsPage.messages.map(m => <Message myId={authorazedUserId} senderId={m.senderId}
+        : dialogsPage.messages.map(m => <Message viewed={!!m.viewed} myId={authorazedUserId} senderId={m.senderId}
             id={m.id} key={m.id} message={m.body} senderName={truncateString('' + m.senderName, 10)} />)
 
     const dispatch = useDispatch()
