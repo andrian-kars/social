@@ -7,14 +7,111 @@
     
 }
 
+.head {
+    width: 100%;
+    background-color: $btnBgColor;
+    box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1);
+    margin-bottom: 15px;
+    padding: 40px 25px;
+    border-radius: 5px;
+
+    h3 {
+        font-size: 28px;
+        color: $whiteColor;
+        margin-bottom: 5px;
+    }
+
+    p {
+        color: $whiteColor;
+
+        a {
+            color: $whiteColor;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @media (min-width: 768px) {
+        padding: 50px 30px;
+
+        h3 {
+            font-size: 36px;
+        }
+    }
+}
+
 .item {
-    padding: 15px;
+    padding: 15px 20px;
+    box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1);
     background-color: $mainCompColor;
     width: 100%;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 20px;
 
     &:last-child {
         margin-bottom: 0;
     }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // margin-bottom: 30px;
+        .svg {
+            width: 23px;
+            fill: $mainColor;
+        }
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .heading {
+        font-size: 17px;
+    }
+
+    @media (min-width: 768px) {
+        padding: 25px;
+
+        p {
+            font-size: 16px;
+        }
+        .heading {
+            font-size: 18px;
+        }
+    }
+
+    .contentHidden {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        // margin-top: 20px;
+        // transition: visibility 0s linear 350ms, opacity 350ms;
+    }
+
+    .show {
+        animation: drop 1s;
+        animation-fill-mode: both;
+
+        // transition: visibility 0s linear 0s, opacity 350ms;
+    }
+}
+
+@keyframes drop {
+  from {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+  }
+
+  to {
+    height: auto;
+    margin-top: 20px;
+    visibility: visible;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
 }

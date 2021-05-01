@@ -63,11 +63,6 @@ export const DialogsPage: React.FC = memo(() => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [liveReload])
-    console.log(liveReload);
-    
-
-    console.log(dialogsPage.messages);
-    
     
     return (
         <div className={s.whrapper}>
