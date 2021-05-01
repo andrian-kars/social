@@ -26,7 +26,7 @@ const SingleUser: React.FC<PropsType> = ({ authorazedUserId, dialogs, userID, ph
             </div>
             <div className={s.nameStatusWhrapper}>
                 <NavLink to={'/profile/' + userID}><p className={s.name} title={name}>{truncateString(name, 18)}</p></NavLink>
-                <p className={s.status} title={status}>{truncateString(status, 23)}</p>
+                <p className={s.status} title={status}>{truncateString(status, 21)}</p>
                 <div className={s.btnWhrapper}>
                     {followed
                         ? <button disabled={followingInProgress
