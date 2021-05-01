@@ -25,6 +25,7 @@ export const DialogsPage: React.FC = memo(() => {
     const params: { userId: string | undefined } = useParams()
     const userId: number = params.userId === undefined ? 0 : +params.userId
     
+    // const dialogsElements = <div className={s.noMessage}>No messages found</div>
     const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users'
         : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={truncateString(d.userName, 12)} />)
     const messagesElements = dialogsPage.messages.length === 0 ? <div className={s.noUser}>No messages</div>
@@ -78,7 +79,7 @@ export const DialogsPage: React.FC = memo(() => {
                     <div className={s.messages}>
                         {isSubFetching ? <Preloader />
                             : <>
-                                {!userId ? <div className={s.noUser}>No user selected</div>
+                                {!userId ? <div className={s.noUser}>Select a thread or start a new conversation</div>
                                     : <>
                                         <div className={s.messagesWhrapper}>
                                             {messagesElements}

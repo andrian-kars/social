@@ -7,6 +7,7 @@ html {
   overflow-y: scroll;
   scroll-behavior: smooth;
   background-color: $mainBgColor;
+  // overflow-x: hidden;
 }
 
 *, *:before, *:after {
@@ -44,6 +45,7 @@ button, input, textarea {
 
 ::-webkit-scrollbar {
   width: 3px;
+  height: 3px;
   transition: .3s;
 }
 
@@ -66,5 +68,6 @@ button, input, textarea {
 @media (min-width: 768px) {
   ::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
   }
 }

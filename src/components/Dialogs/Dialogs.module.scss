@@ -1,30 +1,46 @@
 @import './../../styles/variables';
 
 .whrapper {
-    display: flex;
-    min-width: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: max-content;
+
+    @media (min-width: 768px) {
+        grid-template-columns: 22% 78%;
+        grid-template-rows: none;
+    }
 }
 
 .dialogs {
-    flex: 1;
-    max-height: calc(100vh - 75px - 30px);
-    overflow: auto;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 60px;
+    overflow: auto !important;
+    
     background-color: $mainCompColor;
-    border-top: 15px solid $mainCompColor;
-    border-bottom: 15px solid $mainCompColor;
-    margin-right: 15px;
     padding: 0 5px;
-    padding-right: 15px;
     border-radius: 5px;
+    margin-bottom: 15px;
 
     @media (min-width: 512px) {
         padding: 0 15px;
     }
+
+    @media (min-width: 768px) {
+        height: auto;
+        flex: 1;
+        border-top: 15px solid $mainCompColor;
+        border-bottom: 15px solid $mainCompColor;
+        flex-direction: column;
+        margin-bottom: 0;
+        // max-height: calc(100vh - 75px - 30px);
+    }
 }
 
 .messages {
-    max-height: calc(100vh - 75px - 30px);
-    flex: 4;
+    // max-height: calc(100vh - 75px - 30px);
     position: relative;
     background-color: $mainCompColor;
     width: 100%;
@@ -32,6 +48,10 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
+
+    @media (min-width: 768px) {
+        margin-left: 15px;
+    }
 }
 
 .messagesWhrapper {
@@ -39,7 +59,10 @@
     border-top: 15px solid $mainCompColor;
     border-bottom: 15px solid $mainCompColor;
     overflow: auto;
-    padding: 0 15px;
+    
+    @media (min-width: 768px) {
+        padding: 0 15px;
+    }
 }
 
 .newMessageForm {
@@ -88,7 +111,7 @@
 }
 
 .noUser {
-    font-size: 18px;
+    font-size: 17px;
     text-align: center;
     margin-top: 30px;
 
@@ -97,8 +120,23 @@
     }
 }
 
+.noMessage {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+
+    @media (min-width: 768px) {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+}
+
 .liveReload {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    right: 10px;
+
+    @media (min-width: 768px) {
+        right: 20px;
+    }
 }

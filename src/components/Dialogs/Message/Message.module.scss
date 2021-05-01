@@ -4,8 +4,12 @@
 }
 
 .name {
-    width: 100px;
+    width: 90px;
     margin-right: 10px;
+
+    @media (min-width: 768px) {
+        width: 100px;
+    }
 }
 
 .body {
@@ -13,6 +17,7 @@
     width: 100%;
     margin: 0;
     font-size: 14px;
+    word-break: break-all;
 
     @media (min-width: 992px) {
         font-size: 16px;

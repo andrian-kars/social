@@ -1,15 +1,19 @@
 @import './../../../styles/variables';
 
-// .dialog {
-// }
+.dialog {
+  @media (min-width: 768px) {
+    width: 100%;
+  }
+}
 
 .link,
 .link:visited {
+  border: 1px solid $activeAndInputBgColor;
   display: flex;
   align-items: center;
   font-size: 15px;
-  padding: 10px 5px;
-  width: 100%;
+  padding: 8px 10px;
+  margin: 0 5px;
   border-radius: 5px;
 
   &:hover,
@@ -17,11 +21,14 @@
   &:focus {
     transition: all .3s;
     color: $btnBgColor;
-    fill: $btnBgColor;
   }
 
-  @media (min-width: 512px) {
-    padding: 10px;
+  @media (min-width: 768px) {
+    justify-content: center;
+    margin: 0;
+    padding: 15px 5px;
+    margin-bottom: 10px;
+    width: 100%;
   }
 
   @media (min-width: 992px) {
@@ -29,6 +36,7 @@
   }
 }
 
+.link:hover,
 .active {
   background-color: $activeAndInputBgColor;
   color: $btnBgColor;
