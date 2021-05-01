@@ -5,11 +5,26 @@ import { ResultCodesEnum } from "../api/api"
 
 const initialState = {
     dialogs: [] as Array<DialogType>,
-    messages: [] as Array<MessageType>
+    messages: [] as Array<MessageType>,
+    isFetching: false,
+    isSubFetching: false
 }
 
 const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
+        // Helpers
+        case 'S/DIALOGS/SET_IS_FETCHING': {
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
+        } case 'S/DIALOGS/SET_SUB_IS_FETCHING': {
+            return {
+                ...state,
+                isSubFetching: action.isSubFetching,
+            }
+        }
+        // Main
         case 'S/DIALOGS/SAVE_DIALOGS': {
             return {
                 ...state,
@@ -39,6 +54,10 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
+    // Helpers
+    setIsFetching: (isFetching: boolean) => ({ type: 'S/DIALOGS/SET_IS_FETCHING', isFetching} as const),
+    setIsSubFetching: (isSubFetching: boolean) => ({ type: 'S/DIALOGS/SET_SUB_IS_FETCHING', isSubFetching} as const),
+    // Main
     setDialog: (useId: number, userName: string) => ({ type: 'S/DIALOGS/START_DIALOG', payload: { id: useId, userName: userName} } as const),
     saveDialogs: (dialogs: Array<DialogType>) => ({ type: 'S/DIALOGS/SAVE_DIALOGS', dialogs } as const),
     saveMessages: (messages: Array<MessageType>) => ({ type: 'S/DIALOGS/SAVE_MESSAGES', messages } as const),
@@ -46,7 +65,9 @@ export const actions = {
 }
 
 export const saveDialogs = (): ThunkType => async (dispatch) => {
+    dispatch(actions.setIsFetching(true))
     const dialogs: any = await dialogsAPI.getDialogs()
+    dispatch(actions.setIsFetching(false))
     dispatch(actions.saveDialogs(dialogs))
 }
 
@@ -58,13 +79,17 @@ export const startDialog = (useId: number, userName: string): ThunkType => async
 }
 
 export const saveMessages = (useId: number): ThunkType => async (dispatch) => {
+    dispatch(actions.setIsSubFetching(true))
     const dialogData: any = await dialogsAPI.getMessages(useId)
+    dispatch(actions.setIsSubFetching(false))
     dispatch(actions.saveMessages(dialogData.items))
     
 }
 
-export const sendMessage = (useId: number, body: string): ThunkType => async (dispatch, getState) => {
+export const sendMessage = (useId: number, body: string): ThunkType => async (dispatch) => {
+    // dispatch(actions.setIsSubFetching(true))
     const dialogData: any = await dialogsAPI.sendMessage(useId, body)
+    // dispatch(actions.setIsSubFetching(false))
     if (dialogData.resultCode === ResultCodesEnum.Success) {
         dispatch(actions.sendMessage(dialogData.data.message))
     }

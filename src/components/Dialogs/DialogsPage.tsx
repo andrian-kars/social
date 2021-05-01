@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
 import { saveDialogs, saveMessages, sendMessage } from '../../redux/dialogsReducer'
 import { useParams } from 'react-router-dom'
+import { Preloader } from './../common/Preloader/Preloader'
 
 export type DialogsFormValuesType = {
     newMessageBody: string
@@ -15,6 +16,9 @@ export type DialogsFormValuesType = {
 export const DialogsPage: React.FC = memo(() => {
     const dialogsPage = useSelector((state: AppStateType) => state.dialogsPage)
     const authorazedUserId = useSelector((state: AppStateType) => state.auth.userId)
+    // Helpers
+    const isFetching = dialogsPage.isFetching
+    const isSubFetching = dialogsPage.isSubFetching
 
     const params: { userId: string | undefined } = useParams()
     const userId: number = params.userId === undefined ? 0 : +params.userId
@@ -48,21 +52,26 @@ export const DialogsPage: React.FC = memo(() => {
     
     return (
         <div className={s.whrapper}>
-            <div className={s.dialogs}>
-                {dialogsElements}
-            </div>
-            <div className={s.messages}>
-                {!userId ? <div className={s.noUser}>No user selected</div>
-                    : <>
-                        <div className={s.messagesWhrapper}>
-                            {messagesElements}
-                        </div>
-                        <div className={s.newMessageWhrapper}>
-                            <AddMessageFormRedux onSubmit={addNewMessage} />
-                        </div>
-                    </>}
-            </div>
-
+            {isFetching ? <Preloader />
+                : <>
+                    <div className={s.dialogs}>
+                        {dialogsElements}
+                    </div>
+                    <div className={s.messages}>
+                        {isSubFetching ? <Preloader />
+                            : <>
+                                {!userId ? <div className={s.noUser}>No user selected</div>
+                                    : <>
+                                        <div className={s.messagesWhrapper}>
+                                            {messagesElements}
+                                        </div>
+                                        <div className={s.newMessageWhrapper}>
+                                            <AddMessageFormRedux onSubmit={addNewMessage} />
+                                        </div>
+                                    </>}
+                            </>}
+                    </div>
+                </>}
         </div>
     )
 })
