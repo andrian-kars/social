@@ -2,13 +2,14 @@ import s from './Dialogs.module.scss'
 import { DialogItem } from './DialogItem/DialogItem'
 import { Message } from './Message/Message'
 import { AddMessageFormRedux } from './AddMessageForm'
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
-import { saveDialogs, saveMessages, sendMessage } from '../../redux/dialogsReducer'
+import { checkForNewMessages, saveDialogs, saveMessages, sendMessage } from '../../redux/dialogsReducer'
 import { useParams } from 'react-router-dom'
 import { Preloader } from './../common/Preloader/Preloader'
 import { truncateString } from '../../utils/truncateString'
+import { Toggle } from '../common/Toggle/Toggle'
 
 export type DialogsFormValuesType = {
     newMessageBody: string
@@ -32,7 +33,6 @@ export const DialogsPage: React.FC = memo(() => {
 
     const dispatch = useDispatch()
     
-    
     const onSendMessage = (userId: number, newMessageBody: string) => { dispatch(sendMessage(userId, newMessageBody)) }
 
     const addNewMessage = (FormData: DialogsFormValuesType) => {
@@ -49,6 +49,21 @@ export const DialogsPage: React.FC = memo(() => {
         const onSaveMessages = (userId: number) => { dispatch(saveMessages(userId)) }
         onSaveMessages(userId)
     }, [dispatch, userId])
+
+    // Live Reload
+    const [liveReload, setLiveReload] = useState(false)
+    useEffect(() => {
+        const onCheckForNewMessages = (userId: number) => { dispatch(checkForNewMessages(userId)) }
+        if(liveReload) {
+            const interval = setInterval(() => {
+                onCheckForNewMessages(userId)
+            }, 1000)
+            return () => clearInterval(interval)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [liveReload])
+    console.log(liveReload);
+    
 
     console.log(dialogsPage.messages);
     
@@ -70,6 +85,9 @@ export const DialogsPage: React.FC = memo(() => {
                                         </div>
                                         <div className={s.newMessageWhrapper}>
                                             <AddMessageFormRedux onSubmit={addNewMessage} />
+                                        </div>
+                                        <div className={s.liveReload} >
+                                            <Toggle toggle={() => setLiveReload(!liveReload)}/>
                                         </div>
                                     </>}
                             </>}

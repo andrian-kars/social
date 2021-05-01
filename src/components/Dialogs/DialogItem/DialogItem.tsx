@@ -12,7 +12,7 @@ export const DialogItem: React.FC<PropsType> = memo((props) => {
 
     return (
         <div className={s.dialog} id={'' + props.id}>
-            <NavLink to={path} className={s.link} activeClassName={s.active}>{props.userName}</NavLink>
+            <NavLink replace to={path} className={s.link} activeClassName={s.active}>{props.userName}</NavLink>
         </div>
     )
 })
