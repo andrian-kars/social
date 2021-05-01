@@ -5,7 +5,7 @@ import { AddMessageFormRedux } from './AddMessageForm'
 import { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
-import { actions, saveDialogs } from '../../redux/dialogsReducer'
+import { saveDialogs, saveMessages, sendMessage } from '../../redux/dialogsReducer'
 import { useParams } from 'react-router-dom'
 
 export type DialogsFormValuesType = {
@@ -19,21 +19,26 @@ export const DialogsPage: React.FC = memo(() => {
     const userId: number = params.userId === undefined ? 0 : +params.userId
     
     const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users' : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={d.userName} />)
-    const messagesElements = dialogsPage.messages.map(m => <Message id={m.id} key={m.id} message={m.message} />)
+    const messagesElements = dialogsPage.messages.map(m => <Message id={m.id} key={m.id} message={m.body} />)
 
     const dispatch = useDispatch()
     
+    
+    const onSendMessage = (userId: number, newMessageBody: string) => { dispatch(sendMessage(userId, newMessageBody)) }
 
-    const onAddMessage = (newMessageBody: string) => { dispatch(actions.addMessage(newMessageBody)) }
-
-    const addNewMessage = (FormData: DialogsFormValuesType) => onAddMessage(FormData.newMessageBody)
+    const addNewMessage = (FormData: DialogsFormValuesType) => onSendMessage(userId, FormData.newMessageBody)
 
     useEffect(() => {
         const onSaveDialogs = () => { dispatch(saveDialogs()) }
         onSaveDialogs()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    console.log(dialogsPage.dialogs);
+    }, [dispatch])
+
+    useEffect(() => {
+        const onSaveMessages = (userId: number) => { dispatch(saveMessages(userId)) }
+        onSaveMessages(userId)
+    }, [dispatch, userId])
+
+    console.log(dialogsPage.messages);
     
     
     return (

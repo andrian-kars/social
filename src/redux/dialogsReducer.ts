@@ -1,24 +1,11 @@
 import { BaseThunkType, InferActionsTypes } from "./redux-store"
 import { dialogsAPI } from './../api/dialogsAPI'
-import { DialogType } from "../types/types"
+import { DialogType, MessageType } from "../types/types"
 import { ResultCodesEnum } from "../api/api"
 
 const initialState = {
-    dialogs: [
-        { id: 1, userName: 'Ivan' },
-        { id: 2, userName: 'Taras' },
-        { id: 3, userName: 'Dio' },
-        { id: 4, userName: 'Jotaro' },
-    ] as Array<DialogType>,
-    messages: [
-        { id: 1, message: 'Hello, world!' },
-        { id: 2, message: 'Welcome to matrix' },
-        { id: 3, message: 'Neo' },
-        { id: 4, message: 'Neo' },
-    ] as Array<{
-        id: number
-        message: string
-    }>
+    dialogs: [] as Array<DialogType>,
+    messages: [] as Array<MessageType>
 }
 
 const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -29,16 +16,22 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
                 dialogs: action.dialogs,
             }
         }
+        case 'S/DIALOGS/SAVE_MESSAGES': {
+            return {
+                ...state,
+                messages: action.messages,
+            }
+        }
         case 'S/DIALOGS/START_DIALOG': {
             return {
                 ...state,
                 dialogs: [...state.dialogs, action.payload],
             }
         }
-        case 'S/DIALOGS/ADD_MESSAGE': {
+        case 'S/DIALOGS/SEND_MESSAGE': {
             return {
                 ...state,
-                messages: [...state.messages, { id: state.messages.length + 1, message: action.newMessageBody }],
+                messages: [...state.messages, action.message],
             }
         }
         default: return state
@@ -49,6 +42,8 @@ export const actions = {
     addMessage: (newMessageBody: string) => ({ type: 'S/DIALOGS/ADD_MESSAGE', newMessageBody } as const),
     setDialog: (useId: number, userName: string) => ({ type: 'S/DIALOGS/START_DIALOG', payload: { id: useId, userName: userName} } as const),
     saveDialogs: (dialogs: Array<DialogType>) => ({ type: 'S/DIALOGS/SAVE_DIALOGS', dialogs } as const),
+    saveMessages: (messages: Array<MessageType>) => ({ type: 'S/DIALOGS/SAVE_MESSAGES', messages } as const),
+    sendMessage: (message: MessageType) => ({ type: 'S/DIALOGS/SEND_MESSAGE', message } as const),
 }
 
 export const saveDialogs = (): ThunkType => async (dispatch) => {
@@ -60,6 +55,19 @@ export const startDialog = (useId: number, userName: string): ThunkType => async
     const dialogData: any = await dialogsAPI.startDialog(useId)
     if (dialogData.resultCode === ResultCodesEnum.Success) {
         dispatch(actions.setDialog(useId, userName))
+    }
+}
+
+export const saveMessages = (useId: number): ThunkType => async (dispatch) => {
+    const dialogData: any = await dialogsAPI.getMessages(useId)
+    dispatch(actions.saveMessages(dialogData.items))
+    
+}
+
+export const sendMessage = (useId: number, body: string): ThunkType => async (dispatch, getState) => {
+    const dialogData: any = await dialogsAPI.sendMessage(useId, body)
+    if (dialogData.resultCode === ResultCodesEnum.Success) {
+        dispatch(actions.sendMessage(dialogData.data.message))
     }
 }
 

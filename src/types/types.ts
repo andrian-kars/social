@@ -41,3 +41,13 @@ export type DialogType = {
     id: number
     userName: string
 }
+
+export type MessageType = {
+    addedAt?: string
+    body: string
+    id?: string
+    recipientId: number
+    senderId?: number
+    senderName?: string
+    viewed?: boolean
+}

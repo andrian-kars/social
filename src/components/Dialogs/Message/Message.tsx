@@ -3,7 +3,7 @@ import s from './Message.module.scss'
 
 type PropsType = {
     message: string
-    id: number
+    id: string | undefined
 }
 
 export const Message: React.FC<PropsType> = memo((props) => {
