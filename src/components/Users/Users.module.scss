@@ -15,14 +15,6 @@
     @media (min-width: 768px) {
         flex-flow: row wrap;
         justify-content: center;
-        
-        div {
-            margin-right: 15px;
-        }
-
-        div:nth-child(even) {
-            margin-right: 0;
-        }
     }
 }
 
