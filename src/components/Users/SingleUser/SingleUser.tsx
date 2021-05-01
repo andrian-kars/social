@@ -5,6 +5,7 @@ import { DialogType, PhotosType } from '../../../types/types'
 import { truncateString } from '../../../utils/truncateString'
 
 type PropsType = {
+    authorazedUserId: number
     dialogs: Array<DialogType>
     userID: number
     photo: PhotosType
@@ -17,7 +18,7 @@ type PropsType = {
     onStartDialog: (userId: number, name: string) => void
 }
 
-const SingleUser: React.FC<PropsType> = ({ dialogs, userID, photo, name, status, followed, followingInProgress, unfollow, follow, onStartDialog}) => {
+const SingleUser: React.FC<PropsType> = ({ authorazedUserId, dialogs, userID, photo, name, status, followed, followingInProgress, unfollow, follow, onStartDialog}) => {
     return (
         <div className={s.whrapper}>
             <div className={s.photoWhrapper}>
@@ -29,14 +30,14 @@ const SingleUser: React.FC<PropsType> = ({ dialogs, userID, photo, name, status,
                 <div>
                     {followed
                         ? <button disabled={followingInProgress
-                            .some(id => id === userID)}
+                            .some(id => id === userID) || authorazedUserId === userID}
                             onClick={() => { unfollow(userID) }}
                             className={`${s.button} ${s.unfollow}`}>Unfollow</button>
                         : <button disabled={followingInProgress
-                            .some(id => id === userID)}
+                            .some(id => id === userID) || authorazedUserId === userID}
                             onClick={() => { follow(userID) }}
                             className={`${s.button} ${s.follow}`}>Follow</button>}
-                    <button disabled={dialogs.some(d => d.id === userID)}
+                    <button disabled={dialogs.some(d => d.id === userID) || authorazedUserId === userID}
                         onClick={() => { onStartDialog(userID, name) }}
                         className={`${s.button} ${s.follow}`}>Message</button>
                 </div>

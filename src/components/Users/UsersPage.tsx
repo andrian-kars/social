@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom'
 import * as queryString from 'querystring'
 import { Preloader } from '../common/Preloader/Preloader'
 import { startDialog } from '../../redux/dialogsReducer'
+import { AppStateType } from '../../redux/redux-store'
 
 export const UsersPage: React.FC = memo(() => {
     const totalUsersCount = useSelector(getTotalUsersCount)
@@ -68,6 +69,7 @@ export const UsersPage: React.FC = memo(() => {
     const onFollow = (userId: number) => { dispatch(follow(userId)) }
     const onUnfollow = (userId: number) => { dispatch(unfollow(userId)) }
     const onStartDialog = (userId: number, name: string) => { dispatch(startDialog(userId, name)) }
+    const authorazedUserId = useSelector((state: AppStateType) => state.auth.userId)
 
     return (
         <div className={s.whrapper}>
@@ -80,7 +82,7 @@ export const UsersPage: React.FC = memo(() => {
                         <SingleUser onStartDialog={onStartDialog} photo={u.photos} follow={onFollow}
                             unfollow={onUnfollow} key={u.id} userID={u.id}
                             name={u.name} followed={u.followed} status={u.status}
-                            followingInProgress={followingInProgress} dialogs={dialogs}
+                            followingInProgress={followingInProgress} dialogs={dialogs} authorazedUserId={authorazedUserId}
                         />
                     )}
                 </div>}

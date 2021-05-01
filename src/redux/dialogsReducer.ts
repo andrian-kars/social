@@ -39,7 +39,6 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
-    addMessage: (newMessageBody: string) => ({ type: 'S/DIALOGS/ADD_MESSAGE', newMessageBody } as const),
     setDialog: (useId: number, userName: string) => ({ type: 'S/DIALOGS/START_DIALOG', payload: { id: useId, userName: userName} } as const),
     saveDialogs: (dialogs: Array<DialogType>) => ({ type: 'S/DIALOGS/SAVE_DIALOGS', dialogs } as const),
     saveMessages: (messages: Array<MessageType>) => ({ type: 'S/DIALOGS/SAVE_MESSAGES', messages } as const),

@@ -14,12 +14,14 @@ export type DialogsFormValuesType = {
 
 export const DialogsPage: React.FC = memo(() => {
     const dialogsPage = useSelector((state: AppStateType) => state.dialogsPage)
+    const authorazedUserId = useSelector((state: AppStateType) => state.auth.userId)
 
     const params: { userId: string | undefined } = useParams()
     const userId: number = params.userId === undefined ? 0 : +params.userId
     
     const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users' : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={d.userName} />)
-    const messagesElements = dialogsPage.messages.map(m => <Message id={m.id} key={m.id} message={m.body} />)
+    const messagesElements = !userId ? <div className={s.noUser}>No user selected</div>
+        : dialogsPage.messages.map(m => <Message myId={authorazedUserId} senderId={m.senderId} id={m.id} key={m.id} message={m.body} senderName={m.senderName} />)
 
     const dispatch = useDispatch()
     
@@ -48,7 +50,7 @@ export const DialogsPage: React.FC = memo(() => {
             </div>
             <div className={s.messages}>
                 <div className={s.messagesWhrapper}>
-                    {userId ? messagesElements : <span>No user</span>}
+                    {messagesElements}
                 </div>
                 <div className={s.newMessageWhrapper}>
                     <AddMessageFormRedux onSubmit={addNewMessage} />
