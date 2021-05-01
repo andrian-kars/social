@@ -8,6 +8,7 @@ import { AppStateType } from '../../redux/redux-store'
 import { saveDialogs, saveMessages, sendMessage } from '../../redux/dialogsReducer'
 import { useParams } from 'react-router-dom'
 import { Preloader } from './../common/Preloader/Preloader'
+import { truncateString } from '../../utils/truncateString'
 
 export type DialogsFormValuesType = {
     newMessageBody: string
@@ -23,9 +24,11 @@ export const DialogsPage: React.FC = memo(() => {
     const params: { userId: string | undefined } = useParams()
     const userId: number = params.userId === undefined ? 0 : +params.userId
     
-    const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users' : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={d.userName} />)
+    const dialogsElements = dialogsPage.dialogs.length === 0 ? 'No users'
+        : dialogsPage.dialogs.map(d => <DialogItem id={d.id} key={d.id} userName={truncateString(d.userName, 12)} />)
     const messagesElements = dialogsPage.messages.length === 0 ? <div className={s.noUser}>No messages</div>
-        : dialogsPage.messages.map(m => <Message myId={authorazedUserId} senderId={m.senderId} id={m.id} key={m.id} message={m.body} senderName={m.senderName} />)
+        : dialogsPage.messages.map(m => <Message myId={authorazedUserId} senderId={m.senderId}
+            id={m.id} key={m.id} message={m.body} senderName={truncateString('' + m.senderName, 10)} />)
 
     const dispatch = useDispatch()
     

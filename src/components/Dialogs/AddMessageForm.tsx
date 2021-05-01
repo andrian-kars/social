@@ -15,9 +15,9 @@ const AddMessageForm: React.FC<InjectedFormProps<DialogsFormValuesType, DialogsF
     return (
         <form onSubmit={props.handleSubmit} className={s.newMessageForm}>
             <div className={s.formWhrapper}>
-                {createField<DialogsFormValuesTypeKeys>('Message...', 'newMessageBody', [required, maxLength], Textarea)}
+                {createField<DialogsFormValuesTypeKeys>('Message...', 'newMessageBody', [required, maxLength], Textarea, {maxLength:'70'})}
             </div>
-            <button className={s.btn}>Send</button>
+            <button disabled={props.invalid} className={s.btn}>Send</button>
         </form>
     )
 })
