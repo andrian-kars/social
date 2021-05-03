@@ -41,7 +41,7 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({ onFilterChange }) => 
             onSubmit={submit}
         >
             {({ isSubmitting }) => (
-                <Form>
+                <Form className={s.formWhrapper}>
                     <Field className={s.textarea} type="text" name="term" placeholder="Type here to search..." />
                     <div className={s.sendWhrapper}>
                         <div className={s.selectWhrapper}>
