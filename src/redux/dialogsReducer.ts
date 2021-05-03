@@ -98,11 +98,11 @@ export const checkForNewMessages = (useId: number): ThunkType => async (dispatch
 }
 
 export const sendMessage = (useId: number, body: string): ThunkType => async (dispatch) => {
-    // dispatch(actions.setIsSubFetching(true))
+    const dialogs: any = await dialogsAPI.getDialogs()
     const dialogData: any = await dialogsAPI.sendMessage(useId, body)
-    // dispatch(actions.setIsSubFetching(false))
     if (dialogData.resultCode === ResultCodesEnum.Success) {
         dispatch(actions.sendMessage(dialogData.data.message))
+        dispatch(actions.saveDialogs(dialogs))
     }
 }
 
