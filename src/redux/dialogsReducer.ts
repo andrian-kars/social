@@ -89,9 +89,11 @@ export const saveMessages = (useId: number): ThunkType => async (dispatch) => {
 
 export const checkForNewMessages = (useId: number): ThunkType => async (dispatch, getState) => {
     const messages = getState().dialogsPage.messages.length
+    const dialogs: any = await dialogsAPI.getDialogs()
     const dialogData: any = await dialogsAPI.getMessages(useId)
     if (messages !== dialogData.items.length) {
         dispatch(actions.saveMessages(dialogData.items))
+        dispatch(actions.saveDialogs(dialogs))
     }
 }
 
