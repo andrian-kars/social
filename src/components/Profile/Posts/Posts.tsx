@@ -1,34 +1,50 @@
 import React, { memo } from 'react'
-import { actions } from '../../../redux/profileReducer'
 import s from './Posts.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppStateType } from '../../../redux/redux-store'
 import { AddPostFormValuesType, AddPostFormRedux } from './AddPostForm'
 import { Post } from './Post/Post'
+import { PhotosType, PostType } from '../../../types/types'
+import { useDispatch } from 'react-redux'
 
-export const Posts: React.FC = memo(() => {
-    const posts = useSelector((state: AppStateType) => state.profilePage.posts)
-    // @ts-ignore
-    const userId = useSelector((state: AppStateType) => state.profilePage.profile.userId)
-    // @ts-ignore
-    const photos = useSelector((state: AppStateType) => state.profilePage.profile.photos)
-    const authorazedUserId = useSelector((state: AppStateType) => state.auth.userId)
+type PropsType = {
+    posts: Array<PostType>
+    photos: PhotosType
+    isOwner: boolean
+    savePosts: (posts: Array<PostType>) => void
+}
+
+export const Posts: React.FC<PropsType> = memo(({ posts, photos, isOwner, savePosts }) => {
+    const postsElements = [...posts].reverse().map(p => <Post avatar={photos.small} key={p.id} likesCount={p.likesCount} message={p.message} />)
+
+    const localSavedItems = localStorage.getItem('savedPosts')
 
     const dispatch = useDispatch()
 
-    const onAddPost = (newPostBody: string) => dispatch(actions.addPost(newPostBody))
+    const setSavedPosts = (posts: Array<PostType>) => { dispatch(savePosts(posts)) }
 
-    const isOwner = userId === authorazedUserId
-    const postsElements = [...posts].reverse().map(p => <Post avatar={photos.small} key={p.id} likesCount={p.likesCount} message={p.message} />)
-    const addNewPost = (FormData: AddPostFormValuesType) => onAddPost(FormData.newPostBody)
+    const savePost = (FormData: AddPostFormValuesType) => {
+        const postToSave = {
+            id: [...posts].length + 1,
+            likesCount: 0,
+            message: FormData.newPostBody,
+        }
+
+        if (posts.length === 0) {
+            localStorage.setItem('savedPosts', `[${JSON.stringify(postToSave)}]`)
+            setSavedPosts(JSON.parse('' + localSavedItems))
+        } else {
+            localStorage.setItem('savedPosts', JSON.stringify([...posts, postToSave]))
+            setSavedPosts(JSON.parse('' + localSavedItems))
+        }
+        FormData.newPostBody = ''
+    }
 
     return (
         <section className={s.posts}>
             {isOwner && <div className={s.whrapper}>
                 <p className={s.heading}>Create Post</p>
-                <AddPostFormRedux onSubmit={addNewPost} avatar={photos.small} />
+                <AddPostFormRedux onSubmit={savePost} avatar={photos.small} />
             </div>}
-            {postsElements}
+            {postsElements.length === 0 ? <p className={s.noPosts}>You have no posts. Create one</p> : postsElements}
         </section>
     )
 })

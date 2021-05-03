@@ -22,7 +22,7 @@ const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> 
         <form onSubmit={props.handleSubmit} className={s.form}>
             <div className={s.formWhrapper}>
                 <img className={s.avatar} src={props.avatar === null ? userPhoto : props.avatar} alt="user" />
-                {createField<AddPostFormValuesTypeKeys>('Write something here...', 'newPostBody', [required, maxLength], Textarea)}
+                {createField<AddPostFormValuesTypeKeys>('Write something here...', 'newPostBody', [required, maxLength], Textarea, { maxLength: '231' })}
             </div>
             <button className={s.btn}>Post</button>
         </form>

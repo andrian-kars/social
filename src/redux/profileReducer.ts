@@ -6,13 +6,8 @@ import { BaseThunkType, InferActionsTypes } from "./redux-store"
 
 const initialState = {
     profile: null as null | ProfileType,
-    posts: [
-        { id: 1, likesCount: 69, message: 'Oh, you\'re approuching me?' },
-        { id: 2, likesCount: 340, message: 'Dio, you are going down!' },
-        { id: 3, likesCount: 420, message: 'It was me, DIO!' }
-    ] as Array<PostType>,
+    posts: [] as Array<PostType>,
     status: '' as string,
-    newPostBody: '' as string,
     isFetching: false
 }
 
@@ -22,13 +17,6 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
             return {
                 ...state,
                 isFetching: action.isFetching,
-            }
-        }
-        case 'S/PROFILE/ADD_POST': {
-            return {
-                ...state,
-                posts: [...state.posts, { id: 5, likesCount: 0, message: action.newPostBody }],
-                newPostBody: ''
             }
         }
         case 'S/PROFILE/SET_USER_PROFILE': {
@@ -55,6 +43,12 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
                 profile: { ...state.profile, photos: action.photos } as ProfileType
             }
         }
+        case 'S/PROFILE/SAVE_POSTS': {
+            return {
+                ...state,
+                posts: action.posts
+            }
+        }
         default: return state
     }
 }
@@ -65,7 +59,8 @@ export const actions = {
     setUserProfile: (profile: ProfileType) => ({ type: 'S/PROFILE/SET_USER_PROFILE', profile } as const),
     setStatus: (status: string) => ({ type: 'S/PROFILE/SET_STATUS', status } as const),
     deletePost: (postId: number) => ({ type: 'S/PROFILE/DELETE_POST', postId } as const),
-    setPhotoSuccess: (photos: PhotosType) => ({ type: 'S/PROFILE/SAVE_PHOTO_SUCCESS', photos } as const)
+    setPhotoSuccess: (photos: PhotosType) => ({ type: 'S/PROFILE/SAVE_PHOTO_SUCCESS', photos } as const),
+    savePosts: (posts: Array<PostType>) => ({ type: 'S/PROFILE/SAVE_POSTS', posts } as const)
 }
 
 export const getProfile = (userId: number): ThunkType => async (dispatch) => {
