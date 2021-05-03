@@ -8,6 +8,7 @@ type PropsType = {
     profile: ProfileType | null
     status: string
     isOwner: boolean
+    isFetching: boolean
     onSaveProfile: (profile: ProfileType) => Promise<any>
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
@@ -15,7 +16,7 @@ type PropsType = {
 
 
 const Profile: React.FC<PropsType> = (props) => {
-    if (!props.profile) {
+    if (!props.profile || props.isFetching) {
         return <div className={s.load}><Preloader /></div>
     } else {
         return (

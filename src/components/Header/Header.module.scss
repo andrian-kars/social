@@ -41,6 +41,7 @@
 
 .whrapperSocial {
   display: flex;
+  align-items: center;
   margin-right: 10px;
 
   @media (min-width: 768px) {
@@ -66,6 +67,7 @@
 }
 
 .heading {
+  line-height: 0;
   margin-left: 15px;
   font-size: 18px;
 

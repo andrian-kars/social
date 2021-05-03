@@ -47,7 +47,7 @@
     box-shadow: 0px 0px 20px 0px rgba(44, 101, 144, 0.1);
     background-color: $mainCompColor;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     border-radius: 20px;
 
     &:last-child {
@@ -88,30 +88,44 @@
         visibility: hidden;
         opacity: 0;
         height: 0;
-        // margin-top: 20px;
-        // transition: visibility 0s linear 350ms, opacity 350ms;
     }
 
     .show {
-        animation: drop 1s;
-        animation-fill-mode: both;
+        height: auto;
+        padding-top: 20px;
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s linear 0s, opacity 1s, height 1s;
 
-        // transition: visibility 0s linear 0s, opacity 350ms;
+        // animation-name: drop;
+        // animation-duration: 1s;
+        // animation-timing-function: ease-out; // how
+        // animation-iteration-count: 1; // how many times (infinite)
+        // // animation-direction: alternate;
+        // animation-play-state: running; // start on event
+        // animation-delay: 0s;
+        // animation-fill-mode: forwards; // where to end
+        animation: drop 1s ease 1 0s forwards; // name dur count play-state delay fill-mode
+
     }
 }
 
 @keyframes drop {
-  from {
+  0% {
     visibility: hidden;
     opacity: 0;
     height: 0;
   }
 
-  to {
+  40% {
     height: auto;
-    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  100% {
+    height: auto;
+    padding-top: 20px;
     visibility: visible;
     opacity: 1;
-    animation-timing-function: ease-out;
   }
 }

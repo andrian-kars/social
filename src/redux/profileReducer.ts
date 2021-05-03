@@ -12,17 +12,25 @@ const initialState = {
         { id: 3, likesCount: 420, message: 'It was me, DIO!' }
     ] as Array<PostType>,
     status: '' as string,
-    newPostBody: '' as string
+    newPostBody: '' as string,
+    isFetching: false
 }
 
 const profileReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'S/PROFILE/ADD_POST':
+        case 'S/DIALOGS/SET_IS_FETCHING': {
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
+        }
+        case 'S/PROFILE/ADD_POST': {
             return {
                 ...state,
                 posts: [...state.posts, { id: 5, likesCount: 0, message: action.newPostBody }],
                 newPostBody: ''
             }
+        }
         case 'S/PROFILE/SET_USER_PROFILE': {
             return {
                 ...state,
@@ -52,6 +60,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
+    setIsFetching: (isFetching: boolean) => ({ type: 'S/DIALOGS/SET_IS_FETCHING', isFetching } as const),
     addPost: (newPostBody: string) => ({ type: 'S/PROFILE/ADD_POST', newPostBody } as const),
     setUserProfile: (profile: ProfileType) => ({ type: 'S/PROFILE/SET_USER_PROFILE', profile } as const),
     setStatus: (status: string) => ({ type: 'S/PROFILE/SET_STATUS', status } as const),
@@ -60,7 +69,9 @@ export const actions = {
 }
 
 export const getProfile = (userId: number): ThunkType => async (dispatch) => {
+    dispatch(actions.setIsFetching(true))
     const profileData = await profileAPI.getProfile(userId)
+    dispatch(actions.setIsFetching(false))
     dispatch(actions.setUserProfile(profileData))
 }
 

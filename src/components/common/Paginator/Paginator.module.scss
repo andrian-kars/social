@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 5px 0;
 }
 
 .pages {
@@ -11,6 +12,7 @@
     background-color: transparent;
     margin: 0 4px;
     font-size: 15px;
+    line-height: 0;
     transition: .3s;
     cursor: pointer;
 
@@ -26,6 +28,7 @@
 
 .selectedPage {
     font-weight: 700;
+    line-height: 0;
 }
 
 .indexes {
@@ -36,12 +39,12 @@
 
     svg {
         fill: $btnBgHoverColor;
-        width: 18px;
-        height: 18px;
+        width: 11px;
+        height: 11px;
 
         @media (min-width: 512px) {
-            width: 20px;
-            height: 20px;
+            width: 13px;
+            height: 13px;
         }
 
         &:hover {

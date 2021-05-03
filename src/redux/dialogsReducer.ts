@@ -18,7 +18,8 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
                 ...state,
                 isFetching: action.isFetching,
             }
-        } case 'S/DIALOGS/SET_SUB_IS_FETCHING': {
+        }
+        case 'S/DIALOGS/SET_SUB_IS_FETCHING': {
             return {
                 ...state,
                 isSubFetching: action.isSubFetching,

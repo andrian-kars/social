@@ -10,6 +10,7 @@ export const ProfilePage = memo(() => {
     const profile = useSelector((state: AppStateType) => state.profilePage.profile)
     const status = useSelector((state: AppStateType) => state.profilePage.status)
     const authorazedUserId = useSelector((state: AppStateType) => state.auth.userId)
+    const isFetching = useSelector((state: AppStateType) => state.profilePage.isFetching)
     
     const dispatch = useDispatch()
     const params: { userId: string | undefined } = useParams()
@@ -33,6 +34,7 @@ export const ProfilePage = memo(() => {
 
     return (
         <Profile
+            isFetching={isFetching}
             isOwner={requestedUserId === authorazedUserId}
             profile={profile}
             status={status}
