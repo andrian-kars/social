@@ -31,12 +31,6 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
                 status: action.status
             }
         }
-        case 'S/PROFILE/DELETE_POST': {
-            return {
-                ...state,
-                posts: state.posts.filter(p => p.id !== action.postId)
-            }
-        }
         case 'S/PROFILE/SAVE_PHOTO_SUCCESS': {
             return {
                 ...state,
@@ -58,7 +52,6 @@ export const actions = {
     addPost: (newPostBody: string) => ({ type: 'S/PROFILE/ADD_POST', newPostBody } as const),
     setUserProfile: (profile: ProfileType) => ({ type: 'S/PROFILE/SET_USER_PROFILE', profile } as const),
     setStatus: (status: string) => ({ type: 'S/PROFILE/SET_STATUS', status } as const),
-    deletePost: (postId: number) => ({ type: 'S/PROFILE/DELETE_POST', postId } as const),
     setPhotoSuccess: (photos: PhotosType) => ({ type: 'S/PROFILE/SAVE_PHOTO_SUCCESS', photos } as const),
     savePosts: (posts: Array<PostType>) => ({ type: 'S/PROFILE/SAVE_POSTS', posts } as const)
 }

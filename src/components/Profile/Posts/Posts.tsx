@@ -13,9 +13,15 @@ type PropsType = {
 }
 
 export const Posts: React.FC<PropsType> = memo(({ posts, photos, isOwner, savePosts }) => {
-    const postsElements = [...posts].reverse().map(p => <Post avatar={photos.small} key={p.id} likesCount={p.likesCount} message={p.message} />)
-
     const localSavedItems = localStorage.getItem('savedPosts')
+
+    const deletePost = (e: React.MouseEvent<HTMLButtonElement>) => {
+        localStorage.setItem('savedPosts', JSON.stringify([...posts].filter(p => '' + p.id !== e.currentTarget.id)))
+        setSavedPosts(JSON.parse('' + localSavedItems))
+    }
+
+    const postsElements = [...posts].reverse().map(p =>
+        <Post deletePost={deletePost} avatar={photos.small} key={p.id} id={p.id} likesCount={p.likesCount} message={p.message} />)
 
     const dispatch = useDispatch()
 
