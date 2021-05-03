@@ -15,6 +15,12 @@ const initialState = {
 
 const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
+        case 'S/USERS/TOGGLE_IS_FETCHING': {
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
+        }
         case 'S/AUTH/SET_USER_DATA':
         case 'S/AUTH/GET_CAPTCHA_URL_SUCCESS':
             return {
@@ -26,6 +32,7 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
 }
 
 export const actions = {
+    setIsFetching: (isFetching: boolean) => ({ type: 'S/USERS/TOGGLE_IS_FETCHING', isFetching } as const),
     setAuthUserData: (userId: number, email: string | null, login: string | null, isAuth: boolean) => ({
         type: 'S/AUTH/SET_USER_DATA', payload: { userId, email, login, isAuth }
     } as const),
@@ -35,12 +42,13 @@ export const actions = {
 }
 
 export const getAuthUserData = (): ThunkType => async (dispatch) => {
+    dispatch(actions.setIsFetching(true))
     const authData = await authAPI.getAuth()
-
     if (authData.resultCode === ResultCodesEnum.Success) {
         const { id, login, email } = authData.data
         dispatch(actions.setAuthUserData(id, email, login, true))
     }
+    dispatch(actions.setIsFetching(false))
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string | null): ThunkType => async (dispatch) => {
@@ -57,10 +65,12 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 }
 
 export const logout = (): ThunkType => async (dispatch) => {
+    dispatch(actions.setIsFetching(true))
     const logoutData = await authAPI.logout()
     if (logoutData.resultCode === ResultCodesEnum.Success) {
         dispatch(actions.setAuthUserData(0, null, null, false))
     }
+    dispatch(actions.setIsFetching(false))
 }
 
 export const getCaptchaUrl = (): ThunkType => async (dispatch) => {

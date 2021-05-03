@@ -21,35 +21,46 @@ const App: React.FC = memo(() => {
   const initialized = useSelector((state: AppStateType) => state.app.initialized)
   const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
   const menu = useSelector((state: AppStateType) => state.app.menu)
+  const isFetching = useSelector((state: AppStateType) => state.auth.isFetching)
 
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
     const onInitializeApp = () => { dispatch(initializeApp()) }
-    const onSaveDialogs = () => { dispatch(saveDialogs()) }
     onInitializeApp()
-    onSaveDialogs()
-  }, [dispatch])
+    if (isAuth) {
+      const onSaveDialogs = () => { dispatch(saveDialogs()) }
+      onSaveDialogs()
+    }
+  }, [dispatch, isAuth])
+  console.log('rerender');
+  
 
   return (
     <div className="app-whrapper">
-      {!initialized ? <Preloader /> : <>
-        {!isAuth ? <Suspense fallback={<Preloader />}><LoginPage /></Suspense> : <>
-          <Header />
-          <Navigation show={menu} />
-          <div className="container">
-            <main className="main">
-              <Switch>
-                <Route exact path="/" render={() => <Redirect to={'/news'} />} />
-                <Route path="/news" render={() => <News />} />
-                <Route path="/profile/:userId?" render={() => <ProfilePage />} />
-                <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
-                <Route exact path="/users" render={() => <UsersPage />} />
-                <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
-              </Switch>
-            </main>
-          </div>
-          {/* <Footer /> */}</>}</>}
+      {!initialized || isFetching ? <Preloader /> : <>
+        {!isAuth
+          ? <Suspense fallback={<Preloader />}><LoginPage /></Suspense> : <>
+            {isFetching ? <Preloader /> : <>
+              <Header />
+              <Navigation show={menu} />
+              <div className="container">
+                <main className="main">
+                  <Switch>
+                    <Route exact path="/login" render={() => <Redirect to={'/news'} />} />
+                    <Route exact path="/" render={() => <Redirect to={'/news'} />} />
+                    <Route path="/news" render={() => <News />} />
+                    <Route path="/profile/:userId?" render={() => <ProfilePage />} />
+                    <Route path="/dialogs/:userId?" render={() => <DialogsPage />} />
+                    <Route exact path="/users" render={() => <UsersPage />} />
+                    <Route exact path="*" render={() => <Suspense fallback={<Preloader />}><Page404 /></Suspense>} />
+                  </Switch>
+                </main>
+              </div>
+              {/* <Footer /> */}
+            </>}
+          </>}
+        </>}
     </div>
   )
 })
