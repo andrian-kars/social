@@ -42,7 +42,7 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({ onFilterChange }) => 
         >
             {({ isSubmitting }) => (
                 <Form className={s.formWhrapper}>
-                    <Field className={s.textarea} type="text" name="term" placeholder="Type here to search..." />
+                    <Field className={s.textarea} type="text" maxLength='20' name="term" placeholder="Type here to search..." />
                     <div className={s.sendWhrapper}>
                         <div className={s.selectWhrapper}>
                             <Field as="select" name="friend">

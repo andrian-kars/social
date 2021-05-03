@@ -21,40 +21,40 @@
 .form {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 .formWhrapper {
     display: flex;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 15px;
-}
-
-.textarea {
-    width: 300px;
-    padding: 10px 125px 10px 10px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 300px;
+    padding: 7px 10px;
     background-color: $activeAndInputBgColor;
     border-radius: 10px;
     font-size: 15px;
 
     @media (min-width: 469px) {
         font-size: 17px;
-        width: 400px;
-        padding: 10px 160px 10px 15px;
+        min-width: 400px;
     }
 
     @media (min-width: 768px) {
-        width: 500px;
+        min-width: 500px;
+    }
+}
+
+.textarea {
+    font-size: 15px;
+
+    @media (min-width: 768px) {
+        font-size: 17px;
     }
 }
 
 .sendWhrapper {
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
 
     .selectWhrapper {
         position: relative;
