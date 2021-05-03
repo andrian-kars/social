@@ -15,12 +15,11 @@ const initialState = {
 
 const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'S/USERS/TOGGLE_IS_FETCHING': {
+        case 'S/AUTH/TOGGLE_IS_FETCHING':
             return {
                 ...state,
                 isFetching: action.isFetching,
             }
-        }
         case 'S/AUTH/SET_USER_DATA':
         case 'S/AUTH/GET_CAPTCHA_URL_SUCCESS':
             return {
@@ -32,7 +31,7 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
 }
 
 export const actions = {
-    setIsFetching: (isFetching: boolean) => ({ type: 'S/USERS/TOGGLE_IS_FETCHING', isFetching } as const),
+    setIsFetching: (isFetching: boolean) => ({ type: 'S/AUTH/TOGGLE_IS_FETCHING', isFetching } as const),
     setAuthUserData: (userId: number, email: string | null, login: string | null, isAuth: boolean) => ({
         type: 'S/AUTH/SET_USER_DATA', payload: { userId, email, login, isAuth }
     } as const),

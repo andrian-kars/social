@@ -33,12 +33,10 @@ const App: React.FC = memo(() => {
       onSaveDialogs()
     }
   }, [dispatch, isAuth])
-  console.log('rerender');
-  
 
   return (
     <div className="app-whrapper">
-      {!initialized || isFetching ? <Preloader /> : <>
+      {!initialized ? <Preloader /> : <>
         {!isAuth
           ? <Suspense fallback={<Preloader />}><LoginPage /></Suspense> : <>
             {isFetching ? <Preloader /> : <>
