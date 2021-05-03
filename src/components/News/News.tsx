@@ -9,7 +9,7 @@ export const News: React.FC = memo(() => {
 
     const dispatch = useDispatch()
 
-    const show = (e: MouseEvent<HTMLDivElement>) => { dispatch(actions.show(+e.currentTarget.id)) }
+    const show = (e: MouseEvent<HTMLDivElement>) => { dispatch(actions.show(+e.currentTarget.children[0].id)) }
 
     return (
         <div className={s.news}>
@@ -17,8 +17,8 @@ export const News: React.FC = memo(() => {
                 <h3>News Page</h3>
                 <p>by <a href='https://andrian-kars.github.io/' target='_blank' rel='noreferrer'>andrian kars</a></p>
             </div>
-            {news.map(n => <div key={'' + n.id} className={s.item}>
-                <div onClick={(e) => { show(e) }} id={'' + n.id} className={s.content}><p className={s.heading}>{n.heading}</p>
+            {[...news].reverse().map(n => <div key={'' + n.id} className={s.item} onClick={(e) => { show(e) }}>
+                <div id={'' + n.id} className={s.content}><p className={s.heading}>{n.heading}</p>
                     {n.hidden
                         ? <svg className={s.svg} viewBox="0 0 20 20">
                             <path d="M13.68,9.448h-3.128V6.319c0-0.304-0.248-0.551-0.552-0.551S9.448,6.015,9.448,6.319v3.129H6.319

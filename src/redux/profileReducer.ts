@@ -69,6 +69,7 @@ export const getStatus = (userId: number): ThunkType => async (dispatch) => {
 }
 
 export const updateStatus = (status: string): ThunkType => async (dispatch) => {
+    dispatch(actions.setStatus('Loading...'))
     const statusData = await profileAPI.updateStatus(status)
     if (statusData.resultCode === ResultCodesEnum.Success) {
         dispatch(actions.setStatus(status))
@@ -83,6 +84,7 @@ export const savePhoto = (file: File): ThunkType => async (dispatch) => {
 }
 
 export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
+    dispatch(actions.setIsFetching(true))
     const userId = getState().auth.userId
     const profileData = await profileAPI.saveProfile(profile)
     if (profileData.resultCode === ResultCodesEnum.Success) {
@@ -95,6 +97,7 @@ export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch,
         dispatch(stopSubmit('editProfile', { _error: profileData.messages[0] }))
         return Promise.reject(profileData.messages[0])
     }
+    dispatch(actions.setIsFetching(false))
 }
 
 export default profileReducer

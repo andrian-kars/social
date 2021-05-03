@@ -11,13 +11,13 @@ const initialState = {
         {
             id: 2,
             hidden: true,
-            heading: 'Update 1',
+            heading: 'Update 2',
             content: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.'
         },
         {
             id: 3,
             hidden: true,
-            heading: 'Update 1',
+            heading: 'Update 69',
             content: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.'
         },
     ]

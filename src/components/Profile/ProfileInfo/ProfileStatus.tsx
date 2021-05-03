@@ -33,11 +33,11 @@ export const ProfileStatus: React.FC<PropsType> = memo(({ status, updateStatus, 
     }
 
     return (
-        <>
+        <>  {status === 'Loading...' ? <p className={s.loading}>{status}</p> :
             <p onClick={activateEditMode} className={s.status}>
                 {!editMode ? <span className={s.staticStatus}>{status || '...'}</span>
                     : <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} className={`${s.changeStatus}`} value={statusHook} />}
-            </p>
+            </p>}
         </>
     )
 })

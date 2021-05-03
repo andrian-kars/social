@@ -10,7 +10,7 @@ import twitter from './../../../images/socials/twitter.png'
 import instagram from './../../../images/socials/instagram.png'
 import youtube from './../../../images/socials/youtube.png'
 import github from './../../../images/socials/github.png'
-import { ProfileDataReduxForm } from './ProfileDataForm'
+import { ProfileDataReduxForm } from './ProfileDataForm/ProfileDataForm'
 import { ProfileType } from '../../../types/types'
 
 type InfoPropsType = {

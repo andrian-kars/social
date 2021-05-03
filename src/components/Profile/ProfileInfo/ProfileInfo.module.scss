@@ -93,32 +93,6 @@
     }
   }
 
-  .profileDataForm {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 0 20px;
-
-    .editSocials {
-      // margin-top: 30px;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-
-      .contactEdit span {
-        display: flex;
-        justify-content: space-between;
-        // flex-direction: row;
-      }
-    }
-
-    .formError {
-      color: red;
-    }
-  }
-
   .editMode {
     position: absolute;
     top: 10px;
@@ -155,16 +129,22 @@
 
 .name, .name input {
   font-size: 22px;
+  margin: 5px 0;
 
   @media (min-width: 992px) {
     font-size: 24px;
   }
 }
 
+.loading,
 .status {
   width: 200px;
   padding: 1px 15px;
   text-align: center;
+  font-size: 18px;
+}
+
+.status {
   transition: .3s;
   cursor: pointer;
 
@@ -196,7 +176,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   margin-top: 10px;
 
   .social {
@@ -214,7 +194,6 @@
   }
 
   @media (min-width: 500px) {
-    margin-bottom: 10px;
     margin-top: 0;
 
     .social {
@@ -276,6 +255,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
     
     svg {
       position: absolute;

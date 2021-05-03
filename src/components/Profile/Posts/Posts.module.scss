@@ -64,14 +64,6 @@
   }
 }
 
-.field {
-  height: 85px;
-
-  @media (min-width: 992px) {
-    height: 100px;
-  }
-}
-
 .btn {
   width: 135px;
   color: $whiteColor;
