@@ -3,7 +3,7 @@ import SingleUser from './SingleUser/SingleUser'
 import { Paginator } from '../common/Paginator/Paginator'
 import UsersSearchForm from './UsersSearchForm'
 import { FilterType, requestUsers, follow, unfollow } from '../../redux/usersReducer'
-import { getCurrentPage, getDialogs, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers, getUsersFilter } from '../../redux/usersSelectors'
+import { getCurrentPage, getDialogs, getFollowingInProgress, getIsFetching, getIsSubFetching, getPageSize, getTotalUsersCount, getUsers, getUsersFilter } from '../../redux/usersSelectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { memo, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
@@ -20,6 +20,8 @@ export const UsersPage: React.FC = memo(() => {
     const followingInProgress = useSelector(getFollowingInProgress)
     const filter = useSelector(getUsersFilter)
     const isFetching = useSelector(getIsFetching)
+    const isSubFetching = useSelector(getIsSubFetching)
+    
     // to check and change message button
     const dialogs = useSelector(getDialogs)
 
@@ -73,19 +75,24 @@ export const UsersPage: React.FC = memo(() => {
 
     return (
         <div className={s.whrapper}>
-            <UsersSearchForm onFilterChange={onFilterChange} />
-            <Paginator currentPage={currentPage} totalUsersCount={totalUsersCount}
-                pageSize={pageSize} onPageChange={onPageChange} />
             {isFetching ? <Preloader />
-                : <div className={s.users}>
-                    {users.map(u =>
-                        <SingleUser onStartDialog={onStartDialog} photo={u.photos} follow={onFollow}
-                            unfollow={onUnfollow} key={u.id} userID={u.id}
-                            name={u.name} followed={u.followed} status={u.status}
-                            followingInProgress={followingInProgress} dialogs={dialogs} authorazedUserId={authorazedUserId}
-                        />
-                    )}
-                </div>}
+                : <>
+                    <UsersSearchForm onFilterChange={onFilterChange} />
+                    <Paginator currentPage={currentPage} totalUsersCount={totalUsersCount}
+                        pageSize={pageSize} onPageChange={onPageChange} />
+                    {isSubFetching ? <Preloader />
+                        : <div className={s.users}>
+                            {users.map(u =>
+                                <SingleUser onStartDialog={onStartDialog} photo={u.photos} follow={onFollow}
+                                    unfollow={onUnfollow} key={u.id} userID={u.id}
+                                    name={u.name} followed={u.followed} status={u.status}
+                                    followingInProgress={followingInProgress} dialogs={dialogs} authorazedUserId={authorazedUserId}
+                                />
+                            )}
+                        </div>
+                    }
+                </>
+            }
         </div>
     )
 })

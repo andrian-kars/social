@@ -13,7 +13,7 @@ const initialState = {
 
 const profileReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'S/DIALOGS/SET_IS_FETCHING': {
+        case 'S/PROFILE/SET_IS_FETCHING': {
             return {
                 ...state,
                 isFetching: action.isFetching,
@@ -48,7 +48,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
 }
 
 export const actions = {
-    setIsFetching: (isFetching: boolean) => ({ type: 'S/DIALOGS/SET_IS_FETCHING', isFetching } as const),
+    setIsFetching: (isFetching: boolean) => ({ type: 'S/PROFILE/SET_IS_FETCHING', isFetching } as const),
     addPost: (newPostBody: string) => ({ type: 'S/PROFILE/ADD_POST', newPostBody } as const),
     setUserProfile: (profile: ProfileType) => ({ type: 'S/PROFILE/SET_USER_PROFILE', profile } as const),
     setStatus: (status: string) => ({ type: 'S/PROFILE/SET_STATUS', status } as const),
