@@ -11,8 +11,8 @@
     border: none;
     background-color: transparent;
     margin: 0 4px;
+    line-height: 13px;
     font-size: 15px;
-    line-height: 0;
     transition: .3s;
     cursor: pointer;
 
@@ -28,7 +28,6 @@
 
 .selectedPage {
     font-weight: 700;
-    line-height: 0;
 }
 
 .indexes {

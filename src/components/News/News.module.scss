@@ -95,7 +95,7 @@
         padding-top: 20px;
         visibility: visible;
         opacity: 1;
-        transition: visibility 0s linear 0s, opacity 1s, height 1s;
+        transition: visibility 0s linear 0s, opacity 1.5s;
 
         // animation-name: drop;
         // animation-duration: 1s;
@@ -106,7 +106,6 @@
         // animation-delay: 0s;
         // animation-fill-mode: forwards; // where to end
         animation: drop 1s ease 1 0s forwards; // name dur count play-state delay fill-mode
-
     }
 }
 

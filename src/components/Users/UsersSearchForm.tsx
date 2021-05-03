@@ -43,12 +43,14 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({ onFilterChange }) => 
             {({ isSubmitting }) => (
                 <Form>
                     <Field className={s.textarea} type="text" name="term" placeholder="Type here to search..." />
-                    <div className={s.select}>
-                        <Field as="select" name="friend">
-                            <option value="null">All Users</option>
-                            <option value="true">Followed</option>
-                            <option value="false">Unfollowed</option>
-                        </Field>
+                    <div className={s.sendWhrapper}>
+                        <div className={s.selectWhrapper}>
+                            <Field as="select" name="friend">
+                                <option value="null">All Users</option>
+                                <option value="true">Followed</option>
+                                <option value="false">Unfollowed</option>
+                            </Field>
+                        </div>
                         <button className={s.button} type="submit" disabled={isSubmitting}>
                             <svg viewBox="0 0 20 20">
                                 <path d="M19.129,18.164l-4.518-4.52c1.152-1.373,1.852-3.143,1.852-5.077c0-4.361-3.535-7.896-7.896-7.896

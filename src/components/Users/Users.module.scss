@@ -41,30 +41,41 @@
     }
 }
 
-.select {
+.sendWhrapper {
     display: flex;
     align-items: center;
-    top: 20px;
-    transform: translateY(-50%);
-    right: 5px;
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
 
-    @media (min-width: 469px) {
-        right: 10px;
-    }
+    .selectWhrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        &:after {
+            position: absolute;
+            top: 3px;
+            right: 10px;
+            font-size: 10px;
+            content: '\0025BC';
+            color: $btnBgHoverColor;
+            bottom: 0px;
+            height: 10px;
+            pointer-events: none;
+        }
 
-    select {
-        color: $btnBgHoverColor;
-        background-color: $activeAndInputBgColor !important;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        margin-right: 2px;
-        transition: .3s;
-        padding-bottom: 2px;
-
-        @media (min-width: 469px) {
-            margin-right: 10px;
+        select {
+            width: 90px;
+            -webkit-appearance: none;
+            color: $btnBgHoverColor;
+            background-color: $activeAndInputBgColor;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin-right: 2px;
+            transition: .3s;
+            padding-bottom: 2px;
         }
 
         &:hover {
