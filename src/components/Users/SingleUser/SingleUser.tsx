@@ -37,9 +37,11 @@ const SingleUser: React.FC<PropsType> = ({ authorazedUserId, dialogs, userID, ph
                             .some(id => id === userID) || authorazedUserId === userID}
                             onClick={() => { follow(userID) }}
                             className={`${s.button} ${s.follow}`}>Follow</button>}
-                    {dialogs.some(d => d.id === userID) || authorazedUserId === userID
-                        ? <NavLink to={`/dialogs/${userID}`} className={`${s.button} ${s.follow}`}>Message</NavLink>
-                        : <NavLink to={`/dialogs/${userID}`} onClick={() => { onStartDialog(userID, name) }} className={`${s.button} ${s.follow}`}>New Chat</NavLink>}
+                    {authorazedUserId === userID 
+                        ? <button disabled className={s.button}>Message</button>
+                        : dialogs.some(d => d.id === userID)
+                            ? <NavLink to={`/dialogs/${userID}`} className={`${s.button} ${s.follow}`}>Message</NavLink>
+                            : <NavLink to={`/dialogs/${userID}`} onClick={() => { onStartDialog(userID, name) }} className={`${s.button} ${s.follow}`}>New Chat</NavLink>}
                 </div>
             </div>
         </div>

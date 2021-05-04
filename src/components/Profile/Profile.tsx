@@ -28,10 +28,11 @@ const Profile: React.FC<PropsType> = (props) => {
                     profile={props.profile}
                     status={props.status}
                     updateStatus={props.updateStatus} />
-                <Posts posts={props.posts}
+                {/* As long as API does not support it */}
+                {props.isOwner && <Posts posts={props.posts}
                     photos={props.profile.photos}
                     isOwner={props.isOwner}
-                    savePosts={props.savePosts} />
+                    savePosts={props.savePosts} />}
             </div>
         )
     }
