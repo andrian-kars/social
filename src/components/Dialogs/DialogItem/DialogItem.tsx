@@ -4,6 +4,7 @@ import { memo } from 'react'
 
 type PropsType = {
     userName: string
+    fullName: string
     id: number
 }
 
@@ -12,7 +13,7 @@ export const DialogItem: React.FC<PropsType> = memo((props) => {
 
     return (
         <div className={s.dialog} id={'' + props.id}>
-            <NavLink replace to={path} className={s.link} activeClassName={s.active}>{props.userName}</NavLink>
+            <NavLink replace to={path} className={s.link} activeClassName={s.active} title={props.fullName}>{props.userName}</NavLink>
         </div>
     )
 })
