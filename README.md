@@ -14,3 +14,13 @@
 This project is a part of a course by [IT-KAMASUTRA](https://it-kamasutra.com/).
 
 And also my second attempt to create a fully functional Social-Network
+
+## Run the app
+
+1. clone the project
+
+2. register on [API](https://social-network.samuraijs.com/) and get the api key
+
+3. inside api folder create apiKey.ts and paste inside: export const apiKey = 'your api key'
+
+4. run npm i and you are ready to go
